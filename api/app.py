@@ -26,6 +26,3 @@ members = [
 @app.route("/")
 def home():
     return render_template("index.html", members=members)
-
-if __name__ == "__main__":
-    app.run(debug=True)
