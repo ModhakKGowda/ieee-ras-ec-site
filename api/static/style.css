@@ -9,7 +9,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* HIGH-TECH SCROLLING BACKGROUND */
+/* ROBOTICS BLUEPRINT SCI-FI SCROLLING CANVAS */
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     color: #cbd5e1;
@@ -17,16 +17,17 @@ body {
     margin: 0;
     padding: 0;
     
-    /* Technical grid line background matrix */
-    background-color: #060913;
+    /* Dynamic robotics network mesh pattern */
+    background-color: #050811;
     background-image: 
-        linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px),
-        radial-gradient(circle at 50% 50%, #0a1224 0%, #02050f 100%);
-    background-size: 50px 50px, 50px 50px, 100% 100%;
+        radial-gradient(rgba(59, 130, 246, 0.15) 1.5px, transparent 1.5px), 
+        linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 50% 40%, #0a1326 0%, #02040a 100%);
+    background-size: 40px 40px, 40px 40px, 40px 40px, 100% 100%;
     
-    /* This makes the grid lines scroll dynamic while the dark depth gradient stays pinned */
-    background-attachment: local, local, fixed; 
+    /* Nodes and tech grid lines translate on scroll wheel activity */
+    background-attachment: local, local, local, fixed; 
 }
 
 /* GRADIENT ATTRACTIVE TYPOGRAPHY */
@@ -80,54 +81,53 @@ h3, .card-title {
     justify-content: space-between;
     align-items: center;
     padding: 0.85rem 5%;
-    background: rgba(6, 9, 19, 0.8);
+    background: rgba(5, 8, 17, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
 }
 
-/* LOGO BOX AREA - PROTECTED VISIBILITY AND FIXED RATIOS */
+/* LOGO CONTAINER CLARITY CONFIGURATION */
 .logo-wrapper {
     background: #ffffff;      
-    padding: 0.5rem 1.2rem;
+    padding: 0px 14px;
     border-radius: 8px;       
     display: flex;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    height: 48px; /* Restricts vertical bloating */
+    height: 44px; 
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 12px;
 }
 
-/* Crisp rendering fixes for the individual logos */
 .logo-img-ras {
-    width: 90px;
-    height: auto;
+    width: 90px !important;
+    height: 26px !important;
     object-fit: contain;
     image-rendering: -webkit-optimize-contrast;
 }
 
 .logo-img-pes {
-    width: 75px;
-    height: auto;
+    width: 58px !important;
+    height: 28px !important;
     object-fit: contain;
     image-rendering: -webkit-optimize-contrast;
 }
 
 .logo-divider {
     width: 1px;
-    height: 20px;
+    height: 18px;
     background-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Links and Buttons */
+/* Links & Buttons */
 .navbar nav {
     display: flex;
     align-items: center;
@@ -173,7 +173,7 @@ h3, .card-title {
     box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
 
-/* Layout Framework */
+/* Sections Layout */
 .section {
     padding: 6rem 5% 4rem 5%;
     display: flex;
@@ -195,7 +195,7 @@ h3, .card-title {
     max-width: 850px;
 }
 
-/* TEAM CONTAINER MECHANICS */
+/* TEAM COMPONENT LAYOUTS */
 .team-grid {
     display: flex;
     justify-content: center;
@@ -207,20 +207,21 @@ h3, .card-title {
 }
 
 .card {
-    background: rgba(15, 23, 42, 0.45);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(10, 17, 34, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.1);
     padding: 2.5rem 2rem;
     border-radius: 16px;
     width: 320px;
     text-align: center;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    border-color: rgba(59, 130, 246, 0.25);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
 }
 
 .image-container {
@@ -229,7 +230,8 @@ h3, .card-title {
     margin: 0 auto;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid rgba(59, 130, 246, 0.2);
+    border: 3px solid rgba(59, 130, 246, 0.3);
+    background: #0f172a;
 }
 
 .team-photo {
