@@ -2,17 +2,27 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/')
+members = [
+    {
+        "name": "Member One",
+        "role": "Chair",
+        "image": "https://via.placeholder.com/150",
+        "linkedin": "#"
+    },
+    {
+        "name": "Member Two",
+        "role": "Vice Chair",
+        "image": "https://via.placeholder.com/150",
+        "linkedin": "#"
+    },
+    {
+        "name": "Member Three",
+        "role": "Secretary",
+        "image": "https://via.placeholder.com/150",
+        "linkedin": "#"
+    }
+]
+
+@app.route("/")
 def home():
-    return render_template('index.html')
-
-@app.route('/about')
-def about_page():
-    return render_template('about.html')
-
-@app.route('/team')
-def team_page():
-    return render_template('team.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    return render_template("index.html", members=members)
