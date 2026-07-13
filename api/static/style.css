@@ -25,46 +25,6 @@ body {
     --text-muted: #94a3b8;     
 }
 
-/* Navbar Layout - PREMIUM DARK BLUE BAR */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    background: #0f172a;      /* Matching dark blue theme bar */
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Flex Container for the Logos */
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-}
-
-/* Logo Image Dimensions Constraints */
-.logo-img {
-    height: 38px;          
-    width: auto;           
-    object-fit: contain;
-}
-
-/* Slight brightness bump for the PES logo text over dark blue */
-.logo-brighten {
-    filter: brightness(0) invert(1); /* Makes the dark PES logo text pop cleanly in white */
-    opacity: 0.9;
-}
-
-/* Vertical divider line calibrated for the dark theme */
-.logo-divider {
-    width: 1px;
-    height: 22px;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
 /* Navbar Layout - SLEEK SEAMLESS DARK BLUE BAR */
 .navbar {
     display: flex;
@@ -80,9 +40,9 @@ body {
 
 /* White graphic background container block dedicated ONLY to the logos */
 .logo-wrapper {
-    background: #ffffff;      /* Forces a matching background for both image blocks */
+    background: #ffffff;      
     padding: 0.4rem 1.2rem;
-    border-radius: 8px;       /* Adds professional rounded edges around the white block */
+    border-radius: 8px;       
     display: flex;
     align-items: center;
 }
@@ -101,10 +61,15 @@ body {
     object-fit: contain;
 }
 
+/* Turns the white text of the IEEE RAS logo black so it stands out inside the white container */
+.logo-dark-text {
+    filter: brightness(0);
+}
+
 /* Subtle dark separator line because it sits on the new white background */
 .logo-divider {
     width: 1px;
-    height: 20px;
+    height: 18px;
     background-color: rgba(0, 0, 0, 0.15);
 }
 
