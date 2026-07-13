@@ -11,18 +11,18 @@ html {
 
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #0b1120;
-    color: #e2e8f0;
+    background-color: #ffffff; /* Clean White Background */
+    color: #1e293b;           /* Dark Slate Text for perfect legibility */
     line-height: 1.6;
 }
 
-/* Colors and Custom Variables */
+/* Updated Colors and Light Custom Variables */
 :root {
-    --primary: #2563eb;
+    --primary: #2563eb;       /* Vibrant Tech Blue */
     --accent: #1d4ed8;
-    --brand-gold: #f59e0b;
-    --surface: #1e293b;
-    --text-muted: #94a3b8;
+    --brand-gold: #d97706;     /* Darker Gold for visibility on white background */
+    --surface: #f8fafc;       /* Soft light gray for cards/sections */
+    --text-muted: #64748b;     /* Readable gray for descriptions */
 }
 
 /* Navbar Layout */
@@ -31,12 +31,12 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    background: rgba(11, 17, 32, 0.85);
+    background: rgba(255, 255, 255, 0.9); /* White frosted-glass navbar */
     backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Flex Container for the Logos */
@@ -48,22 +48,21 @@ body {
 
 /* Logo Image Dimensions Constraints */
 .logo-img {
-    height: 35px;          /* Clean, uniform height for both emblems */
-    width: auto;           /* Automatically keeps the correct proportions */
+    height: 38px;          
+    width: auto;           
     object-fit: contain;
 }
 
-/* Forces images to render bright, sharp, and transparent on dark backgrounds */
+/* Completely clean logo presentation */
 .logo-clean {
     background: transparent !important;
-    filter: brightness(1.3) contrast(1.1);
 }
 
-/* Visual vertical divider line between logos */
+/* Darker vertical divider line for light mode */
 .logo-divider {
     width: 1px;
     height: 22px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
 .navbar nav {
@@ -81,18 +80,18 @@ body {
 }
 
 .navbar nav a:hover {
-    color: #ffffff;
+    color: #000000;
 }
 
 .btn-nav {
-    background: rgba(37, 99, 235, 0.1);
-    color: #3b82f6 !important;
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--primary) !important;
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    border: 1px solid rgba(37, 99, 235, 0.3);
+    border: 1px solid rgba(37, 99, 235, 0.2);
 }
 
-/* Hero Section */
+/* Hero Section Background Adjustments */
 .hero {
     min-height: 85vh;
     display: flex;
@@ -100,23 +99,7 @@ body {
     justify-content: center;
     text-align: center;
     padding: 2rem 1rem;
-    background: radial-gradient(circle at top, rgba(37, 99, 235, 0.15), transparent 60%);
-}
-
-.hero-content {
-    max-width: 800px;
-}
-
-.badge {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--brand-gold);
-    padding: 0.4rem 1rem;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-block;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(245, 158, 11, 0.2);
+    background: radial-gradient(circle at top, rgba(37, 99, 235, 0.06), transparent 60%);
 }
 
 .hero h1 {
@@ -125,181 +108,55 @@ body {
     line-height: 1.15;
     letter-spacing: -1px;
     margin-bottom: 0.5rem;
-    color: #ffffff;
+    color: #0f172a; /* Solid dark color for main heading */
 }
 
-.subtitle {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    color: var(--brand-gold);
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-}
-
-.hero-description {
-    color: var(--text-muted);
-    font-size: 1.15rem;
-    margin-bottom: 2.5rem;
-}
-
-/* Interactivity Action Buttons */
-.btn {
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    background: var(--primary);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-}
-
-.btn:hover {
-    background: var(--accent);
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: #ffffff;
-    box-shadow: none;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    margin-left: 1rem;
-}
-
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* Layout Core Elements */
-.section {
-    padding: 6rem 5% 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
+/* Content Sections Layout */
 .section h2 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #ffffff;
+    color: #0f172a;
 }
 
-.section-desc {
+.card {
+    background: var(--surface); /* Soft off-white cards */
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
     text-align: center;
-    max-width: 700px;
-    margin: 0 auto 3.5rem;
-    color: var(--text-muted);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-/* Grid Showcase Modules */
-.perks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    border-color: rgba(37, 99, 235, 0.2);
+}
+
+.card h3 {
+    color: #0f172a;
 }
 
 .perk-card {
     background: var(--surface);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.02);
-    transition: transform 0.3s ease;
-}
-
-.perk-card:hover {
-    transform: translateY(-4px);
+    border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .perk-card h3 {
-    margin-bottom: 0.75rem;
-    color: #ffffff;
-}
-
-.perk-card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-}
-
-/* Committee Cards Elements */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 2rem;
-}
-
-.card {
-    background: var(--surface);
-    border-radius: 16px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(255, 255, 255, 0.02);
-}
-
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    border-color: rgba(37, 99, 235, 0.3);
-}
-
-.card img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1.25rem;
-    border: 3px solid rgba(255, 255, 255, 0.1);
-}
-
-.card h3 {
-    color: #ffffff;
-    font-size: 1.2rem;
-    margin-bottom: 0.25rem;
-}
-
-.card .role {
-    color: var(--brand-gold);
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: 1.25rem;
-}
-
-.card .link {
-    color: #3b82f6;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
+    color: #0f172a;
 }
 
 /* Call to Action Container Section */
 .join-section {
-    background: radial-gradient(circle at bottom, rgba(37, 99, 235, 0.1), transparent 70%);
+    background: radial-gradient(circle at bottom, rgba(37, 99, 235, 0.05), transparent 70%);
 }
 
 .join-container {
-    background: linear-gradient(135deg, #1e293b, #0f172a);
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
     padding: 3.5rem 2rem;
     border-radius: 20px;
     text-align: center;
-    border: 1px solid rgba(37, 99, 235, 0.2);
-}
-
-.join-container p {
-    color: var(--text-muted);
-    margin: 1rem 0 2rem;
-}
-
-.btn-pulse {
-    background: var(--primary);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+    border: 1px solid rgba(37, 99, 235, 0.1);
 }
 
 /* Footer layout rules */
