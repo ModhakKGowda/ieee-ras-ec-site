@@ -29,7 +29,7 @@
             <a href="#join" class="btn-nav">Join Club</a>
         </nav>
     </header>
-    
+
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="badge">🚀 IEEE RAS EC Chapter</div>
@@ -65,17 +65,20 @@
 
     <section id="team" class="section">
         <h2>Our Core Team</h2>
+        <p class="section-desc">Meet the minds leading the IEEE RAS EC Chapter initiatives.</p>
+    
         <div class="team-grid">
-            {% for member in members %}
             <div class="card">
-                <img src="{{ member.image }}" alt="{{ member.name }}">
-                <h3>{{ member.name }}</h3>
-                <p class="role">{{ member.role }}</p>
-                {% if member.linkedin %}
-                <a href="{{ member.linkedin }}" class="link" target="_blank">Connect on LinkedIn →</a>
-                {% endif %}
+                <img src="{{ url_for('static', filename='images/ieee-ras-ec-chair.png') }}" alt="EC Chair" class="team-photo">
+                <h3>Chairperson</h3>
+                <p class="role">IEEE RAS EC Chair</p>
             </div>
-            {% endfor %}
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/ieee-ras-ec-vicechair.png') }}" alt="EC Vice Chair" class="team-photo">
+                <h3>Vice-Chairperson</h3>
+                <p class="role">IEEE RAS EC Vice-Chair</p>
+            </div>
         </div>
     </section>
 
