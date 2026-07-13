@@ -1,4 +1,4 @@
-/* Core Styling Rules Reset */
+/* Core Document Engine Reset Rules */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,49 +9,91 @@ html {
     scroll-behavior: smooth;
 }
 
-/* HIGH-TECH DYNAMIC ROBOTICS SCROLLING BACKGROUND */
+/* INTERACTIVE LIVE SCROLLING BACKGROUND ARCHITECTURE */
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #e2e8f0;
+    color: #cbd5e1; /* Calmed text color down from harsh flat pure white */
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
     
-    /* Interactive Deep Space/Circuit Board Matrix Background */
+    /* Dual-layered tech mesh background matrix */
+    background-color: #060913;
     background-image: 
-        radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(147, 51, 234, 0.12) 0%, transparent 45%),
-        linear-gradient(135deg, #070b14 0%, #0b1120 50%, #020617 100%);
+        linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, #0a1224 0%, #02050f 100%);
+    background-size: 50px 50px, 50px 50px, 100% 100%;
     
-    background-attachment: fixed; /* Crucial: Keeps the backgrounds moving relative to elements on scroll */
-    background-size: 200% 200%;
-    animation: backgroundShift 25s ease infinite alternate;
+    /* Local positioning moves the technical mesh layer interactively when scrolling down */
+    background-attachment: local, local, fixed; 
 }
 
-/* Smooth background movement effect */
-@keyframes backgroundShift {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
+/* TYPOGRAPHY ATTRACTIVE UPGRADE: HEADINGS ARE NO LONGER FLAT WHITE */
+h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    background: linear-gradient(135deg, #ffffff 30%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 1.5rem;
 }
 
-/* Navbar Layout */
+h2, .section-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    background: linear-gradient(135deg, #ffffff 40%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+h3, .card-title {
+    color: #f1f5f9; 
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-top: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.section-desc {
+    color: #94a3b8; 
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.role {
+    color: #3b82f6; /* Premium vivid tech blue highlights */
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+/* NAVBAR STRUCTURAL FLOW CONTAINER */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 5%;
-    background: rgba(11, 17, 32, 0.75);
+    padding: 0.85rem 5%;
+    background: rgba(6, 9, 19, 0.8);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Logo Box Wrapper matching the white style safely */
+/* Unmodified Protected White Box Badge Area For Logos */
 .logo-wrapper {
     background: #ffffff;      
     padding: 0.45rem 1.2rem;
-    border-radius: 10px;       
+    border-radius: 8px;       
     display: flex;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -63,23 +105,21 @@ body {
     gap: 1.2rem;
 }
 
-/* HIGH-CLARITY IMAGE CONFIGURATION */
 .logo-img {
-    height: 34px;          
+    height: 32px;          
     width: auto;           
     object-fit: contain;
-    image-rendering: -webkit-optimize-contrast; /* Enhances sharpness */
-    image-rendering: crisp-edges;
-    filter: contrast(1.1) brightness(1.02); /* Boosts pixel clarity */
+    image-rendering: -webkit-optimize-contrast;
+    filter: contrast(1.05) brightness(1.02);
 }
 
 .logo-divider {
     width: 1px;
-    height: 20px;
+    height: 18px;
     background-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Navbar Links */
+/* Navbar Menu Links */
 .navbar nav {
     display: flex;
     align-items: center;
@@ -91,243 +131,102 @@ body {
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
-    transition: all 0.25s ease;
+    transition: color 0.25s ease;
 }
 
 .navbar nav a:hover {
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    color: #3b82f6;          
 }
 
-/* Call to Action Button */
+/* Buttons System */
 .btn-nav {
-    background: rgba(37, 99, 235, 0.15);
+    background: rgba(37, 99, 235, 0.12);
     color: #3b82f6 !important; 
     padding: 0.5rem 1.2rem;
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid rgba(37, 99, 235, 0.3);
-    font-weight: 600 !important;
+    font-weight: 600;
 }
 
-.btn-nav:hover {
+.btn-primary {
+    display: inline-block;
     background: #2563eb;
-    color: #ffffff !important;
-    box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
 }
 
-/* Hero Content Tuning */
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* Layout Page Grid Structures */
+.section {
+    padding: 6rem 5% 4rem 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .hero {
-    min-height: 85vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 0 5%;
 }
 
-.hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4.2rem);
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -1px;
+.hero-content {
+    max-width: 850px;
 }
 
-.subtitle {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    color: var(--brand-gold);
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-}
-
-.hero-description {
-    color: var(--text-muted);
-    font-size: 1.15rem;
-    margin-bottom: 2.5rem;
-}
-
-.badge {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--brand-gold);
-    padding: 0.4rem 1rem;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-block;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(245, 158, 11, 0.2);
-}
-
-/* Universal Buttons */
-.btn {
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    background: var(--primary);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-}
-
-.btn:hover {
-    background: var(--accent);
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: #ffffff;
-    box-shadow: none;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    margin-left: 1rem;
-}
-
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* General Layout Core Elements */
-.section {
-    padding: 6rem 5% 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.section h2 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #ffffff;
-}
-
-.section-desc {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 3.5rem;
-    color: var(--text-muted);
-}
-
-/* Grid Components */
-.perks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.perk-card {
-    background: var(--surface);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.02);
-    transition: transform 0.3s ease;
-}
-
-.perk-card:hover {
-    transform: translateY(-4px);
-}
-
-.perk-card h3 {
-    margin-bottom: 0.75rem;
-    color: #ffffff;
-}
-
-.perk-card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-}
-
+/* Core Team Section Matrix Styling Rules */
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 900px;
 }
 
 .card {
-    background: var(--surface);
+    background: rgba(15, 23, 42, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2.5rem 2rem;
     border-radius: 16px;
-    padding: 2rem 1.5rem;
+    width: 320px;
     text-align: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    border-color: rgba(37, 99, 235, 0.3);
+    transform: translateY(-5px);
+    border-color: rgba(59, 130, 246, 0.25);
 }
 
-.card img {
-    width: 110px;
-    height: 110px;
+.image-container {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
     border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(59, 130, 246, 0.2);
+}
+
+.team-photo {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    margin-bottom: 1.25rem;
-    border: 3px solid rgba(255, 255, 255, 0.1);
-}
-
-.card h3 {
-    color: #ffffff;
-    font-size: 1.2rem;
-    margin-bottom: 0.25rem;
-}
-
-.card .role {
-    color: var(--brand-gold);
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: 1.25rem;
-}
-
-.card .link {
-    color: #3b82f6;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-/* CTA Signup Area */
-.join-section {
-    background: radial-gradient(circle at bottom, rgba(37, 99, 235, 0.1), transparent 70%);
-}
-
-.join-container {
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    padding: 3.5rem 2rem;
-    border-radius: 20px;
-    text-align: center;
-    border: 1px solid rgba(37, 99, 235, 0.2);
-}
-
-.join-container p {
-    color: var(--text-muted);
-    margin: 1rem 0 2rem;
-}
-
-.btn-pulse {
-    background: var(--primary);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
-}
-
-.footer {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: #475569;
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.02);
-}
-
-@media(max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 1rem;
-    }
 }
