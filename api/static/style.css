@@ -1,4 +1,4 @@
-/* Core Document Engine Reset Rules */
+/* Core Reset Configuration */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,15 +9,15 @@ html {
     scroll-behavior: smooth;
 }
 
-/* INTERACTIVE LIVE SCROLLING BACKGROUND ARCHITECTURE */
+/* HIGH-TECH SCROLLING BACKGROUND */
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #cbd5e1; /* Calmed text color down from harsh flat pure white */
+    color: #cbd5e1;
     line-height: 1.6;
     margin: 0;
     padding: 0;
     
-    /* Dual-layered tech mesh background matrix */
+    /* Technical grid line background matrix */
     background-color: #060913;
     background-image: 
         linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
@@ -25,14 +25,14 @@ body {
         radial-gradient(circle at 50% 50%, #0a1224 0%, #02050f 100%);
     background-size: 50px 50px, 50px 50px, 100% 100%;
     
-    /* Local positioning moves the technical mesh layer interactively when scrolling down */
+    /* This makes the grid lines scroll dynamic while the dark depth gradient stays pinned */
     background-attachment: local, local, fixed; 
 }
 
-/* TYPOGRAPHY ATTRACTIVE UPGRADE: HEADINGS ARE NO LONGER FLAT WHITE */
+/* GRADIENT ATTRACTIVE TYPOGRAPHY */
 h1 {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
-    background: linear-gradient(135deg, #ffffff 30%, #3b82f6 100%);
+    background: linear-gradient(135deg, #ffffff 40%, #3b82f6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
@@ -68,13 +68,13 @@ h3, .card-title {
 }
 
 .role {
-    color: #3b82f6; /* Premium vivid tech blue highlights */
+    color: #3b82f6; 
     font-weight: 600;
     font-size: 0.95rem;
     letter-spacing: 0.5px;
 }
 
-/* NAVBAR STRUCTURAL FLOW CONTAINER */
+/* NAVBAR STRUCTURE */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -89,37 +89,45 @@ h3, .card-title {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Unmodified Protected White Box Badge Area For Logos */
+/* LOGO BOX AREA - PROTECTED VISIBILITY AND FIXED RATIOS */
 .logo-wrapper {
     background: #ffffff;      
-    padding: 0.45rem 1.2rem;
+    padding: 0.5rem 1.2rem;
     border-radius: 8px;       
     display: flex;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    height: 48px; /* Restricts vertical bloating */
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: 1rem;
 }
 
-.logo-img {
-    height: 32px;          
-    width: auto;           
+/* Crisp rendering fixes for the individual logos */
+.logo-img-ras {
+    width: 90px;
+    height: auto;
     object-fit: contain;
     image-rendering: -webkit-optimize-contrast;
-    filter: contrast(1.05) brightness(1.02);
+}
+
+.logo-img-pes {
+    width: 75px;
+    height: auto;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .logo-divider {
     width: 1px;
-    height: 18px;
+    height: 20px;
     background-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Navbar Menu Links */
+/* Links and Buttons */
 .navbar nav {
     display: flex;
     align-items: center;
@@ -138,7 +146,6 @@ h3, .card-title {
     color: #3b82f6;          
 }
 
-/* Buttons System */
 .btn-nav {
     background: rgba(37, 99, 235, 0.12);
     color: #3b82f6 !important; 
@@ -166,7 +173,7 @@ h3, .card-title {
     box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
 
-/* Layout Page Grid Structures */
+/* Layout Framework */
 .section {
     padding: 6rem 5% 4rem 5%;
     display: flex;
@@ -188,7 +195,7 @@ h3, .card-title {
     max-width: 850px;
 }
 
-/* Core Team Section Matrix Styling Rules */
+/* TEAM CONTAINER MECHANICS */
 .team-grid {
     display: flex;
     justify-content: center;
