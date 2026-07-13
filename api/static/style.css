@@ -25,17 +25,18 @@ body {
     --text-muted: #94a3b8;     
 }
 
-/* Navbar Layout - CHANGED TO SOLID WHITE */
+/* Navbar Layout - MODIFIED TO SOFT COMFORTABLE LIGHT GREY */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 5%;
-    background: #ffffff;      /* Solid clean white header background */
+    background: #f1f5f9;      /* Softer off-white tone to reduce glaring brightness */
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Smoother shadow */
+    border-bottom: 1px solid #cbd5e1;
 }
 
 /* Flex Container for the Logos */
@@ -52,19 +53,19 @@ body {
     object-fit: contain;
 }
 
-/* Clean logo display without filtering */
+/* Clean logo display layout */
 .logo-clean {
     background: transparent !important;
 }
 
-/* Darker vertical divider line because the navbar is now white */
+/* Divider line calibrated for the new softer top bar */
 .logo-divider {
     width: 1px;
     height: 22px;
     background-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Navbar Navigation Links adjusted to stand out on a white background */
+/* Navbar Links calibrated for off-white contrast readability */
 .navbar nav {
     display: flex;
     align-items: center;
@@ -72,7 +73,7 @@ body {
 }
 
 .navbar nav a {
-    color: #475569;          /* Slate gray links for white backdrop visibility */
+    color: #334155;          /* Visible dark slate links on light grey */
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
@@ -80,12 +81,12 @@ body {
 }
 
 .navbar nav a:hover {
-    color: #000000;          /* Pure black hover focus state */
+    color: #000000;          
 }
 
-/* Join Button adjustments inside the white navbar */
+/* Action button tweaked to match the softer layout accent */
 .btn-nav {
-    background: rgba(37, 99, 235, 0.1);
+    background: rgba(37, 99, 235, 0.08);
     color: #2563eb !important; 
     padding: 0.5rem 1rem;
     border-radius: 8px;
