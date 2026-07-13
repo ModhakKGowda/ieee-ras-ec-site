@@ -11,32 +11,31 @@ html {
 
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #ffffff; /* Clean White Background */
-    color: #1e293b;           /* Dark Slate Text for perfect legibility */
+    background-color: #0b1120; /* Beautiful Deep Dark Blue restored */
+    color: #e2e8f0;           /* Clean text for dark mode readability */
     line-height: 1.6;
 }
 
-/* Updated Colors and Light Custom Variables */
+/* Color Variables */
 :root {
-    --primary: #2563eb;       /* Vibrant Tech Blue */
+    --primary: #2563eb;       
     --accent: #1d4ed8;
-    --brand-gold: #d97706;     /* Darker Gold for visibility on white background */
-    --surface: #f8fafc;       /* Soft light gray for cards/sections */
-    --text-muted: #64748b;     /* Readable gray for descriptions */
+    --brand-gold: #f59e0b;     
+    --surface: #1e293b;       
+    --text-muted: #94a3b8;     
 }
 
-/* Navbar Layout */
+/* Navbar Layout - CHANGED TO SOLID WHITE */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
-    background: rgba(255, 255, 255, 0.9); /* White frosted-glass navbar */
-    backdrop-filter: blur(12px);
+    padding: 0.75rem 5%;
+    background: #ffffff;      /* Solid clean white header background */
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* Flex Container for the Logos */
@@ -53,18 +52,19 @@ body {
     object-fit: contain;
 }
 
-/* Completely clean logo presentation */
+/* Clean logo display without filtering */
 .logo-clean {
     background: transparent !important;
 }
 
-/* Darker vertical divider line for light mode */
+/* Darker vertical divider line because the navbar is now white */
 .logo-divider {
     width: 1px;
     height: 22px;
     background-color: rgba(0, 0, 0, 0.15);
 }
 
+/* Navbar Navigation Links adjusted to stand out on a white background */
 .navbar nav {
     display: flex;
     align-items: center;
@@ -72,26 +72,27 @@ body {
 }
 
 .navbar nav a {
-    color: var(--text-muted);
+    color: #475569;          /* Slate gray links for white backdrop visibility */
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.95rem;
     transition: color 0.2s ease;
 }
 
 .navbar nav a:hover {
-    color: #000000;
+    color: #000000;          /* Pure black hover focus state */
 }
 
+/* Join Button adjustments inside the white navbar */
 .btn-nav {
-    background: rgba(37, 99, 235, 0.08);
-    color: var(--primary) !important;
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb !important; 
     padding: 0.5rem 1rem;
     border-radius: 8px;
     border: 1px solid rgba(37, 99, 235, 0.2);
 }
 
-/* Hero Section Background Adjustments */
+/* Hero Section Styles */
 .hero {
     min-height: 85vh;
     display: flex;
@@ -99,7 +100,7 @@ body {
     justify-content: center;
     text-align: center;
     padding: 2rem 1rem;
-    background: radial-gradient(circle at top, rgba(37, 99, 235, 0.06), transparent 60%);
+    background: radial-gradient(circle at top, rgba(37, 99, 235, 0.15), transparent 60%);
 }
 
 .hero h1 {
@@ -108,58 +109,194 @@ body {
     line-height: 1.15;
     letter-spacing: -1px;
     margin-bottom: 0.5rem;
-    color: #0f172a; /* Solid dark color for main heading */
+    color: #ffffff;
 }
 
-/* Content Sections Layout */
+.subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--brand-gold);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.hero-description {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    margin-bottom: 2.5rem;
+}
+
+.badge {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--brand-gold);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+/* Universal Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+}
+
+.btn:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #ffffff;
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-left: 1rem;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* General Layout Core Elements */
+.section {
+    padding: 6rem 5% 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .section h2 {
-    color: #0f172a;
-}
-
-.card {
-    background: var(--surface); /* Soft off-white cards */
-    border-radius: 16px;
-    padding: 2rem 1.5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
     text-align: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    margin-bottom: 1rem;
+    color: #ffffff;
 }
 
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-    border-color: rgba(37, 99, 235, 0.2);
+.section-desc {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3.5rem;
+    color: var(--text-muted);
 }
 
-.card h3 {
-    color: #0f172a;
+/* Grid Components */
+.perks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
 }
 
 .perk-card {
     background: var(--surface);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    transition: transform 0.3s ease;
+}
+
+.perk-card:hover {
+    transform: translateY(-4px);
 }
 
 .perk-card h3 {
-    color: #0f172a;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
 }
 
-/* Call to Action Container Section */
+.perk-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(37, 99, 235, 0.3);
+}
+
+.card img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.25rem;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.card h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.card .role {
+    color: var(--brand-gold);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+}
+
+.card .link {
+    color: #3b82f6;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* CTA Signup Area */
 .join-section {
-    background: radial-gradient(circle at bottom, rgba(37, 99, 235, 0.05), transparent 70%);
+    background: radial-gradient(circle at bottom, rgba(37, 99, 235, 0.1), transparent 70%);
 }
 
 .join-container {
-    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    background: linear-gradient(135deg, #1e293b, #0f172a);
     padding: 3.5rem 2rem;
     border-radius: 20px;
     text-align: center;
-    border: 1px solid rgba(37, 99, 235, 0.1);
+    border: 1px solid rgba(37, 99, 235, 0.2);
 }
 
-/* Footer layout rules */
+.join-container p {
+    color: var(--text-muted);
+    margin: 1rem 0 2rem;
+}
+
+.btn-pulse {
+    background: var(--primary);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
 .footer {
     text-align: center;
     padding: 3rem 1rem;
@@ -168,7 +305,6 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.02);
 }
 
-/* Media Query for Mobile Responsiveness */
 @media(max-width: 768px) {
     .navbar {
         flex-direction: column;
