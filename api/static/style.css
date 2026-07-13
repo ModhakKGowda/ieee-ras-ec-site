@@ -25,18 +25,18 @@ body {
     --text-muted: #94a3b8;     
 }
 
-/* Navbar Layout - MODIFIED TO SOFT COMFORTABLE LIGHT GREY */
+/* Navbar Layout - RESTORED TO PREMIUM MATCHING DARK BLUE */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 5%;
-    background: #f1f5f9;      /* Softer off-white tone to reduce glaring brightness */
+    padding: 1rem 5%;
+    background: rgba(11, 17, 32, 0.9); /* Blends smoothly with the #0b1120 body */
+    backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Smoother shadow */
-    border-bottom: 1px solid #cbd5e1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Flex Container for the Logos */
@@ -48,24 +48,25 @@ body {
 
 /* Logo Image Dimensions Constraints */
 .logo-img {
-    height: 38px;          
+    height: 36px;          
     width: auto;           
     object-fit: contain;
 }
 
-/* Clean logo display layout */
-.logo-clean {
-    background: transparent !important;
+/* Magic Filter: Strips the hardcoded white boxes out and makes graphic contents clear on dark themes */
+.logo-darkmode-fix {
+    mix-blend-mode: screen; 
+    filter: brightness(1.5) contrast(1.2);
 }
 
-/* Divider line calibrated for the new softer top bar */
+/* Light divider line for dark background theme */
 .logo-divider {
     width: 1px;
     height: 22px;
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Navbar Links calibrated for off-white contrast readability */
+/* Navbar Links calibrated for dark blue visibility */
 .navbar nav {
     display: flex;
     align-items: center;
@@ -73,24 +74,24 @@ body {
 }
 
 .navbar nav a {
-    color: #334155;          /* Visible dark slate links on light grey */
+    color: var(--text-muted);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.95rem;
     transition: color 0.2s ease;
 }
 
 .navbar nav a:hover {
-    color: #000000;          
+    color: #ffffff;          
 }
 
-/* Action button tweaked to match the softer layout accent */
+/* Join Button adjustments for dark layout navbar */
 .btn-nav {
-    background: rgba(37, 99, 235, 0.08);
-    color: #2563eb !important; 
+    background: rgba(37, 99, 235, 0.1);
+    color: #3b82f6 !important; 
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    border: 1px solid rgba(37, 99, 235, 0.2);
+    border: 1px solid rgba(37, 99, 235, 0.3);
 }
 
 /* Hero Section Styles */
