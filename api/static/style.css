@@ -9,99 +9,113 @@ html {
     scroll-behavior: smooth;
 }
 
+/* HIGH-TECH DYNAMIC ROBOTICS SCROLLING BACKGROUND */
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #0b1120; /* Beautiful Deep Dark Blue restored */
-    color: #e2e8f0;           /* Clean text for dark mode readability */
+    color: #e2e8f0;
     line-height: 1.6;
+    
+    /* Interactive Deep Space/Circuit Board Matrix Background */
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(147, 51, 234, 0.12) 0%, transparent 45%),
+        linear-gradient(135deg, #070b14 0%, #0b1120 50%, #020617 100%);
+    
+    background-attachment: fixed; /* Crucial: Keeps the backgrounds moving relative to elements on scroll */
+    background-size: 200% 200%;
+    animation: backgroundShift 25s ease infinite alternate;
 }
 
-/* Color Variables */
-:root {
-    --primary: #2563eb;       
-    --accent: #1d4ed8;
-    --brand-gold: #f59e0b;     
-    --surface: #1e293b;       
-    --text-muted: #94a3b8;     
+/* Smooth background movement effect */
+@keyframes backgroundShift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
 }
 
-/* Navbar Layout - SLEEK SEAMLESS DARK BLUE BAR */
+/* Navbar Layout */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 5%;
-    background: #0b1120;      /* Matches your dark layout background color */
+    background: rgba(11, 17, 32, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* White graphic background container block dedicated ONLY to the logos */
+/* Logo Box Wrapper matching the white style safely */
 .logo-wrapper {
     background: #ffffff;      
-    padding: 0.4rem 1.2rem;
-    border-radius: 8px;       
+    padding: 0.45rem 1.2rem;
+    border-radius: 10px;       
     display: flex;
     align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Flex layout arrangement inside the white box */
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.2rem;
 }
 
-/* Logo Image constraints */
+/* HIGH-CLARITY IMAGE CONFIGURATION */
 .logo-img {
-    height: 32px;          
+    height: 34px;          
     width: auto;           
     object-fit: contain;
+    image-rendering: -webkit-optimize-contrast; /* Enhances sharpness */
+    image-rendering: crisp-edges;
+    filter: contrast(1.1) brightness(1.02); /* Boosts pixel clarity */
 }
 
-/* Turns the white text of the IEEE RAS logo black so it stands out inside the white container */
-.logo-dark-text {
-    filter: brightness(0);
-}
-
-/* Subtle dark separator line because it sits on the new white background */
 .logo-divider {
     width: 1px;
-    height: 18px;
+    height: 20px;
     background-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Navbar Navigation Links over Dark Theme background */
+/* Navbar Links */
 .navbar nav {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.75rem;
 }
 
 .navbar nav a {
-    color: var(--text-muted);   
+    color: #94a3b8;   
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
-    transition: color 0.2s ease;
+    transition: all 0.25s ease;
 }
 
 .navbar nav a:hover {
-    color: #ffffff;          
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
 }
 
-/* Call to action navigation button styling */
+/* Call to Action Button */
 .btn-nav {
-    background: rgba(37, 99, 235, 0.1);
+    background: rgba(37, 99, 235, 0.15);
     color: #3b82f6 !important; 
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.2rem;
     border-radius: 8px;
     border: 1px solid rgba(37, 99, 235, 0.3);
+    font-weight: 600 !important;
 }
 
-/* Hero Section Styles */
+.btn-nav:hover {
+    background: #2563eb;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+}
+
+/* Hero Content Tuning */
 .hero {
     min-height: 85vh;
     display: flex;
@@ -109,16 +123,13 @@ body {
     justify-content: center;
     text-align: center;
     padding: 2rem 1rem;
-    background: radial-gradient(circle at top, rgba(37, 99, 235, 0.15), transparent 60%);
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
     font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -1px;
-    margin-bottom: 0.5rem;
     color: #ffffff;
+    letter-spacing: -1px;
 }
 
 .subtitle {
