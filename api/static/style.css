@@ -65,7 +65,50 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Navbar Navigation Links */
+/* Navbar Layout - SLEEK SEAMLESS DARK BLUE BAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 5%;
+    background: #0b1120;      /* Matches your dark layout background color */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* White graphic background container block dedicated ONLY to the logos */
+.logo-wrapper {
+    background: #ffffff;      /* Forces a matching background for both image blocks */
+    padding: 0.4rem 1.2rem;
+    border-radius: 8px;       /* Adds professional rounded edges around the white block */
+    display: flex;
+    align-items: center;
+}
+
+/* Flex layout arrangement inside the white box */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Logo Image constraints */
+.logo-img {
+    height: 32px;          
+    width: auto;           
+    object-fit: contain;
+}
+
+/* Subtle dark separator line because it sits on the new white background */
+.logo-divider {
+    width: 1px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Navbar Navigation Links over Dark Theme background */
 .navbar nav {
     display: flex;
     align-items: center;
@@ -84,7 +127,7 @@ body {
     color: #ffffff;          
 }
 
-/* Action button tweaked to match the layout accent */
+/* Call to action navigation button styling */
 .btn-nav {
     background: rgba(37, 99, 235, 0.1);
     color: #3b82f6 !important; 
