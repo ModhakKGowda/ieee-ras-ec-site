@@ -43,36 +43,27 @@ body {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
 }
 
 /* Logo Image Dimensions Constraints */
 .logo-img {
-    height: 40px;          /* Enforces consistent height constraints */
+    height: 38px;          /* Enforces consistent height constraints */
     width: auto;           /* Maintains correct aspect ratio automatically */
     object-fit: contain;
+}
+
+/* Knock out white backgrounds so logos blend into your dark theme colors natively */
+.logo-blend {
+    mix-blend-mode: multiply; 
+    filter: brightness(1.1) contrast(1.1); /* Keeps colors vibrant on a dark backdrop */
 }
 
 /* Visual vertical divider line between logos */
 .logo-divider {
     width: 1px;
-    height: 25px;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.logo-text {
-    font-weight: 800;
-    font-size: 1.25rem;
-    letter-spacing: -0.5px;
-    color: #ffffff;
-    margin-left: 0.25rem;
-}
-
-.accent-brand {
-    color: var(--brand-gold);
-    background: linear-gradient(45deg, #f59e0b, #ef4444);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    height: 22px;
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .navbar nav {
