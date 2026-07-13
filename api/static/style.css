@@ -25,14 +25,13 @@ body {
     --text-muted: #94a3b8;     
 }
 
-/* Navbar Layout - RESTORED TO PREMIUM MATCHING DARK BLUE */
+/* Navbar Layout - PREMIUM DARK BLUE BAR */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    background: rgba(11, 17, 32, 0.9); /* Blends smoothly with the #0b1120 body */
-    backdrop-filter: blur(12px);
+    background: #0f172a;      /* Matching dark blue theme bar */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -48,25 +47,25 @@ body {
 
 /* Logo Image Dimensions Constraints */
 .logo-img {
-    height: 36px;          
+    height: 38px;          
     width: auto;           
     object-fit: contain;
 }
 
-/* Magic Filter: Strips the hardcoded white boxes out and makes graphic contents clear on dark themes */
-.logo-darkmode-fix {
-    mix-blend-mode: screen; 
-    filter: brightness(1.5) contrast(1.2);
+/* Slight brightness bump for the PES logo text over dark blue */
+.logo-brighten {
+    filter: brightness(0) invert(1); /* Makes the dark PES logo text pop cleanly in white */
+    opacity: 0.9;
 }
 
-/* Light divider line for dark background theme */
+/* Vertical divider line calibrated for the dark theme */
 .logo-divider {
     width: 1px;
     height: 22px;
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Navbar Links calibrated for dark blue visibility */
+/* Navbar Navigation Links */
 .navbar nav {
     display: flex;
     align-items: center;
@@ -74,7 +73,7 @@ body {
 }
 
 .navbar nav a {
-    color: var(--text-muted);
+    color: var(--text-muted);   
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
@@ -85,7 +84,7 @@ body {
     color: #ffffff;          
 }
 
-/* Join Button adjustments for dark layout navbar */
+/* Action button tweaked to match the layout accent */
 .btn-nav {
     background: rgba(37, 99, 235, 0.1);
     color: #3b82f6 !important; 
