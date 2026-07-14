@@ -13,38 +13,41 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: #030408;
+            background: #020306;
         }
-        .events-layout-box {
-            max-width: 1100px;
+        .panoramic-wrapper {
+            width: 100%;
+            max-width: 1400px; /* Expands broadly to prevent weird compression gaps */
             margin: 8rem auto 4rem auto;
-            padding: 0 2rem;
-            text-align: center;
+            padding: 0 3rem;
             position: relative;
             z-index: 2;
         }
-        .event-card {
-            background: rgba(6, 10, 23, 0.85) !important;
-            border: 1px solid rgba(0, 180, 216, 0.15) !important;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.5);
-            backdrop-filter: blur(12px);
-            border-radius: 20px !important;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        .panoramic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
-        .event-card:hover {
-            transform: translateY(-8px);
-            border-color: #00f5ff !important;
-            box-shadow: 0 20px 50px rgba(0, 245, 255, 0.18) !important;
+        .panoramic-card {
+            background: rgba(6, 9, 20, 0.85);
+            border: 1px solid rgba(0, 245, 255, 0.15);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .tech-tag {
-            background: rgba(0, 245, 255, 0.08);
-            color: #00f5ff;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            border: 1px solid rgba(0, 245, 255, 0.2);
+        .panoramic-card:hover {
+            transform: scale(1.02) translateY(-4px);
+            border-color: #00f5ff;
+            box-shadow: 0 30px 70px rgba(0, 245, 255, 0.12);
+        }
+        .glow-bar {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, #00b4d8, #00f5ff);
         }
     </style>
 </head>
@@ -68,31 +71,35 @@
         </nav>
     </header>
 
-    <div class="events-layout-box">
-        <h2 class="section-title">Initiatives & Events</h2>
-        <p class="section-desc" style="color: #cbd5e1; max-width: 600px; margin: 0 auto 4rem auto;">Unleash your creativity at our structured tech challenges, hands-on build weeks, and hardware hackathons.</p>
-        
-        <div class="events-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
-            <div class="event-card" style="padding: 2.5rem 2rem; position: relative; text-align: left;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                    <span class="tech-tag">HARDWARE CLASS</span>
-                    <i class="fa-solid fa-microchip" style="color: #00f5ff; font-size: 1.3rem;"></i>
+    <div class="panoramic-wrapper">
+        <div style="text-align: left; max-width: 700px;">
+            <h2 class="section-title" style="margin: 0; font-size: 3rem; font-weight: 800; letter-spacing: -1px;">Initiatives & Events</h2>
+            <p style="color: #94a3b8; font-size: 1.1rem; margin-top: 1rem; line-height: 1.6;">Explore upcoming tech challenges, structured engineering bootcamps, and full-stack mechanical hackathons hosted across campus.</p>
+        </div>
+
+        <div class="panoramic-grid">
+            <div class="panoramic-card">
+                <div class="glow-bar"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <span style="background: rgba(0,245,255,0.1); color: #00f5ff; padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; border: 1px solid rgba(0,245,255,0.2);">HARDWARE RUNTIME</span>
+                    <i class="fa-solid fa-microchip" style="color: #00f5ff; font-size: 1.5rem;"></i>
                 </div>
-                <h3 style="color: #fff; font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 700;">Hands-on Arduino Bootcamp</h3>
-                <p style="color: #00f5ff; font-size: 0.85rem; margin-bottom: 1.25rem;"><i class="fa-regular fa-calendar-check"></i> Registration Open</p>
-                <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem;">Hands-on Arduino Bootcamp</h3>
+                <p style="color: #00f5ff; font-size: 0.9rem; margin-bottom: 1.5rem;"><i class="fa-regular fa-calendar-check"></i> Registration Active</p>
+                <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7; margin: 0;">
                     An immersive engineering sprint where you write microcontrollers code, route real-time sensors, and wire up motors to design direct robotic mechanisms.
                 </p>
             </div>
-            
-            <div class="event-card" style="padding: 2.5rem 2rem; position: relative; text-align: left;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                    <span class="tech-tag">COMPETITION</span>
-                    <i class="fa-solid fa-lightbulb" style="color: #00f5ff; font-size: 1.3rem;"></i>
+
+            <div class="panoramic-card">
+                <div class="glow-bar"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <span style="background: rgba(0,180,216,0.1); color: #00b4d8; padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; border: 1px solid rgba(0,180,216,0.2);">DESIGN SPRINT</span>
+                    <i class="fa-solid fa-lightbulb" style="color: #00b4d8; font-size: 1.5rem;"></i>
                 </div>
-                <h3 style="color: #fff; font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 700;">EC Campus Ideathon</h3>
-                <p style="color: #00f5ff; font-size: 0.85rem; margin-bottom: 1.25rem;"><i class="fa-regular fa-clock"></i> Upcoming Phase</p>
-                <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem;">EC Campus Ideathon</h3>
+                <p style="color: #00b4d8; font-size: 0.9rem; margin-bottom: 1.5rem;"><i class="fa-regular fa-clock"></i> Commencing Phase 1</p>
+                <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7; margin: 0;">
                     Pitch, construct, and compete! Frame creative structural blueprints solving industrial robotics, automation tracking, and mechanical control tasks.
                 </p>
             </div>
@@ -102,53 +109,48 @@
     <script>
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouse = { x: -1000, y: -1000 };
+        let vortexParticles = [];
+        let mouse = { x: -500, y: -500 };
 
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize);
         window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
         resize();
 
-        // Populate orbital particles
-        for(let i=0; i<120; i++) {
-            particles.push({
-                angle: Math.random() * Math.PI * 2,
-                radius: Math.random() * 250 + 50,
-                speed: Math.random() * 0.01 + 0.005,
-                size: Math.random() * 2 + 1
+        // High-density background constellation spanning edge to edge smoothly
+        for(let i=0; i<150; i++) {
+            vortexParticles.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                baseX: 0, baseY: 0,
+                speed: Math.random() * 0.5 + 0.2,
+                size: Math.random() * 1.5 + 1
             });
         }
 
-        function drawVortex() {
-            ctx.fillStyle = 'rgba(3, 4, 8, 0.2)';
+        function runSystem() {
+            ctx.fillStyle = 'rgba(2, 3, 6, 0.15)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            let centerX = canvas.width / 2;
-            let centerY = canvas.height / 2;
+            vortexParticles.forEach(p => {
+                p.y -= p.speed;
+                if(p.y < 0) p.y = canvas.height;
 
-            particles.forEach(p => {
-                p.angle += p.speed;
-                let targetX = centerX + Math.cos(p.angle) * p.radius;
-                let targetY = centerY + Math.sin(p.angle) * p.radius;
-
-                // Mouse cosmic magnetic distortion field
-                let mDist = Math.hypot(mouse.x - targetX, mouse.y - targetY);
-                if(mDist < 150) {
-                    let force = (150 - mDist) / 150;
-                    targetX += (mouse.x - targetX) * force * 0.4;
-                    targetY += (mouse.y - targetY) * force * 0.4;
+                // Create full-bleed interactive magnetic pulls across card paths
+                let dist = Math.hypot(mouse.x - p.x, mouse.y - p.y);
+                let currentX = p.x;
+                if(dist < 200) {
+                    let push = (200 - dist) * 0.08;
+                    currentX += Math.cos(Math.atan2(p.y - mouse.y, p.x - mouse.x)) * push;
                 }
 
-                ctx.fillStyle = 'rgba(0, 245, 255, 0.4)';
-                ctx.beginPath();
-                ctx.arc(targetX, targetY, p.size, 0, Math.PI*2);
-                ctx.fill();
+                ctx.fillStyle = 'rgba(0, 245, 255, 0.35)';
+                ctx.beginPath(); ctx.arc(currentX, p.y, p.size, 0, Math.PI*2); ctx.fill();
             });
 
-            requestAnimationFrame(drawVortex);
+            requestAnimationFrame(runSystem);
         }
-        drawVortex();
+        runSystem();
     </script>
 </body>
 </html>
