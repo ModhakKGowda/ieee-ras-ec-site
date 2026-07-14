@@ -13,28 +13,62 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: linear-gradient(180deg, #050b14 0%, #0a0f1d 100%);
+            background: #04060d;
+        }
+        .team-box {
+            max-width: 1100px;
+            margin: 8rem auto 4rem auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
         .card {
-            background: rgba(255, 255, 255, 0.02) !important;
+            background: rgba(10, 15, 30, 0.75) !important;
             border: 1px solid rgba(255, 255, 255, 0.05) !important;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4) !important;
-            backdrop-filter: blur(10px);
-            border-radius: 20px !important;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important;
+            backdrop-filter: blur(12px);
+            border-radius: 24px !important;
             padding: 2.5rem 2rem !important;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         .card:hover {
-            border-color: rgba(0, 180, 216, 0.4) !important;
-            box-shadow: 0 30px 60px rgba(0, 180, 216, 0.1) !important;
+            border-color: rgba(0, 180, 216, 0.5) !important;
+            transform: translateY(-6px);
+        }
+        .img-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.5rem auto;
         }
         .team-photo {
             border-radius: 50%;
-            border: 3px solid rgba(0, 180, 216, 0.2);
-            padding: 5px;
-            width: 130px;
-            height: 130px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            border: 3px solid rgba(0, 180, 216, 0.15);
+            transition: border-color 0.3s;
+        }
+        /* Custom dynamic HUD target canvas over images */
+        .hud-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .card:hover .hud-canvas {
+            opacity: 1;
+        }
+        .card:hover .team-photo {
+            border-color: #00b4d8;
         }
     </style>
 </head>
@@ -50,18 +84,26 @@
                 <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" class="logo-img-pes">
             </div>
         </div>
-        <nav><a href="/">Home</a><a href="/about">About</a><a href="/events">Events</a><a href="/team" class="active">Team</a></nav>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/events">Events</a>
+            <a href="/team" class="active">Team</a>
+        </nav>
     </header>
 
-    <section class="section" style="margin-top: 8rem; min-height: 70vh; padding: 2rem;">
-        <h2 class="section-title">Our Core Team</h2>
-        <p class="section-desc" style="color: #94a3b8;">Meet the minds leading the IEEE RAS EC Chapter initiatives.</p>
+    <div class="team-box">
+        <h2 class="section-title">Core Operational Team</h2>
+        <p class="section-desc" style="color: #cbd5e1; max-width: 600px; margin: 0 auto 4rem auto;">Connect with the coordinators directing the operational tracks of IEEE RAS.</p>
         
-        <div class="team-grid" style="margin-top: 4rem; display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;">
+        <div class="team-grid" style="display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;">
             <div class="card" style="width: 300px;">
-                <div class="image-container" style="margin-bottom: 1.5rem;"><img src="{{ url_for('static', filename='images/ieee-ras-ec-chair.png') }}" class="team-photo"></div>
-                <h3 class="card-title" style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">J Akhil</h3>
-                <p class="role" style="color: #00b4d8; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem;">Student Chair</p>
+                <div class="img-wrapper">
+                    <img src="{{ url_for('static', filename='images/ieee-ras-ec-chair.png') }}" class="team-photo">
+                    <canvas class="hud-canvas" width="140" height="140"></canvas>
+                </div>
+                <h3 style="font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">J Akhil</h3>
+                <p style="color: #00b4d8; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem; letter-spacing: 1px;">STUDENT CHAIR</p>
                 <div class="social-links" style="display: flex; gap: 1.25rem; justify-content: center; font-size: 1.2rem;">
                     <a href="mailto:akhil01aj@gmail.com" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-solid fa-envelope"></i></a>
                     <a href="https://www.instagram.com/akhil_01_aj?igsh=dHk3OTJ6dXlsbTBw" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-brands fa-instagram"></i></a>
@@ -70,9 +112,12 @@
             </div>
             
             <div class="card" style="width: 300px;">
-                <div class="image-container" style="margin-bottom: 1.5rem;"><img src="{{ url_for('static', filename='images/ieee-ras-ec-vicechair.png') }}" class="team-photo"></div>
-                <h3 class="card-title" style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Modhak Kushalappa</h3>
-                <p class="role" style="color: #00b4d8; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem;">Student Vice Chair</p>
+                <div class="img-wrapper">
+                    <img src="{{ url_for('static', filename='images/ieee-ras-ec-vicechair.png') }}" class="team-photo">
+                    <canvas class="hud-canvas" width="140" height="140"></canvas>
+                </div>
+                <h3 style="font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Modhak Kushalappa</h3>
+                <p style="color: #00b4d8; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem; letter-spacing: 1px;">VICE STUDENT CHAIR</p>
                 <div class="social-links" style="display: flex; gap: 1.25rem; justify-content: center; font-size: 1.2rem;">
                     <a href="mailto:modhakkushalappa@gmail.com" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-solid fa-envelope"></i></a>
                     <a href="https://www.instagram.com/modhak_k_gowda?igsh=MWJud2Z1enZwZjU2eA==" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-brands fa-instagram"></i></a>
@@ -80,41 +125,67 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <script>
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        // Back-grid Canvas setup
+        const bgCanvas = document.getElementById('bg-canvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        function resize() { bgCanvas.width = window.innerWidth; bgCanvas.height = window.innerHeight; }
         window.addEventListener('resize', resize);
         resize();
 
-        let targets = [];
-        for(let i=0; i<15; i++) {
-            targets.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: 10 + Math.random()*20, alpha: 0.1 + Math.random()*0.3, dAlpha: 0.005 });
+        function drawBackgroundGrid() {
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            bgCtx.strokeStyle = "rgba(0, 180, 216, 0.02)";
+            bgCtx.lineWidth = 1;
+            for(let x=0; x < bgCanvas.width; x += 50) {
+                bgCtx.beginPath(); bgCtx.moveTo(x,0); bgCtx.lineTo(x, bgCanvas.height); bgCtx.stroke();
+            }
+            for(let y=0; y < bgCanvas.height; y += 50) {
+                bgCtx.beginPath(); bgCtx.moveTo(0,y); bgCtx.lineTo(bgCanvas.width, y); bgCtx.stroke();
+            }
         }
 
-        function drawTarget(x, y, size, alpha) {
-            ctx.strokeStyle = `rgba(0, 180, 216, ${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.strokeRect(x - size/2, y - size/2, size, size);
-            ctx.beginPath();
-            ctx.moveTo(x - size, y); ctx.lineTo(x + size, y);
-            ctx.moveTo(x, y - size); ctx.lineTo(x, y + size);
-            ctx.stroke();
-        }
+        // Loop over HUD canvases on team photos to render targeting circles
+        const canvases = document.querySelectorAll('.hud-canvas');
+        let angle = 0;
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            targets.forEach(t => {
-                t.alpha += t.dAlpha;
-                if(t.alpha <= 0.05 || t.alpha >= 0.4) t.dAlpha *= -1;
-                drawTarget(t.x, t.y, t.size, t.alpha);
+        function animateHUDs() {
+            angle += 0.025;
+            drawBackgroundGrid();
+
+            canvases.forEach(canvas => {
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0,0,140,140);
+                
+                const c = 70; // Center coordinate
+                
+                // Draw target tracking rotating brackets
+                ctx.strokeStyle = '#00b4d8';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                // Arc segment 1
+                ctx.arc(c, c, 62, angle, angle + Math.PI*0.4);
+                ctx.stroke();
+
+                ctx.beginPath();
+                // Arc segment 2
+                ctx.arc(c, c, 62, angle + Math.PI, angle + Math.PI*1.4);
+                ctx.stroke();
+
+                // Telemetry targeting scope lines
+                ctx.strokeStyle = 'rgba(0, 180, 216, 0.35)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(c - 10, c); ctx.lineTo(c + 10, c);
+                ctx.moveTo(c, c - 10); ctx.lineTo(c, c + 10);
+                ctx.stroke();
             });
-            requestAnimationFrame(animate);
+
+            requestAnimationFrame(animateHUDs);
         }
-        animate();
+        animateHUDs();
     </script>
 </body>
 </html>
