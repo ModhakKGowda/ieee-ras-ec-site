@@ -17,17 +17,21 @@
         }
         .panoramic-wrapper {
             width: 100%;
-            max-width: 1400px; /* Expands broadly to prevent weird compression gaps */
+            max-width: 1400px;
             margin: 8rem auto 4rem auto;
             padding: 0 3rem;
             position: relative;
             z-index: 2;
         }
+        .header-centered-block {
+            text-align: center; /* Aligned exactly in the middle as requested */
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+        }
         .panoramic-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2.5rem;
-            margin-top: 4rem;
         }
         .panoramic-card {
             background: rgba(6, 9, 20, 0.85);
@@ -72,7 +76,7 @@
     </header>
 
     <div class="panoramic-wrapper">
-        <div style="text-align: left; max-width: 700px;">
+        <div class="header-centered-block">
             <h2 class="section-title" style="margin: 0; font-size: 3rem; font-weight: 800; letter-spacing: -1px;">Initiatives & Events</h2>
             <p style="color: #94a3b8; font-size: 1.1rem; margin-top: 1rem; line-height: 1.6;">Explore upcoming tech challenges, structured engineering bootcamps, and full-stack mechanical hackathons hosted across campus.</p>
         </div>
@@ -117,12 +121,10 @@
         window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
         resize();
 
-        // High-density background constellation spanning edge to edge smoothly
         for(let i=0; i<150; i++) {
             vortexParticles.push({
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight,
-                baseX: 0, baseY: 0,
                 speed: Math.random() * 0.5 + 0.2,
                 size: Math.random() * 1.5 + 1
             });
@@ -136,7 +138,6 @@
                 p.y -= p.speed;
                 if(p.y < 0) p.y = canvas.height;
 
-                // Create full-bleed interactive magnetic pulls across card paths
                 let dist = Math.hypot(mouse.x - p.x, mouse.y - p.y);
                 let currentX = p.x;
                 if(dist < 200) {
