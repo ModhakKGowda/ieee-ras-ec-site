@@ -13,43 +13,54 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at center, #070b19 0%, #020307 100%);
+            background: radial-gradient(circle at center, #050814 0%, #010205 100%);
         }
-        .about-wrapper {
-            max-width: 1200px;
-            margin: 8rem auto 4rem auto;
+        .about-container {
+            max-width: 1000px;
+            margin: 8rem auto 6rem auto;
             padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr; /* Keeps content strictly on left, space on right */
-            gap: 2rem;
             position: relative;
             z-index: 2;
         }
-        .about-main-card {
-            background: rgba(10, 15, 30, 0.7);
-            border: 1px solid rgba(0, 180, 216, 0.2);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-            backdrop-filter: blur(16px);
-            padding: 3.5rem 2.5rem;
-            border-radius: 24px;
-            margin-bottom: 2rem;
+        .hero-story-block {
+            text-align: center;
+            margin-bottom: 5rem;
         }
-        .info-block {
-            background: rgba(10, 15, 30, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            padding: 2rem;
-            border-radius: 18px;
-            transition: all 0.3s ease;
-            margin-bottom: 1.5rem;
+        /* Asymmetric mixed layout stream */
+        .story-node {
+            position: relative;
+            background: rgba(8, 14, 28, 0.65);
+            border: 1px solid rgba(0, 180, 216, 0.15);
+            backdrop-filter: blur(14px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            max-width: 650px;
+            margin-bottom: 4rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            transition: all 0.4s ease;
         }
-        .info-block:hover {
-            border-color: rgba(0, 180, 216, 0.4);
-            transform: translateY(-4px);
-            background: rgba(0, 180, 216, 0.03);
+        .story-node:nth-child(even) {
+            margin-left: auto; /* Staggers the reading pattern to keep attention high */
+            border-color: rgba(0, 245, 255, 0.2);
         }
-        @media(max-width: 992px) {
-            .about-wrapper { grid-template-columns: 1fr; }
+        .story-node:hover {
+            transform: translateY(-5px);
+            border-color: #00f5ff;
+            box-shadow: 0 20px 45px rgba(0, 245, 255, 0.1);
+        }
+        .node-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            position: absolute;
+            top: -2.5rem;
+            left: 2rem;
+            background: linear-gradient(180deg, rgba(0, 245, 255, 0.3) 0%, rgba(0,0,0,0) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .story-node:nth-child(even) .node-number {
+            left: auto;
+            right: 2rem;
         }
     </style>
 </head>
@@ -73,137 +84,103 @@
         </nav>
     </header>
 
-    <div class="about-wrapper">
-        <div>
-            <div class="about-main-card">
-                <div class="badge" style="background: rgba(0, 180, 216, 0.15); color: #00f5ff; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-bottom: 1.5rem; letter-spacing: 2px; border: 1px solid rgba(0, 245, 255, 0.25);">ABOUT THE CLUB</div>
-                <h1 style="font-size: 2.6rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.5px; background: linear-gradient(135deg, #fff 40%, #00f5ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Engineering Autonomous Systems</h1>
-                <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.8; margin-bottom: 0;">
+    <div class="about-container">
+        <div class="hero-story-block">
+            <span style="color: #00f5ff; font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; text-transform: uppercase;">Discover Our Mission</span>
+            <h1 style="font-size: 3rem; font-weight: 800; margin-top: 0.5rem; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Tinkering Beyond Code</h1>
+        </div>
+
+        <div class="story-stream">
+            <div class="story-node">
+                <div class="node-number">01</div>
+                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: #00f5ff;">Engineering Autonomous Systems</h3>
+                <p style="color: #cbd5e1; line-height: 1.7; margin: 0; font-size: 1.05rem;">
                     The IEEE Robotics and Automation Society (RAS) at PESU EC Campus is an active engineering hub. We build physical machinery, write real-time control loops, and create space for creative hands-on tinkering. If you want to turn theoretical math and code into moving physical robots, this is your community.
                 </p>
             </div>
 
-            <div class="info-block">
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
-                    <i class="fa-solid fa-graduation-cap" style="color: #00f5ff; font-size: 1.8rem;"></i>
-                    <h3 style="font-weight: 700; font-size: 1.3rem; margin: 0;">PESU EC Campus Sandbox</h3>
-                </div>
-                <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7; margin: 0;">
+            <div class="story-node">
+                <div class="node-number">02</div>
+                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: #00b4d8;">PESU EC Campus Sandbox</h3>
+                <p style="color: #cbd5e1; line-height: 1.7; margin: 0; font-size: 1.05rem;">
                     Nestled in the heart of Electronic City, the PESU EC Campus provides an elite engineering environment. Surrounded by major global tech clusters, students have access to state-of-the-art lab facilities, embedded circuitry sandboxes, and modern prototyping workshops.
                 </p>
             </div>
 
-            <div class="info-block">
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
-                    <i class="fa-solid fa-microchip" style="color: #00f5ff; font-size: 1.8rem;"></i>
-                    <h3 style="font-weight: 700; font-size: 1.3rem; margin: 0;">Active Focus Tracks</h3>
-                </div>
-                <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7; margin: 0;">
+            <div class="story-node">
+                <div class="node-number">03</div>
+                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: #00f5ff;">Active Focus Tracks</h3>
+                <p style="color: #cbd5e1; line-height: 1.7; margin: 0; font-size: 1.05rem;">
                     We specialize in autonomous navigation algorithms, microcontroller programming (ESP32/Arduino), computer vision, and ROS-based kinematics. We bypass simple slide decks to build real, operating hardware stacks.
                 </p>
             </div>
         </div>
-        
-        <div></div>
     </div>
 
     <script>
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
-        let mouse = { x: null, y: null };
+        let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
 
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize);
         window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
         resize();
 
-        mouse.x = window.innerWidth / 2;
-        mouse.y = window.innerHeight / 2;
-
-        // Two explicit robots pinned to corners
-        let drones = [
-            { x: 0, y: 0, targetX: 0, targetY: 180, bodyRadius: 30, color: '#00f5ff', legs: [] },
-            { x: 0, y: 0, targetX: 0, targetY: 0, bodyRadius: 35, color: '#00b4d8', legs: [] }
+        // Multi-legged tracker robots that wander gracefully alongside the staggered paragraphs
+        let bots = [
+            { x: 150, y: 350, baseRadius: 22, angle: 0, targetY: 350 },
+            { x: window.innerWidth - 180, y: 600, baseRadius: 26, angle: Math.PI, targetY: 600 }
         ];
 
-        function initDrones() {
-            // Upper Right Corner
-            drones[0].targetX = canvas.width - 160;
-            drones[0].targetY = 180;
-            // Lower Right Corner
-            drones[1].targetX = canvas.width - 180;
-            drones[1].targetY = canvas.height - 200;
-
-            drones.forEach(d => {
-                d.x = d.targetX;
-                d.y = d.targetY;
-                d.legs = [
-                    { dx: -35, dy: -20, fx: d.x - 60, fy: d.y - 40 },
-                    { dx: 35, dy: -20, fx: d.x + 60, fy: d.y - 40 },
-                    { dx: -35, dy: 20, fx: d.x - 60, fy: d.y + 40 },
-                    { dx: 35, dy: 20, fx: d.x + 60, fy: d.y + 40 }
-                ];
-            });
-        }
-
-        function drawDrone(d) {
-            d.x += (d.targetX - d.x) * 0.05;
-            d.y += (d.targetY - d.y) * 0.05;
-            
-            let lookAngle = Math.atan2(mouse.y - d.y, mouse.x - d.x);
-
-            // Draw leg configurations
-            d.legs.forEach(leg => {
-                let sx = d.x + leg.dx;
-                let sy = d.y + leg.dy;
-                let lx = (sx + leg.fx)/2 + Math.cos(lookAngle)*8;
-                let ly = (sy + leg.fy)/2 - 15;
-
-                ctx.strokeStyle = 'rgba(0, 245, 255, 0.4)';
-                ctx.lineWidth = 4;
-                ctx.beginPath();
-                ctx.moveTo(sx, sy);
-                ctx.lineTo(lx, ly);
-                ctx.lineTo(leg.fx, leg.fy);
-                ctx.stroke();
-
-                ctx.fillStyle = '#050a18';
-                ctx.beginPath(); ctx.arc(lx, ly, 4, 0, Math.PI*2); ctx.fill(); ctx.stroke();
-            });
-
-            // Body Chassis
-            ctx.fillStyle = '#0b1126';
-            ctx.strokeStyle = d.color;
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.arc(d.x, d.y, d.bodyRadius, 0, Math.PI*2);
-            ctx.fill();
-            ctx.stroke();
-
-            // Camera Sensor Tracking Lens
-            let ex = d.x + Math.cos(lookAngle) * 12;
-            let ey = d.y + Math.sin(lookAngle) * 12;
-            ctx.fillStyle = '#010514';
-            ctx.beginPath(); ctx.arc(ex, ey, 10, 0, Math.PI*2); ctx.fill(); ctx.stroke();
-
-            // Glowing pupil
-            ctx.fillStyle = '#00f5ff';
-            ctx.beginPath(); ctx.arc(ex + Math.cos(lookAngle)*3, ey + Math.sin(lookAngle)*3, 3, 0, Math.PI*2); ctx.fill();
-        }
-
-        function loop() {
+        function drawTrackers() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.strokeStyle = 'rgba(0, 245, 255, 0.015)';
-            for(let i=0; i<canvas.width; i+=60) {
-                ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i, canvas.height); ctx.stroke();
-            }
-            drones.forEach(drawDrone);
-            requestAnimationFrame(loop);
-        }
 
-        initDrones();
-        loop();
-        window.addEventListener('resize', initDrones);
+            // Tech mesh lines
+            ctx.strokeStyle = 'rgba(0, 245, 255, 0.02)';
+            ctx.lineWidth = 1;
+            for(let i = 0; i < canvas.width; i += 50) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+            }
+
+            bots.forEach((b, index) => {
+                // Smoothly float towards the mouse height slightly to stay dynamically engaged
+                b.targetY += (mouse.y - b.targetY) * 0.02;
+                b.y = b.targetY + Math.sin(Date.now() * 0.002 + index) * 15;
+
+                let angleToMouse = Math.atan2(mouse.y - b.y, mouse.x - b.x);
+
+                // Draw technical limbs clamping out onto the canvas grid
+                for(let a = 0; a < Math.PI*2; a += Math.PI/3) {
+                    let lx = b.x + Math.cos(a + Math.sin(Date.now()*0.005)*0.2) * 50;
+                    let ly = b.y + Math.sin(a + Math.sin(Date.now()*0.005)*0.2) * 50;
+                    ctx.strokeStyle = 'rgba(0, 245, 255, 0.25)';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(b.x, b.y);
+                    ctx.lineTo((b.x+lx)/2, (b.y+ly)/2 - 8);
+                    ctx.lineTo(lx, ly);
+                    ctx.stroke();
+                }
+
+                // Core Chassis
+                ctx.fillStyle = '#060a18';
+                ctx.strokeStyle = '#00f5ff';
+                ctx.lineWidth = 3;
+                ctx.beginPath(); ctx.arc(b.x, b.y, b.baseRadius, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+
+                // Tracking optic sensor lens
+                let ox = b.x + Math.cos(angleToMouse) * 8;
+                let oy = b.y + Math.sin(angleToMouse) * 8;
+                ctx.fillStyle = '#00f5ff';
+                ctx.shadowBlur = 15; ctx.shadowColor = '#00f5ff';
+                ctx.beginPath(); ctx.arc(ox, oy, 6, 0, Math.PI*2); ctx.fill();
+                ctx.shadowBlur = 0; // Reset bloom
+            });
+
+            requestAnimationFrame(drawTrackers);
+        }
+        drawTrackers();
     </script>
 </body>
 </html>
