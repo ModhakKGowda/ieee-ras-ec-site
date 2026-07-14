@@ -3,14 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEEE RAS EC Campus</title>
+    <title>IEEE RAS EC Campus | Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Modern Tech Moving Background Canvas Styling */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #0a0f1d;
+        }
+    </style>
 </head>
 <body>
+
+    <canvas id="bg-canvas"></canvas>
 
     <header class="navbar">
         <div class="logo-wrapper">
@@ -20,55 +34,48 @@
                 <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" alt="PES University" class="logo-img-pes">
             </div>
         </div>
-        
         <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#domains">Domains</a>
-            <a href="#events">Events</a>
-            <a href="#team">Team</a>
-            <a href="#join" class="btn-nav">Join Club</a>
+            <a href="/" class="active">Home</a>
+            <a href="/about">About</a>
+            <a href="/events">Events</a>
+            <a href="/team">Team</a>
+            <a href="/#join" class="btn-nav">Join Club</a>
         </nav>
     </header>
 
     <section id="home" class="hero">
-        <div class="hero-content">
+        <div class="hero-content" style="backdrop-filter: blur(4px); padding: 2rem; border-radius: 16px; background: rgba(10, 15, 29, 0.4);">
             <div class="badge" style="background: rgba(0, 180, 216, 0.15); color: #00b4d8; padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 0.85rem; display: inline-block; margin-bottom: 1.5rem; letter-spacing: 1px; border: 1px solid rgba(0, 180, 216, 0.3);">ELECTRONIC CITY CAMPUS</div>
             <h1>IEEE Robotics & Automation Society</h1>
             <p class="hero-tagline">Empowering the Future of Intelligent Systems</p>
             <p class="section-desc">We foster a community of learning, hardware engineering excellence, and technological innovation right here at PES University, Electronic City Campus.</p>
             <div class="hero-buttons" style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-                <a href="#events" class="btn-primary">Explore Events</a>
-                <a href="#about" class="btn-primary">Know More</a>
+                <a href="/events" class="btn-primary">Explore Events</a>
+                <a href="/about" class="btn-primary">Know More</a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="section">
-        <h2 class="section-title">About Our Chapter</h2>
-        <p class="section-desc">The IEEE Robotics and Automation Society EC Chapter focuses on practical education, advanced development projects, and building collaborative bridges between academic theory and real-world industrial robotic implementations.</p>
-    </section>
-
-    <section id="domains" class="section domains-section" style="padding: 5rem 2rem; background: rgba(255,255,255,0.01);">
+    <section id="domains" class="section domains-section" style="padding: 5rem 2rem;">
         <h2 class="section-title">Our Focus Domains</h2>
         <p class="section-desc">Exploring core technical areas and computational tracks driven by our members.</p>
         <div class="domains-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
-            <div class="domain-card" style="background: rgba(255, 255, 255, 0.02); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center;">
+            <div class="domain-card" style="background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; transition: 0.3s transform;">
                 <i class="fa-solid fa-microchip" style="font-size: 2.5rem; color: #00b4d8; margin-bottom: 1rem;"></i>
                 <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #fff;">Microcontrollers</h3>
                 <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">Hardware systems programming, sensory device telemetry, and low-latency component interactions.</p>
             </div>
-            <div class="domain-card" style="background: rgba(255, 255, 255, 0.02); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center;">
+            <div class="domain-card" style="background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center;">
                 <i class="fa-solid fa-eye" style="font-size: 2.5rem; color: #00b4d8; margin-bottom: 1rem;"></i>
                 <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #fff;">Image Processing</h3>
                 <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">Computer vision tracking logic arrays, visual computational filters, and detection algorithms.</p>
             </div>
-            <div class="domain-card" style="background: rgba(255, 255, 255, 0.02); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center;">
+            <div class="domain-card" style="background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center;">
                 <i class="fa-solid fa-network-wired" style="font-size: 2.5rem; color: #00b4d8; margin-bottom: 1rem;"></i>
                 <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #fff;">Robot Operating System</h3>
                 <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">Simulating automated architectures, designing distributed node networks, and robot software infrastructure.</p>
             </div>
-            <div class="domain-card" style="background: rgba(255, 255, 255, 0.02); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center;">
+            <div class="domain-card" style="background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center;">
                 <i class="fa-solid fa-bezier-curve" style="font-size: 2.5rem; color: #00b4d8; margin-bottom: 1rem;"></i>
                 <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #fff;">Kinematics & Control</h3>
                 <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">Mathematical modeling equations, trajectory logic, and structural state calculations.</p>
@@ -76,61 +83,7 @@
         </div>
     </section>
 
-    <section id="events" class="section events-section" style="padding: 5rem 2rem;">
-        <h2 class="section-title">Events Portfolio</h2>
-        <p class="section-desc">Technical events, bootcamps, and workshops organized by our chapter members.</p>
-        
-        <div class="events-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
-            <div class="event-card" style="background: rgba(255, 255, 255, 0.02); padding: 2.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); border-left: 4px solid #00b4d8; position: relative;">
-                <div class="event-badge" style="position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(0, 180, 216, 0.1); color: #00b4d8; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">TECHNICAL</div>
-                <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 0.5rem;">Hands-on Arduino Bootcamp</h3>
-                <p class="event-date" style="color: #00b4d8; font-size: 0.85rem; margin-bottom: 1rem;"><i class="fa-regular fa-calendar" style="margin-right: 0.4rem;"></i> Academic Term Event</p>
-                <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">An interactive campus coding session designed to introduce micro-controllers, basic circuitry design, and automation fundamentals to engineering undergraduates.</p>
-            </div>
-
-            <div class="event-card" style="background: rgba(255, 255, 255, 0.02); padding: 2.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); border-left: 4px solid #00b4d8; position: relative;">
-                <div class="event-badge" style="position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(0, 180, 216, 0.1); color: #00b4d8; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">COMPETITION</div>
-                <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 0.5rem;">EC Campus Ideathon</h3>
-                <p class="event-date" style="color: #00b4d8; font-size: 0.85rem; margin-bottom: 1rem;"><i class="fa-regular fa-calendar" style="margin-right: 0.4rem;"></i> Upcoming Session</p>
-                <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6;">A design challenge encouraging students to draft theoretical solution architectures targeting automated tracking, environmental issues, and logic mechanisms.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="team" class="section">
-        <h2 class="section-title">Our Core Team</h2>
-        <p class="section-desc">Meet the minds leading the IEEE RAS EC Chapter initiatives.</p>
-        
-        <div class="team-grid">
-            <div class="card">
-                <div class="image-container">
-                    <img src="{{ url_for('static', filename='images/ieee-ras-ec-chair.png') }}" alt="EC Chair" class="team-photo">
-                </div>
-                <h3 class="card-title">Student Chair</h3>
-                <p class="role">J Akhil</p>
-                <div class="social-links">
-                    <a href="mailto:akhil01aj@gmail.com" title="Email" target="_blank"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://www.instagram.com/akhil_01_aj?igsh=dHk3OTJ6dXlsbTBw" title="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/j-akhil-aj?utm_source=share_via&utm_content=profile&utm_medium=member_android" title="LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="image-container">
-                    <img src="{{ url_for('static', filename='images/ieee-ras-ec-vicechair.png') }}" alt="EC Vice Chair" class="team-photo">
-                </div>
-                <h3 class="card-title">Student Vice Chair</h3>
-                <p class="role">Modhak Kushalappa</p>
-                <div class="social-links">
-                    <a href="mailto:modhakkushalappa@gmail.com" title="Email" target="_blank"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://www.instagram.com/modhak_k_gowda?igsh=MWJud2Z1enZwZjU2eA==" title="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/modhak-kushalappa-36a840379/?skipRedirect=true" title="LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="join" class="section">
+    <section id="join" class="section" style="padding: 5rem 2rem;">
         <h2 class="section-title">Become a Member</h2>
         <p class="section-desc">Get access to exclusive tech workshops, hackathons, and local research project networks.</p>
         <br>
@@ -141,5 +94,65 @@
         <p>&copy; 2026 IEEE RAS PESU - EC Campus. All Rights Reserved.</p>
     </footer>
 
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                self = this;
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.radius = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 180, 216, 0.4)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 70; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw Node Connectors
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(0, 180, 216, ${0.15 * (1 - dist/120)})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>
