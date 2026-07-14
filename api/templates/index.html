@@ -1,56 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEEE RAS EC Campus | Home</title>
+    <title>Home | IEEE RAS EC Campus</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* Advanced Cybernetic Blueprint Layout */
+        /* Shared Theme Matrix Variables */
+        :root[data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at center, #050814 0%, #010205 100%);
+            --text-main: #ffffff;
+            --text-muted: #cbd5e1;
+            --text-hero: linear-gradient(to right, #ffffff, #94a3b8);
+            --card-bg: rgba(8, 14, 28, 0.7);
+            --card-border: rgba(0, 180, 216, 0.15);
+            --card-shadow: rgba(0,0,0,0.5);
+            --bot-glow: #00f5ff;
+            --grid-line: rgba(0, 245, 255, 0.02);
+            --btn-bg: #00f5ff;
+            --btn-text: #020306;
+        }
+        :root[data-theme="light"] {
+            --bg-gradient: radial-gradient(circle at center, #f4f7fa 0%, #e2e8f0 100%);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --text-hero: linear-gradient(to right, #0f172a, #334155);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(0, 180, 216, 0.25);
+            --card-shadow: rgba(148, 163, 184, 0.2);
+            --bot-glow: #00b4d8;
+            --grid-line: rgba(0, 180, 216, 0.05);
+            --btn-bg: #00b4d8;
+            --btn-text: #ffffff;
+        }
+
         #bg-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at center, #0f1932 0%, #070a14 100%);
+            background: var(--bg-gradient);
+            transition: background 0.4s ease;
         }
-        
-        .hero-content {
-            border: 1px solid rgba(0, 180, 216, 0.15) !important;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            background: rgba(7, 10, 20, 0.75) !important;
+        .hero-section {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
-
-        .domain-card {
-            background: rgba(15, 25, 50, 0.3) !important;
-            border: 1px solid rgba(0, 180, 216, 0.1) !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        .cta-btn {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 30px var(--card-shadow);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
-
-        .domain-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 180, 216, 0.5) !important;
-            box-shadow: 0 15px 40px rgba(0, 180, 216, 0.15);
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px var(--bot-glow);
+        }
+        .theme-toggle-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--bot-glow);
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            box-shadow: 0 10px 25px var(--card-shadow);
+            transition: all 0.3s ease;
         }
     </style>
 </head>
-<body>
+<body style="color: var(--text-main); overflow: hidden; transition: color 0.4s ease;">
 
     <canvas id="bg-canvas"></canvas>
+
+    <button class="theme-toggle-btn" id="themeBtn" onclick="toggleTheme()">
+        <i class="fa-solid fa-moon"></i>
+    </button>
 
     <header class="navbar">
         <div class="logo-wrapper">
             <div class="logo-container">
-                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" alt="IEEE RAS" class="logo-img-ras">
+                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" class="logo-img-ras">
                 <div class="logo-divider"></div>
-                <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" alt="PES University" class="logo-img-pes">
+                <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" class="logo-img-pes">
             </div>
         </div>
         <nav>
@@ -58,148 +114,68 @@
             <a href="/about">About</a>
             <a href="/events">Events</a>
             <a href="/team">Team</a>
-            <a href="/#join" class="btn-nav">Join Club</a>
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content" style="backdrop-filter: blur(12px); padding: 3rem 2rem; border-radius: 24px;">
-            <div class="badge" style="background: rgba(0, 180, 216, 0.12); color: #00b4d8; padding: 6px 18px; border-radius: 30px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-bottom: 1.5rem; letter-spacing: 2px; border: 1px solid rgba(0, 180, 216, 0.25);">ELECTRONIC CITY CAMPUS</div>
-            <h1 style="letter-spacing: -1px; font-weight: 800;">IEEE Robotics & Automation Society</h1>
-            <p class="hero-tagline" style="color: #94a3b8; font-weight: 500;">Empowering the Future of Intelligent Systems</p>
-            <p class="section-desc" style="color: #64748b; max-width: 600px; margin: 0 auto;">We foster a community of learning, hardware engineering excellence, and technological innovation right here at PES University, Electronic City Campus.</p>
-            <div class="hero-buttons" style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center;">
-                <a href="/events" class="btn-primary" style="box-shadow: 0 4px 20px rgba(0, 180, 216, 0.3);">Explore Events</a>
-                <a href="/about" class="btn-primary" style="background: transparent; border: 1px solid rgba(255,255,255,0.15); color: #fff;">Know More</a>
-            </div>
-        </div>
+    <section class="hero-section">
+        <h1 style="font-size: 4.5rem; font-weight: 800; line-height: 1.1; background: var(--text-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; max-width: 900px; margin-bottom: 1.5rem;">
+            IEEE Robotics & Automation Society
+        </h1>
+        <p style="color: var(--text-muted); font-size: 1.3rem; max-width: 650px; line-height: 1.6; margin-bottom: 3rem;">
+            Welcome to the PESU EC Campus chapter. We unite mechanical designers, firmware developers, and automation engineers.
+        </p>
+        <a href="/events" class="cta-btn">Explore Challenges</a>
     </section>
-
-    <section id="domains" class="section domains-section" style="padding: 6rem 2rem;">
-        <h2 class="section-title">Our Focus Domains</h2>
-        <p class="section-desc">Exploring core technical areas and computational tracks driven by our members.</p>
-        
-        <div class="domains-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 4rem;">
-            <div class="domain-card" style="padding: 2.5rem 2rem; border-radius: 16px; text-align: center; backdrop-filter: blur(6px);">
-                <i class="fa-solid fa-microchip" style="font-size: 2.5rem; color: #00b4d8; margin-bottom: 1.5rem;"></i>
-                <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #fff; font-weight: 700;">Microcontrollers</h3>
-                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6;">Hardware systems programming, sensory device telemetry, and low-latency component interactions.</p>
-            </div>
-            <div class="domain-card" style="padding: 2.5rem 2rem; border-radius: 16px; text-align: center; backdrop-filter: blur(6px);">
-                <i class="fa-solid fa-eye" style="font-size: 2.5rem; color: #00b4d8; margin-bottom: 1.5rem;"></i>
-                <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #fff; font-weight: 700;">Image Processing</h3>
-                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6;">Computer vision tracking logic arrays, visual computational filters, and detection algorithms.</p>
-            </div>
-            <div class="domain-card" style="padding: 2.5rem 2rem; border-radius: 16px; text-align: center; backdrop-filter: blur(6px);">
-                <i class="fa-solid fa-network-wired" style="font-size: 2.5rem; color: #00b4d8; margin-bottom: 1.5rem;"></i>
-                <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #fff; font-weight: 700;">Robot Operating System</h3>
-                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6;">Simulating automated architectures, designing distributed node networks, and robot software infrastructure.</p>
-            </div>
-            <div class="domain-card" style="padding: 2.5rem 2rem; border-radius: 16px; text-align: center; backdrop-filter: blur(6px);">
-                <i class="fa-solid fa-bezier-curve" style="font-size: 2.5rem; color: #00b4d8; margin-bottom: 1.5rem;"></i>
-                <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #fff; font-weight: 700;">Kinematics & Control</h3>
-                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6;">Mathematical modeling equations, trajectory logic, and structural state calculations.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="join" class="section" style="padding: 6rem 2rem;">
-        <h2 class="section-title">Become a Member</h2>
-        <p class="section-desc">Get access to exclusive tech workshops, hackathons, and local research project networks.</p>
-        <br>
-        <a href="#join" class="btn-primary" style="padding: 14px 36px; font-weight: 700;">Recruiting Soon</a>
-    </section>
-
-    <footer style="text-align: center; padding: 4rem 2rem; color: #475569; font-size: 0.85rem; border-top: 1px solid rgba(0, 180, 216, 0.05); margin-top: 6rem;">
-        <p>&copy; 2026 IEEE RAS PESU - EC Campus. All Rights Reserved.</p>
-    </footer>
 
     <script>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('ras-theme', newTheme);
+            document.getElementById('themeBtn').innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        }
+
+        const savedTheme = localStorage.getItem('ras-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.getElementById('themeBtn').innerHTML = savedTheme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+
+        // Animated tech particle environment
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let points = [];
-        const maxDist = 150;
-        let mouse = { x: null, y: null };
 
-        function initCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            points = [];
-            const count = Math.floor((canvas.width * canvas.height) / 18000);
-            for (let i = 0; i < count; i++) {
-                points.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    r: Math.random() * 2 + 1
-                });
-            }
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        for(let i=0; i<60; i++) {
+            points.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*0.8, vy: (Math.random()-0.5)*0.8 });
         }
 
-        window.addEventListener('resize', initCanvas);
-        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-        window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            const styles = getComputedStyle(document.documentElement);
+            let glowColor = styles.getPropertyValue('--bot-glow').trim();
+            let gridColor = styles.getPropertyValue('--grid-line').trim();
 
-        function drawGrid() {
-            ctx.strokeStyle = 'rgba(0, 180, 216, 0.03)';
-            ctx.lineWidth = 1;
-            const gridSize = 60;
-            for (let x = 0; x < canvas.width; x += gridSize) {
-                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+            ctx.strokeStyle = gridColor;
+            for(let i=0; i<canvas.width; i+=60) {
+                ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,canvas.height); ctx.stroke();
             }
-            for (let y = 0; y < canvas.height; y += gridSize) {
-                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
-            }
+
+            points.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if(p.x<0 || p.x>canvas.width) p.vx *= -1;
+                if(p.y<0 || p.y>canvas.height) p.vy *= -1;
+
+                ctx.fillStyle = glowColor;
+                ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fill();
+            });
+            requestAnimationFrame(draw);
         }
-
-        function renderEngine() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawGrid();
-
-            // Render Nodes and Dynamic Vector Linkages
-            for (let i = 0; i < points.length; i++) {
-                let p = points[i];
-                p.x += p.vx;
-                p.y += p.vy;
-
-                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-                // Mouse Attractor interaction logic
-                if (mouse.x !== null && mouse.y !== null) {
-                    let dx = mouse.x - p.x;
-                    let dy = mouse.y - p.y;
-                    let d = Math.hypot(dx, dy);
-                    if (d < 200) {
-                        p.x += dx * 0.02;
-                        p.y += dy * 0.02;
-                    }
-                }
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 180, 216, 0.6)';
-                ctx.fill();
-
-                for (let j = i + 1; j < points.length; j++) {
-                    let p2 = points[j];
-                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (dist < maxDist) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(0, 180, 216, ${0.25 * (1 - dist / maxDist)})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(renderEngine);
-        }
-
-        initCanvas();
-        renderEngine();
+        draw();
     </script>
 </body>
 </html>
