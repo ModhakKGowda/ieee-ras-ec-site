@@ -8,18 +8,96 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at top right, #131525 0%, #070810 100%);
+        }
+        .about-box {
+            background: rgba(12, 15, 30, 0.7);
+            border: 1px solid rgba(138, 43, 226, 0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            backdrop-filter: blur(12px);
+            padding: 3rem;
+            border-radius: 24px;
+            max-width: 800px;
+            margin: 8rem auto 2rem auto;
+            text-align: center;
+        }
+    </style>
 </head>
-<body style="background: #0a0f1d; color: #fff;">
+<body style="color: #fff; overflow-x: hidden;">
+
+    <canvas id="bg-canvas"></canvas>
 
     <header class="navbar">
-        <div class="logo-wrapper"><div class="logo-container"><img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" class="logo-img-ras"><div class="logo-divider"></div><img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" class="logo-img-pes"></div></div>
+        <div class="logo-wrapper">
+            <div class="logo-container">
+                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" class="logo-img-ras">
+                <div class="logo-divider"></div>
+                <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" class="logo-img-pes">
+            </div>
+        </div>
         <nav><a href="/">Home</a><a href="/about" class="active">About</a><a href="/events">Events</a><a href="/team">Team</a></nav>
     </header>
 
-    <section class="section" style="margin-top: 8rem; min-height: 60vh; padding: 2rem;">
-        <h2 class="section-title">About Our Chapter</h2>
-        <p class="section-desc" style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: #ccc;">The IEEE Robotics and Automation Society EC Chapter focuses on practical education, advanced development projects, and building collaborative bridges between academic theory and real-world industrial robotic implementations.</p>
+    <section class="about-box">
+        <div class="badge" style="background: rgba(138, 43, 226, 0.15); color: #bf77ff; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-bottom: 1.5rem; letter-spacing: 2px; border: 1px solid rgba(138, 43, 226, 0.3);">OUR VISION</div>
+        <h2 class="section-title" style="margin-bottom: 1.5rem;">About Our Chapter</h2>
+        <p class="section-desc" style="line-height: 1.9; color: #cbd5e1; font-size: 1.05rem;">
+            The IEEE Robotics and Automation Society EC Chapter focuses on practical education, advanced development projects, and building collaborative bridges between academic theory and real-world industrial robotic implementations. We challenge students to transcend basic textbook definitions and construct true intelligent physical computing machinery.
+        </p>
     </section>
 
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let nodes = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        for (let i = 0; i < 45; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 2 + 1.5,
+                pulse: Math.random() * Math.PI,
+                speed: 0.02 + Math.random() * 0.02
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(138, 43, 226, 0.04)';
+            ctx.lineWidth = 1;
+            
+            // Render Neural Connections
+            for(let i=0; i<nodes.length; i++) {
+                nodes[i].pulse += nodes[i].speed;
+                let sizeOffsetY = Math.sin(nodes[i].pulse) * 15;
+                
+                ctx.beginPath();
+                ctx.arc(nodes[i].x, nodes[i].y + sizeOffsetY, nodes[i].r + Math.sin(nodes[i].pulse)*1, 0, Math.PI*2);
+                ctx.fillStyle = `rgba(168, 85, 247, ${0.2 + Math.sin(nodes[i].pulse)*0.2})`;
+                ctx.fill();
+
+                for(let j=i+1; j<nodes.length; j++) {
+                    let d = Math.hypot(nodes[i].x - nodes[j].x, (nodes[i].y + sizeOffsetY) - nodes[j].y);
+                    if(d < 180) {
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y + sizeOffsetY);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = `rgba(138, 43, 226, ${0.12 * (1 - d/180)})`;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>
