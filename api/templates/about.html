@@ -13,12 +13,15 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at center, #0a0d1a 0%, #03050c 100%);
+            background: radial-gradient(circle at center, #070b19 0%, #020307 100%);
         }
-        .about-container {
-            max-width: 1000px;
+        .about-wrapper {
+            max-width: 1200px;
             margin: 8rem auto 4rem auto;
             padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr; /* Keeps content strictly on left, space on right */
+            gap: 2rem;
             position: relative;
             z-index: 2;
         }
@@ -29,13 +32,7 @@
             backdrop-filter: blur(16px);
             padding: 3.5rem 2.5rem;
             border-radius: 24px;
-            margin-bottom: 3rem;
-        }
-        .grid-two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
         .info-block {
             background: rgba(10, 15, 30, 0.65);
@@ -44,14 +41,15 @@
             padding: 2rem;
             border-radius: 18px;
             transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
         }
         .info-block:hover {
             border-color: rgba(0, 180, 216, 0.4);
             transform: translateY(-4px);
             background: rgba(0, 180, 216, 0.03);
         }
-        @media(max-width: 768px) {
-            .grid-two-col { grid-template-columns: 1fr; }
+        @media(max-width: 992px) {
+            .about-wrapper { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -75,16 +73,16 @@
         </nav>
     </header>
 
-    <div class="about-container">
-        <div class="about-main-card">
-            <div class="badge" style="background: rgba(0, 180, 216, 0.15); color: #00f5ff; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-bottom: 1.5rem; letter-spacing: 2px; border: 1px solid rgba(0, 245, 255, 0.25);">ABOUT THE CLUB</div>
-            <h1 style="font-size: 2.6rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.5px; background: linear-gradient(135deg, #fff 40%, #00f5ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Engineering Autonomous Systems</h1>
-            <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.8; margin-bottom: 0;">
-                The IEEE Robotics and Automation Society (RAS) at PESU EC Campus is an active engineering hub. We build physical machinery, write real-time control loops, and create space for creative hands-on tinkering. If you want to turn theoretical math and code into moving physical robots, this is your community.
-            </p>
-        </div>
+    <div class="about-wrapper">
+        <div>
+            <div class="about-main-card">
+                <div class="badge" style="background: rgba(0, 180, 216, 0.15); color: #00f5ff; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-bottom: 1.5rem; letter-spacing: 2px; border: 1px solid rgba(0, 245, 255, 0.25);">ABOUT THE CLUB</div>
+                <h1 style="font-size: 2.6rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.5px; background: linear-gradient(135deg, #fff 40%, #00f5ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Engineering Autonomous Systems</h1>
+                <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.8; margin-bottom: 0;">
+                    The IEEE Robotics and Automation Society (RAS) at PESU EC Campus is an active engineering hub. We build physical machinery, write real-time control loops, and create space for creative hands-on tinkering. If you want to turn theoretical math and code into moving physical robots, this is your community.
+                </p>
+            </div>
 
-        <div class="grid-two-col">
             <div class="info-block">
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
                     <i class="fa-solid fa-graduation-cap" style="color: #00f5ff; font-size: 1.8rem;"></i>
@@ -105,6 +103,8 @@
                 </p>
             </div>
         </div>
+        
+        <div></div>
     </div>
 
     <script>
@@ -112,192 +112,98 @@
         const ctx = canvas.getContext('2d');
         let mouse = { x: null, y: null };
 
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize);
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
         resize();
 
-        // Default mouse position at center of screen if not hovered yet
         mouse.x = window.innerWidth / 2;
         mouse.y = window.innerHeight / 2;
 
-        // Robot Configuration
-        const robot = {
-            x: window.innerWidth * 0.75, // Placed on the right side of the screen
-            y: window.innerHeight * 0.5,
-            targetX: window.innerWidth * 0.75,
-            targetY: window.innerHeight * 0.5,
-            bodyRadius: 45,
-            eyeAngle: 0,
-            legs: []
-        };
-
-        // Initialize 4 kinematic robot legs
-        const legOffsets = [
-            { dx: -55, dy: -35, angleOffset: Math.PI },
-            { dx: 55, dy: -35, angleOffset: 0 },
-            { dx: -55, dy: 35, angleOffset: Math.PI },
-            { dx: 55, dy: 35, angleOffset: 0 }
+        // Two explicit robots pinned to corners
+        let drones = [
+            { x: 0, y: 0, targetX: 0, targetY: 180, bodyRadius: 30, color: '#00f5ff', legs: [] },
+            { x: 0, y: 0, targetX: 0, targetY: 0, bodyRadius: 35, color: '#00b4d8', legs: [] }
         ];
 
-        legOffsets.forEach((offset, idx) => {
-            robot.legs.push({
-                dx: offset.dx,
-                dy: offset.dy,
-                joint1X: 0, joint1Y: 0,
-                footX: robot.x + offset.dx * 1.8,
-                footY: robot.y + offset.dy * 1.8 + 40,
-                targetFootX: robot.x + offset.dx * 1.8,
-                targetFootY: robot.y + offset.dy * 1.8 + 40,
-                stepCycle: Math.random() * Math.PI,
-                isStepping: false
-            });
-        });
+        function initDrones() {
+            // Upper Right Corner
+            drones[0].targetX = canvas.width - 160;
+            drones[0].targetY = 180;
+            // Lower Right Corner
+            drones[1].targetX = canvas.width - 180;
+            drones[1].targetY = canvas.height - 200;
 
-        function updateRobot() {
-            // Keep robot centered on its target spot, but let it float slightly
-            const targetX = window.innerWidth > 900 ? window.innerWidth * 0.75 : window.innerWidth * 0.5;
-            const targetY = window.innerHeight * 0.55;
-            
-            robot.x += (targetX - robot.x) * 0.1;
-            robot.y += (targetY - robot.y) * 0.1;
-
-            // Compute head/eye angle looking at the mouse
-            const dx = mouse.x - robot.x;
-            const dy = mouse.y - robot.y;
-            robot.eyeAngle = Math.atan2(dy, dx);
-
-            // Animate mechanical legs stepping based on body drift
-            robot.legs.forEach((leg, index) => {
-                leg.stepCycle += 0.03;
-                
-                // Calculated optimal resting foot position
-                const idealFootX = robot.x + leg.dx * 1.8 + Math.cos(robot.eyeAngle) * 10;
-                const idealFootY = robot.y + leg.dy * 1.8 + Math.sin(robot.eyeAngle) * 10 + 20;
-
-                // If foot gets too far from its ideal position, trigger a step
-                const distToIdeal = Math.hypot(leg.footX - idealFootX, leg.footY - idealFootY);
-                if (distToIdeal > 50 && !leg.isStepping) {
-                    leg.isStepping = true;
-                    leg.targetFootX = idealFootX + (Math.random() - 0.5) * 20;
-                    leg.targetFootY = idealFootY + (Math.random() - 0.5) * 20;
-                }
-
-                if (leg.isStepping) {
-                    // Smoothly lift and plant foot
-                    leg.footX += (leg.targetFootX - leg.footX) * 0.15;
-                    leg.footY += (leg.targetFootY - leg.footY) * 0.15;
-                    
-                    // Add arch lift effect
-                    const stepDist = Math.hypot(leg.footX - leg.targetFootX, leg.footY - leg.targetFootY);
-                    if (stepDist < 2) {
-                        leg.isStepping = false;
-                    }
-                }
+            drones.forEach(d => {
+                d.x = d.targetX;
+                d.y = d.targetY;
+                d.legs = [
+                    { dx: -35, dy: -20, fx: d.x - 60, fy: d.y - 40 },
+                    { dx: 35, dy: -20, fx: d.x + 60, fy: d.y - 40 },
+                    { dx: -35, dy: 20, fx: d.x - 60, fy: d.y + 40 },
+                    { dx: 35, dy: 20, fx: d.x + 60, fy: d.y + 40 }
+                ];
             });
         }
 
-        function drawRobot() {
-            // 1. Draw Leg Linkages
-            robot.legs.forEach((leg) => {
-                const startX = robot.x + leg.dx;
-                const startY = robot.y + leg.dy;
+        function drawDrone(d) {
+            d.x += (d.targetX - d.x) * 0.05;
+            d.y += (d.targetY - d.y) * 0.05;
+            
+            let lookAngle = Math.atan2(mouse.y - d.y, mouse.x - d.x);
 
-                // Solve elbow joint position (Inverse Kinematics approximation)
-                const midX = (startX + leg.footX) / 2 + Math.sin(Date.now() * 0.003 + leg.dx) * 15;
-                const midY = (startY + leg.footY) / 2 - 25; // Arch joint upwards
+            // Draw leg configurations
+            d.legs.forEach(leg => {
+                let sx = d.x + leg.dx;
+                let sy = d.y + leg.dy;
+                let lx = (sx + leg.fx)/2 + Math.cos(lookAngle)*8;
+                let ly = (sy + leg.fy)/2 - 15;
 
-                // Draw Hydraulic metallic lines
-                ctx.strokeStyle = "rgba(0, 245, 255, 0.35)";
-                ctx.lineWidth = 6;
-                ctx.lineCap = "round";
+                ctx.strokeStyle = 'rgba(0, 245, 255, 0.4)';
+                ctx.lineWidth = 4;
                 ctx.beginPath();
-                ctx.moveTo(startX, startY);
-                ctx.lineTo(midX, midY);
-                ctx.lineTo(leg.footX, leg.footY);
+                ctx.moveTo(sx, sy);
+                ctx.lineTo(lx, ly);
+                ctx.lineTo(leg.fx, leg.fy);
                 ctx.stroke();
 
-                // Draw pivot connections
-                ctx.fillStyle = "#09122c";
-                ctx.strokeStyle = "#00f5ff";
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.arc(midX, midY, 6, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.stroke();
-
-                // Draw foot pads
-                ctx.beginPath();
-                ctx.arc(leg.footX, leg.footY, 5, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.stroke();
+                ctx.fillStyle = '#050a18';
+                ctx.beginPath(); ctx.arc(lx, ly, 4, 0, Math.PI*2); ctx.fill(); ctx.stroke();
             });
 
-            // 2. Draw Chassis Body Core
-            ctx.fillStyle = "#0c1020";
-            ctx.strokeStyle = "rgba(0, 245, 255, 0.4)";
-            ctx.lineWidth = 4;
-            ctx.beginPath();
-            ctx.arc(robot.x, robot.y, robot.bodyRadius, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.stroke();
-
-            // Inner technical power ring glow
-            ctx.strokeStyle = "rgba(0, 245, 255, 0.15)";
-            ctx.lineWidth = 10;
-            ctx.beginPath();
-            ctx.arc(robot.x, robot.y, robot.bodyRadius - 12, 0, Math.PI * 2);
-            ctx.stroke();
-
-            // 3. Draw Camera Sensor Head & Eye
-            const eyeDist = 18;
-            const eyeX = robot.x + Math.cos(robot.eyeAngle) * eyeDist;
-            const eyeY = robot.y + Math.sin(robot.eyeAngle) * eyeDist;
-
-            // Camera module lens
-            ctx.fillStyle = "#111730";
-            ctx.strokeStyle = "#00f5ff";
+            // Body Chassis
+            ctx.fillStyle = '#0b1126';
+            ctx.strokeStyle = d.color;
             ctx.lineWidth = 3;
             ctx.beginPath();
-            ctx.arc(eyeX, eyeY, 15, 0, Math.PI * 2);
+            ctx.arc(d.x, d.y, d.bodyRadius, 0, Math.PI*2);
             ctx.fill();
             ctx.stroke();
 
-            // Glowing blue pupil
-            ctx.fillStyle = "#00f5ff";
-            ctx.shadowColor = "#00f5ff";
-            ctx.shadowBlur = 12;
-            ctx.beginPath();
-            ctx.arc(eyeX + Math.cos(robot.eyeAngle) * 4, eyeY + Math.sin(robot.eyeAngle) * 4, 5, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.shadowBlur = 0; // Reset shadow glow
+            // Camera Sensor Tracking Lens
+            let ex = d.x + Math.cos(lookAngle) * 12;
+            let ey = d.y + Math.sin(lookAngle) * 12;
+            ctx.fillStyle = '#010514';
+            ctx.beginPath(); ctx.arc(ex, ey, 10, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+
+            // Glowing pupil
+            ctx.fillStyle = '#00f5ff';
+            ctx.beginPath(); ctx.arc(ex + Math.cos(lookAngle)*3, ey + Math.sin(lookAngle)*3, 3, 0, Math.PI*2); ctx.fill();
         }
 
-        function animate() {
+        function loop() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Technical overlay grid background
-            ctx.strokeStyle = "rgba(0, 245, 255, 0.02)";
-            ctx.lineWidth = 1;
-            const gridSize = 60;
-            for (let x = 0; x < canvas.width; x += gridSize) {
-                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+            ctx.strokeStyle = 'rgba(0, 245, 255, 0.015)';
+            for(let i=0; i<canvas.width; i+=60) {
+                ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i, canvas.height); ctx.stroke();
             }
-            for (let y = 0; y < canvas.height; y += gridSize) {
-                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
-            }
-
-            updateRobot();
-            drawRobot();
-            requestAnimationFrame(animate);
+            drones.forEach(drawDrone);
+            requestAnimationFrame(loop);
         }
-        animate();
+
+        initDrones();
+        loop();
+        window.addEventListener('resize', initDrones);
     </script>
 </body>
 </html>
