@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | IEEE RAS EC Campus</title>
+    <title>About Us | IEEE RAS EC Campus</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,18 +13,41 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at top right, #131525 0%, #070810 100%);
+            background: radial-gradient(circle at center, #0a1128 0%, #040714 100%);
         }
-        .about-box {
-            background: rgba(12, 15, 30, 0.7);
-            border: 1px solid rgba(138, 43, 226, 0.15);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            backdrop-filter: blur(12px);
-            padding: 3rem;
-            border-radius: 24px;
-            max-width: 800px;
-            margin: 8rem auto 2rem auto;
-            text-align: center;
+        .about-container {
+            max-width: 1000px;
+            margin: 8rem auto 4rem auto;
+            padding: 0 2rem;
+        }
+        .about-main-card {
+            background: rgba(10, 20, 42, 0.75);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+            backdrop-filter: blur(14px);
+            padding: 4rem 3rem;
+            border-radius: 28px;
+            margin-bottom: 3rem;
+        }
+        .grid-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        .info-block {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 18px;
+            transition: all 0.3s ease;
+        }
+        .info-block:hover {
+            border-color: rgba(0, 180, 216, 0.3);
+            background: rgba(0, 180, 216, 0.02);
+        }
+        @media(max-width: 768px) {
+            .grid-two-col { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -40,64 +63,163 @@
                 <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" class="logo-img-pes">
             </div>
         </div>
-        <nav><a href="/">Home</a><a href="/about" class="active">About</a><a href="/events">Events</a><a href="/team">Team</a></nav>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about" class="active">About</a>
+            <a href="/events">Events</a>
+            <a href="/team">Team</a>
+        </nav>
     </header>
 
-    <section class="about-box">
-        <div class="badge" style="background: rgba(138, 43, 226, 0.15); color: #bf77ff; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-bottom: 1.5rem; letter-spacing: 2px; border: 1px solid rgba(138, 43, 226, 0.3);">OUR VISION</div>
-        <h2 class="section-title" style="margin-bottom: 1.5rem;">About Our Chapter</h2>
-        <p class="section-desc" style="line-height: 1.9; color: #cbd5e1; font-size: 1.05rem;">
-            The IEEE Robotics and Automation Society EC Chapter focuses on practical education, advanced development projects, and building collaborative bridges between academic theory and real-world industrial robotic implementations. We challenge students to transcend basic textbook definitions and construct true intelligent physical computing machinery.
-        </p>
-    </section>
+    <div class="about-container">
+        <div class="about-main-card">
+            <div class="badge" style="background: rgba(0, 180, 216, 0.12); color: #00b4d8; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-bottom: 1.5rem; letter-spacing: 2px; border: 1px solid rgba(0, 180, 216, 0.25);">IEEE RAS CHAPTER</div>
+            <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.5px;">Advancing Robotics Engineering</h1>
+            <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.8; margin-bottom: 0;">
+                The IEEE Robotics and Automation Society (RAS) student branch chapter at PES University, Electronic City Campus is a premier community dedicated to nurturing direct hardware engineering capabilities. We focus on bridging industrial methodologies with creative student innovation, working directly with embedded systems, spatial algorithmic processing, and robotic automation architectures.
+            </p>
+        </div>
+
+        <div class="grid-two-col">
+            <div class="info-block">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-graduation-cap" style="color: #00b4d8; font-size: 1.8rem;"></i>
+                    <h3 style="font-weight: 700; font-size: 1.3rem; margin: 0;">PESU EC Campus Ecosystem</h3>
+                </div>
+                <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7; margin: 0;">
+                    Situated directly inside Bangalore's premier IT hub, the Electronic City Campus (ECC) offers an incredible, resource-rich technical sandbox for engineering undergraduates. Our chapter leverages this location to connect students directly with local technical facilities, modern fabrication tools, and robust micro-electronics lab pipelines to support independent prototyping.
+                </p>
+            </div>
+
+            <div class="info-block">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-gears" style="color: #00b4d8; font-size: 1.8rem;"></i>
+                    <h3 style="font-weight: 700; font-size: 1.3rem; margin: 0;">Core Technological Tracks</h3>
+                </div>
+                <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7; margin: 0;">
+                    From working with real-time embedded firmware configurations to setting up autonomous vision tracking logic, we break down complex problems into clear building blocks. We arrange structured, peer-to-peer code sprints and physical build labs, helping students create impressive project portfolios for modern industry paths.
+                </p>
+            </div>
+        </div>
+    </div>
 
     <script>
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
-        let nodes = [];
+        let mouse = { x: null, y: null };
+
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize);
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
         resize();
 
-        for (let i = 0; i < 45; i++) {
-            nodes.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                r: Math.random() * 2 + 1.5,
-                pulse: Math.random() * Math.PI,
-                speed: 0.02 + Math.random() * 0.02
-            });
+        // Mechanical arm structures fixed to different anchor bases
+        let arms = [];
+        
+        function initArms() {
+            arms = [];
+            const segmentsCount = 3;
+            const segLength = 70;
+            // Generate multiple mechanical structural limbs based on screen proportions
+            for(let x = 0; x <= canvas.width + 200; x += 400) {
+                arms.push({
+                    baseX: x,
+                    baseY: canvas.height + 20,
+                    segLength: segLength,
+                    angles: [0, 0, 0]
+                });
+            }
         }
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.strokeStyle = 'rgba(138, 43, 226, 0.04)';
-            ctx.lineWidth = 1;
-            
-            // Render Neural Connections
-            for(let i=0; i<nodes.length; i++) {
-                nodes[i].pulse += nodes[i].speed;
-                let sizeOffsetY = Math.sin(nodes[i].pulse) * 15;
-                
-                ctx.beginPath();
-                ctx.arc(nodes[i].x, nodes[i].y + sizeOffsetY, nodes[i].r + Math.sin(nodes[i].pulse)*1, 0, Math.PI*2);
-                ctx.fillStyle = `rgba(168, 85, 247, ${0.2 + Math.sin(nodes[i].pulse)*0.2})`;
-                ctx.fill();
+        function solveInverseKinematics(arm) {
+            let targetX = mouse.x || arm.baseX;
+            let targetY = mouse.y || (arm.baseY - 200);
 
-                for(let j=i+1; j<nodes.length; j++) {
-                    let d = Math.hypot(nodes[i].x - nodes[j].x, (nodes[i].y + sizeOffsetY) - nodes[j].y);
-                    if(d < 180) {
-                        ctx.beginPath();
-                        ctx.moveTo(nodes[i].x, nodes[i].y + sizeOffsetY);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.strokeStyle = `rgba(138, 43, 226, ${0.12 * (1 - d/180)})`;
-                        ctx.stroke();
-                    }
+            // Simple relaxation loops simulating joint pull movements toward pointer
+            for(let step=0; step<5; step++) {
+                let jX = [arm.baseX, 0, 0, 0];
+                let jY = [arm.baseY, 0, 0, 0];
+                
+                let curAngle = 0;
+                for(let i=0; i<3; i++) {
+                    curAngle += arm.angles[i];
+                    jX[i+1] = jX[i] + Math.cos(curAngle) * arm.segLength;
+                    jY[i+1] = jY[i] + Math.sin(curAngle) * arm.segLength;
+                }
+
+                // Adjust angles slightly based on vector directions to targeted point
+                for(let i=2; i>=0; i--) {
+                    let dx = targetX - jX[i];
+                    let dy = targetY - jY[i];
+                    let baseAngle = Math.atan2(dy, dx);
+                    arm.angles[i] += (baseAngle - arm.angles[i]) * 0.05;
                 }
             }
-            requestAnimationFrame(animate);
         }
-        animate();
+
+        function drawArm(arm) {
+            let x = arm.baseX;
+            let y = arm.baseY;
+            let curAngle = 0;
+
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = 'rgba(0, 180, 216, 0.08)';
+            ctx.fillStyle = 'rgba(0, 180, 216, 0.15)';
+
+            // Draw base structural rotating plate
+            ctx.beginPath();
+            ctx.arc(x, y, 25, 0, Math.PI, true);
+            ctx.stroke();
+
+            // Loop through joints and render structural hydraulic links
+            for(let i=0; i<3; i++) {
+                curAngle += arm.angles[i];
+                let nextX = x + Math.cos(curAngle) * arm.segLength;
+                let nextY = y + Math.sin(curAngle) * arm.segLength;
+
+                // Main bone linkage line
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(nextX, nextY);
+                ctx.stroke();
+
+                // Mechanical joint actuator pins
+                ctx.beginPath();
+                ctx.arc(x, y, 6, 0, Math.PI*2);
+                ctx.fill();
+                ctx.stroke();
+
+                x = nextX;
+                y = nextY;
+            }
+            
+            // End-Effector Grabber Tip
+            ctx.beginPath();
+            ctx.arc(x, y, 4, 0, Math.PI*2);
+            ctx.fillStyle = '#00b4d8';
+            ctx.fill();
+        }
+
+        function renderLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Render grid framework underneath mechanical constructs
+            ctx.strokeStyle = 'rgba(0, 180, 216, 0.02)';
+            ctx.lineWidth = 1;
+            for(let i=0; i<canvas.width; i+=80) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+            }
+
+            arms.forEach(arm => {
+                solveInverseKinematics(arm);
+                drawArm(arm);
+            });
+            requestAnimationFrame(renderLoop);
+        }
+
+        initArms();
+        renderLoop();
+        window.addEventListener('resize', initArms);
     </script>
 </body>
 </html>
