@@ -26,10 +26,9 @@
             text-align: center;
             margin-bottom: 5rem;
         }
-        /* Asymmetric mixed layout stream */
         .story-node {
             position: relative;
-            background: rgba(8, 14, 28, 0.65);
+            background: rgba(8, 14, 28, 0.7);
             border: 1px solid rgba(0, 180, 216, 0.15);
             backdrop-filter: blur(14px);
             padding: 2.5rem;
@@ -40,7 +39,7 @@
             transition: all 0.4s ease;
         }
         .story-node:nth-child(even) {
-            margin-left: auto; /* Staggers the reading pattern to keep attention high */
+            margin-left: auto;
             border-color: rgba(0, 245, 255, 0.2);
         }
         .story-node:hover {
@@ -127,60 +126,71 @@
         window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
         resize();
 
-        // Multi-legged tracker robots that wander gracefully alongside the staggered paragraphs
+        // 1. Interactive Tracking Drones
         let bots = [
-            { x: 150, y: 350, baseRadius: 22, angle: 0, targetY: 350 },
-            { x: window.innerWidth - 180, y: 600, baseRadius: 26, angle: Math.PI, targetY: 600 }
+            { x: 150, y: 350, baseRadius: 22, targetY: 350 },
+            { x: window.innerWidth - 180, y: 600, baseRadius: 26, targetY: 600 }
         ];
 
-        function drawTrackers() {
+        // 2. Blueprint Background Still Robots
+        let stillRobots = [
+            { x: window.innerWidth * 0.2, y: window.innerHeight * 0.85, size: 70 },
+            { x: window.innerWidth * 0.8, y: window.innerHeight * 0.25, size: 90 }
+        ];
+
+        function drawSystem() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Tech mesh lines
-            ctx.strokeStyle = 'rgba(0, 245, 255, 0.02)';
+            // Tech grid lines
+            ctx.strokeStyle = 'rgba(0, 245, 255, 0.01)';
             ctx.lineWidth = 1;
             for(let i = 0; i < canvas.width; i += 50) {
                 ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
             }
 
+            // Draw Background Still Blueprint Robots
+            ctx.strokeStyle = 'rgba(0, 180, 216, 0.06)';
+            ctx.lineWidth = 2;
+            stillRobots.forEach(r => {
+                ctx.beginPath();
+                ctx.rect(r.x - r.size/2, r.y - r.size/2, r.size, r.size); // Body outline
+                ctx.moveTo(r.x - r.size/2, r.y); ctx.lineTo(r.x - r.size/2 - 20, r.y + 10); // Arm left
+                ctx.moveTo(r.x + r.size/2, r.y); ctx.lineTo(r.x + r.size/2 + 20, r.y + 10); // Arm right
+                ctx.arc(r.x, r.y - r.size/2 - 15, 12, 0, Math.PI*2); // Head sensor
+                ctx.stroke();
+            });
+
+            // Draw Interactive Tracking Drones
             bots.forEach((b, index) => {
-                // Smoothly float towards the mouse height slightly to stay dynamically engaged
                 b.targetY += (mouse.y - b.targetY) * 0.02;
                 b.y = b.targetY + Math.sin(Date.now() * 0.002 + index) * 15;
 
                 let angleToMouse = Math.atan2(mouse.y - b.y, mouse.x - b.x);
 
-                // Draw technical limbs clamping out onto the canvas grid
                 for(let a = 0; a < Math.PI*2; a += Math.PI/3) {
                     let lx = b.x + Math.cos(a + Math.sin(Date.now()*0.005)*0.2) * 50;
                     let ly = b.y + Math.sin(a + Math.sin(Date.now()*0.005)*0.2) * 50;
                     ctx.strokeStyle = 'rgba(0, 245, 255, 0.25)';
                     ctx.lineWidth = 2;
-                    ctx.beginPath();
-                    ctx.moveTo(b.x, b.y);
-                    ctx.lineTo((b.x+lx)/2, (b.y+ly)/2 - 8);
-                    ctx.lineTo(lx, ly);
-                    ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo((b.x+lx)/2, (b.y+ly)/2 - 8); ctx.lineTo(lx, ly); ctx.stroke();
                 }
 
-                // Core Chassis
                 ctx.fillStyle = '#060a18';
                 ctx.strokeStyle = '#00f5ff';
                 ctx.lineWidth = 3;
                 ctx.beginPath(); ctx.arc(b.x, b.y, b.baseRadius, 0, Math.PI*2); ctx.fill(); ctx.stroke();
 
-                // Tracking optic sensor lens
                 let ox = b.x + Math.cos(angleToMouse) * 8;
                 let oy = b.y + Math.sin(angleToMouse) * 8;
                 ctx.fillStyle = '#00f5ff';
                 ctx.shadowBlur = 15; ctx.shadowColor = '#00f5ff';
                 ctx.beginPath(); ctx.arc(ox, oy, 6, 0, Math.PI*2); ctx.fill();
-                ctx.shadowBlur = 0; // Reset bloom
+                ctx.shadowBlur = 0;
             });
 
-            requestAnimationFrame(drawTrackers);
+            requestAnimationFrame(drawSystem);
         }
-        drawTrackers();
+        drawSystem();
     </script>
 </body>
 </html>
