@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,42 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* Theme Variables */
-        :root[data-theme="dark"] {
-            --bg-gradient: radial-gradient(circle at center, #050814 0%, #010205 100%);
-            --text-main: #ffffff;
-            --text-muted: #cbd5e1;
-            --text-hero: linear-gradient(to right, #fff, #94a3b8);
-            --card-bg: rgba(8, 14, 28, 0.7);
-            --card-border: rgba(0, 180, 216, 0.15);
-            --card-shadow: rgba(0,0,0,0.4);
-            --bot-chassis: #060a18;
-            --bot-glow: #00f5ff;
-            --bot-limb: rgba(0, 245, 255, 0.25);
-            --bot-still: rgba(0, 180, 216, 0.06);
-            --grid-line: rgba(0, 245, 255, 0.01);
-        }
-        :root[data-theme="light"] {
-            --bg-gradient: radial-gradient(circle at center, #f4f7fa 0%, #e2e8f0 100%);
-            --text-main: #0f172a;
-            --text-muted: #334155;
-            --text-hero: linear-gradient(to right, #0f172a, #475569);
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --card-border: rgba(0, 180, 216, 0.25);
-            --card-shadow: rgba(148, 163, 184, 0.2);
-            --bot-chassis: #ffffff;
-            --bot-glow: #00b4d8;
-            --bot-limb: rgba(0, 180, 216, 0.4);
-            --bot-still: rgba(0, 180, 216, 0.12);
-            --grid-line: rgba(0, 180, 216, 0.05);
-        }
-
         #bg-canvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: var(--bg-gradient);
-            transition: background 0.4s ease;
+            background: radial-gradient(circle at center, #050814 0%, #010205 100%);
         }
         .about-container {
             max-width: 1000px;
@@ -59,22 +28,24 @@
         }
         .story-node {
             position: relative;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            background: rgba(8, 14, 28, 0.7);
+            border: 1px solid rgba(0, 180, 216, 0.15);
             backdrop-filter: blur(14px);
             padding: 2.5rem;
             border-radius: 20px;
             max-width: 650px;
             margin-bottom: 4rem;
-            box-shadow: 0 20px 50px var(--card-shadow);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
             transition: all 0.4s ease;
         }
         .story-node:nth-child(even) {
             margin-left: auto;
+            border-color: rgba(0, 245, 255, 0.2);
         }
         .story-node:hover {
             transform: translateY(-5px);
-            border-color: var(--bot-glow);
+            border-color: #00f5ff;
+            box-shadow: 0 20px 45px rgba(0, 245, 255, 0.1);
         }
         .node-number {
             font-size: 3.5rem;
@@ -82,7 +53,7 @@
             position: absolute;
             top: -2.5rem;
             left: 2rem;
-            background: linear-gradient(180deg, rgba(0, 180, 216, 0.3) 0%, rgba(0,0,0,0) 100%);
+            background: linear-gradient(180deg, rgba(0, 245, 255, 0.3) 0%, rgba(0,0,0,0) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -90,38 +61,11 @@
             left: auto;
             right: 2rem;
         }
-        /* Floating Theme Switcher */
-        .theme-toggle-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--bot-glow);
-            font-size: 1.25rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-            box-shadow: 0 10px 25px var(--card-shadow);
-            transition: all 0.3s ease;
-        }
-        .theme-toggle-btn:hover {
-            transform: scale(1.1);
-        }
     </style>
 </head>
-<body style="color: var(--text-main); overflow-x: hidden; transition: color 0.4s ease;">
+<body style="color: #fff; overflow-x: hidden;">
 
     <canvas id="bg-canvas"></canvas>
-
-    <button class="theme-toggle-btn" id="themeBtn" onclick="toggleTheme()">
-        <i class="fa-solid fa-moon"></i>
-    </button>
 
     <header class="navbar">
         <div class="logo-wrapper">
@@ -141,15 +85,15 @@
 
     <div class="about-container">
         <div class="hero-story-block">
-            <span style="color: var(--bot-glow); font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; text-transform: uppercase;">Discover Our Mission</span>
-            <h1 style="font-size: 3rem; font-weight: 800; margin-top: 0.5rem; background: var(--text-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: background 0.4s ease;">Tinkering Beyond Code</h1>
+            <span style="color: #00f5ff; font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; text-transform: uppercase;">Discover Our Mission</span>
+            <h1 style="font-size: 3rem; font-weight: 800; margin-top: 0.5rem; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Tinkering Beyond Code</h1>
         </div>
 
         <div class="story-stream">
             <div class="story-node">
                 <div class="node-number">01</div>
-                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: var(--bot-glow);">Engineering Autonomous Systems</h3>
-                <p style="color: var(--text-muted); line-height: 1.7; margin: 0; font-size: 1.05rem;">
+                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: #00f5ff;">Engineering Autonomous Systems</h3>
+                <p style="color: #cbd5e1; line-height: 1.7; margin: 0; font-size: 1.05rem;">
                     The IEEE Robotics and Automation Society (RAS) at PESU EC Campus is an active engineering hub. We build physical machinery, write real-time control loops, and create space for creative hands-on tinkering. If you want to turn theoretical math and code into moving physical robots, this is your community.
                 </p>
             </div>
@@ -157,15 +101,15 @@
             <div class="story-node">
                 <div class="node-number">02</div>
                 <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: #00b4d8;">PESU EC Campus Sandbox</h3>
-                <p style="color: var(--text-muted); line-height: 1.7; margin: 0; font-size: 1.05rem;">
+                <p style="color: #cbd5e1; line-height: 1.7; margin: 0; font-size: 1.05rem;">
                     Nestled in the heart of Electronic City, the PESU EC Campus provides an elite engineering environment. Surrounded by major global tech clusters, students have access to state-of-the-art lab facilities, embedded circuitry sandboxes, and modern prototyping workshops.
                 </p>
             </div>
 
             <div class="story-node">
                 <div class="node-number">03</div>
-                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: var(--bot-glow);">Active Focus Tracks</h3>
-                <p style="color: var(--text-muted); line-height: 1.7; margin: 0; font-size: 1.05rem;">
+                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: #00f5ff;">Active Focus Tracks</h3>
+                <p style="color: #cbd5e1; line-height: 1.7; margin: 0; font-size: 1.05rem;">
                     We specialize in autonomous navigation algorithms, microcontroller programming (ESP32/Arduino), computer vision, and ROS-based kinematics. We bypass simple slide decks to build real, operating hardware stacks.
                 </p>
             </div>
@@ -173,27 +117,6 @@
     </div>
 
     <script>
-        // Theme Engine Script
-        function toggleTheme() {
-            const root = document.documentElement;
-            const currentTheme = root.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            root.setAttribute('data-theme', newTheme);
-            localStorage.setItem('ras-theme', newTheme);
-            
-            document.getElementById('themeBtn').innerHTML = newTheme === 'dark' 
-                ? '<i class="fa-solid fa-moon"></i>' 
-                : '<i class="fa-solid fa-sun"></i>';
-        }
-        
-        // Restore Preference on load
-        const savedTheme = localStorage.getItem('ras-theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        document.getElementById('themeBtn').innerHTML = savedTheme === 'dark' 
-            ? '<i class="fa-solid fa-moon"></i>' 
-            : '<i class="fa-solid fa-sun"></i>';
-
-        // Canvas Rendering System mapping properties to CSS variables
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
@@ -203,11 +126,13 @@
         window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
         resize();
 
+        // 1. Interactive Tracking Drones
         let bots = [
             { x: 150, y: 350, baseRadius: 22, targetY: 350 },
             { x: window.innerWidth - 180, y: 600, baseRadius: 26, targetY: 600 }
         ];
 
+        // 2. Blueprint Background Still Robots
         let stillRobots = [
             { x: window.innerWidth * 0.2, y: window.innerHeight * 0.85, size: 70 },
             { x: window.innerWidth * 0.8, y: window.innerHeight * 0.25, size: 90 }
@@ -215,35 +140,27 @@
 
         function drawSystem() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Fetch dynamically computed styles based on dark/light changes
-            const styles = getComputedStyle(document.documentElement);
-            let colorGlow = styles.getPropertyValue('--bot-glow').trim();
-            let colorLimb = styles.getPropertyValue('--bot-limb').trim();
-            let colorStill = styles.getPropertyValue('--bot-still').trim();
-            let colorGrid = styles.getPropertyValue('--grid-line').trim();
-            let colorChassis = styles.getPropertyValue('--bot-chassis').trim();
 
             // Tech grid lines
-            ctx.strokeStyle = colorGrid;
+            ctx.strokeStyle = 'rgba(0, 245, 255, 0.01)';
             ctx.lineWidth = 1;
             for(let i = 0; i < canvas.width; i += 50) {
                 ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
             }
 
-            // Still Blueprint Background Robots
-            ctx.strokeStyle = colorStill;
+            // Draw Background Still Blueprint Robots
+            ctx.strokeStyle = 'rgba(0, 180, 216, 0.06)';
             ctx.lineWidth = 2;
             stillRobots.forEach(r => {
                 ctx.beginPath();
-                ctx.rect(r.x - r.size/2, r.y - r.size/2, r.size, r.size);
-                ctx.moveTo(r.x - r.size/2, r.y); ctx.lineTo(r.x - r.size/2 - 20, r.y + 10);
-                ctx.moveTo(r.x + r.size/2, r.y); ctx.lineTo(r.x + r.size/2 + 20, r.y + 10);
-                ctx.arc(r.x, r.y - r.size/2 - 15, 12, 0, Math.PI*2);
+                ctx.rect(r.x - r.size/2, r.y - r.size/2, r.size, r.size); // Body outline
+                ctx.moveTo(r.x - r.size/2, r.y); ctx.lineTo(r.x - r.size/2 - 20, r.y + 10); // Arm left
+                ctx.moveTo(r.x + r.size/2, r.y); ctx.lineTo(r.x + r.size/2 + 20, r.y + 10); // Arm right
+                ctx.arc(r.x, r.y - r.size/2 - 15, 12, 0, Math.PI*2); // Head sensor
                 ctx.stroke();
             });
 
-            // Tracking Drones
+            // Draw Interactive Tracking Drones
             bots.forEach((b, index) => {
                 b.targetY += (mouse.y - b.targetY) * 0.02;
                 b.y = b.targetY + Math.sin(Date.now() * 0.002 + index) * 15;
@@ -253,20 +170,22 @@
                 for(let a = 0; a < Math.PI*2; a += Math.PI/3) {
                     let lx = b.x + Math.cos(a + Math.sin(Date.now()*0.005)*0.2) * 50;
                     let ly = b.y + Math.sin(a + Math.sin(Date.now()*0.005)*0.2) * 50;
-                    ctx.strokeStyle = colorLimb;
+                    ctx.strokeStyle = 'rgba(0, 245, 255, 0.25)';
                     ctx.lineWidth = 2;
                     ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo((b.x+lx)/2, (b.y+ly)/2 - 8); ctx.lineTo(lx, ly); ctx.stroke();
                 }
 
-                ctx.fillStyle = colorChassis;
-                ctx.strokeStyle = colorGlow;
+                ctx.fillStyle = '#060a18';
+                ctx.strokeStyle = '#00f5ff';
                 ctx.lineWidth = 3;
                 ctx.beginPath(); ctx.arc(b.x, b.y, b.baseRadius, 0, Math.PI*2); ctx.fill(); ctx.stroke();
 
                 let ox = b.x + Math.cos(angleToMouse) * 8;
                 let oy = b.y + Math.sin(angleToMouse) * 8;
-                ctx.fillStyle = colorGlow;
+                ctx.fillStyle = '#00f5ff';
+                ctx.shadowBlur = 15; ctx.shadowColor = '#00f5ff';
                 ctx.beginPath(); ctx.arc(ox, oy, 6, 0, Math.PI*2); ctx.fill();
+                ctx.shadowBlur = 0;
             });
 
             requestAnimationFrame(drawSystem);
