@@ -1,6 +1,14 @@
 from flask import Flask, render_template
+# Import the isolated sandbox blueprint
+from blueprints.sandbox import sandbox_bp
 
 app = Flask(__name__)
+app.secret_key = "ieee_ras_secret_key_session_handler"  # Required to keep track of high scores
+
+# Register the Sandbox Blueprint
+app.register_blueprint(sandbox_bp)
+
+# --- Primary Website Page Routes ---
 
 @app.route('/')
 def home():
@@ -18,6 +26,5 @@ def events():
 def team():
     return render_template('team.html')
 
-# Essential fallback configuration for Vercel
 if __name__ == '__main__':
     app.run(debug=True)
