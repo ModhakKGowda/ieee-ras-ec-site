@@ -18,6 +18,10 @@ def events():
 def team():
     return render_template('team.html')
 
-# This is required for running locally
+# The dedicated game page route
+@app.route('/sandbox')
+def sandbox():
+    return render_template('sandbox.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
