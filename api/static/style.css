@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. CORE RESET & MATRIX CONFIGURATION
+   1. CORE RESET & TECHNICAL CANVAS PATCH
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -12,16 +12,12 @@ html {
     width: 100%;
 }
 
-/* ROBOTICS BLUEPRINT SCI-FI SCROLLING CANVAS */
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     color: #cbd5e1;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Stops horizontal page swaying or text leaks on smartphones */
+    overflow-x: hidden;
     width: 100%;
-    
     background-color: #050811;
     background-image: 
         radial-gradient(rgba(59, 130, 246, 0.15) 1.5px, transparent 1.5px), 
@@ -30,13 +26,20 @@ body {
         radial-gradient(circle at 50% 40%, #0a1326 0%, #02040a 100%);
     background-size: 40px 40px, 40px 40px, 40px 40px, 100% 100%;
     background-attachment: local, local, local, fixed; 
-
-    /* Eliminates annoying bright green/grey mobile tap-flickering highlight overlays */
     -webkit-tap-highlight-color: transparent !important;
 }
 
+/* FIX: Protects Sandbox Engine Architecture from shrinking or losing aspect ratio */
+canvas, #game-canvas, #canvas-wrapper {
+    display: block !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    box-sizing: content-box !important; 
+}
+
 /* ==========================================================================
-   2. TYPOGRAPHY MATRIX (CLAMP SCALED)
+   2. TYPOGRAPHY MATRIX
    ========================================================================== */
 h1 {
     font-size: clamp(2.2rem, 5.5vw, 4rem);
@@ -83,16 +86,8 @@ h3, .card-title {
     text-align: center;
 }
 
-.role {
-    color: #3b82f6; 
-    font-weight: 600;
-    font-size: 1.05rem;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-}
-
 /* ==========================================================================
-   3. NAVIGATION HEADER SETUP (DUAL RAS & PES LOGO SHIELD)
+   3. FIXED DUAL BRAND LOGO HEADER SETUP
    ========================================================================== */
 .navbar {
     display: flex;
@@ -108,13 +103,15 @@ h3, .card-title {
     border-bottom: 1px solid rgba(59, 130, 246, 0.1);
 }
 
+/* FIX: Dark blueprint styling background so transparent white PES elements POP */
 .logo-wrapper {
-    background: #ffffff;      
+    background: #0b1528;      
     padding: 0px 14px;
     border-radius: 8px;       
     display: flex;
     align-items: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(59, 130, 246, 0.25);
     height: 44px; 
     flex-shrink: 0;
 }
@@ -129,7 +126,10 @@ h3, .card-title {
     width: 90px !important;
     height: 26px !important;
     object-fit: contain;
-    image-rendering: -webkit-optimize-contrast;
+    /* Keeps images clean, not blurry */
+    image-rendering: -webkit-optimize-contrast; 
+    /* Inverts dark RAS letters so they shine against our high-tech blue wrapper shield */
+    filter: brightness(0) invert(1);
 }
 
 .logo-img-pes {
@@ -142,7 +142,7 @@ h3, .card-title {
 .logo-divider {
     width: 1px;
     height: 18px;
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .navbar nav {
@@ -156,15 +156,16 @@ h3, .card-title {
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
-    transition: color 0.25s ease;
+    transition: all 0.2s ease;
+    padding: 0.4rem 0.6rem;
 }
 
-.navbar nav a:hover {
+.navbar nav a:hover, .navbar nav a.active {
     color: #3b82f6;               
 }
 
 /* ==========================================================================
-   4. STRUCTURAL CONTENT LAYOUTS & INTERACTIVE ACTION SYSTEM
+   4. STRUCTURAL GRID ENGINE
    ========================================================================== */
 .section {
     padding: 6rem 5% 4rem 5%;
@@ -189,10 +190,190 @@ h3, .card-title {
     max-width: 850px;
 }
 
+/* BUTTONS */
 .btn-nav {
-    background: rgba(37, 99, 235, 0.12);
+    background: rgba(37, 99, 235, 0.12) !important;
     color: #3b82f6 !important; 
-    padding: 0.5rem 1.2rem;
-    border-radius: 6px;
-    border: 1px solid rgba(37, 99, 235, 0.3);
-    font-weight:
+    padding: 0.5rem 1.2rem !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(37, 99, 235, 0.4) !important;
+    font-weight: 600 !important;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: #2563eb;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* GRIDS */
+.team-grid, .events-grid, .about-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 1050px;
+}
+
+.card, .about-card {
+    background: rgba(10, 17, 34, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, .about-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+}
+
+.about-card {
+    background: linear-gradient(145deg, rgba(10, 17, 34, 0.7) 0%, rgba(5, 8, 17, 0.95) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #3b82f6, transparent);
+}
+
+.image-container {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(59, 130, 246, 0.3);
+    background: #0f172a;
+}
+
+.team-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+    min-height: 38px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.social-links a:hover {
+    color: #ffffff;
+    background: #2563eb;
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   5. MOBILE & TABLET PORTABLE BREAKPOINT REPAIRS
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* FIX: Completely restructures the navigation buttons so they stack neatly without overlapping */
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.2rem 1rem;
+    }
+
+    .navbar nav {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns clean matrix layout grid */
+        gap: 0.5rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar nav a {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.2rem;
+        background: rgba(59, 130, 246, 0.05);
+        border-radius: 6px;
+        border: 1px solid rgba(59, 130, 246, 0.05);
+    }
+    
+    .navbar nav a.active {
+        background: rgba(59, 130, 246, 0.15);
+        border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-nav {
+        grid-column: span 3; /* Spans across full width at the base of your mobile menu */
+        margin-top: 0.25rem;
+    }
+
+    /* Keep dual logos properly sized in their safe wrapper */
+    .logo-wrapper {
+        height: 42px;
+        padding: 0px 10px;
+    }
+    
+    .logo-container { gap: 8px; }
+    .logo-img-ras { width: 75px !important; height: 22px !important; }
+    .logo-img-pes { width: 50px !important; height: 24px !important; }
+    .logo-divider { height: 14px; }
+
+    .section {
+        padding: 4rem 1rem 2rem 1rem;
+    }
+
+    .team-grid, .events-grid, .about-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .about-card {
+        padding: 1.75rem 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar nav {
+        grid-template-columns: repeat(2, 1fr); /* Changes layout to 2 columns on very narrow screens */
+    }
+    
+    .btn-nav {
+        grid-column: span 2;
+    }
+}
