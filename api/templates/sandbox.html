@@ -2,11 +2,11 @@
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Robo-Sandbox | IEEE RAS</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         :root[data-theme="dark"] {
@@ -19,19 +19,44 @@
             --pcb-green: #0a140d;
         }
 
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: var(--bg-base);
             color: var(--text-main);
-            margin: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-image: radial-gradient(#1f242c 1px, transparent 1px);
             background-size: 24px 24px;
+            overflow-x: hidden;
+            width: 100%;
+            /* Fixes the bright flickering tap highlights globally */
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .sandbox-wrapper {
             max-width: 1100px;
             margin: 7rem auto 4rem auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .workspace-title h2 {
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            margin: 0; 
+            letter-spacing: -0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .sandbox-wrapper { margin-top: 5.5rem; padding: 0 1rem; }
+            .workspace-title h2 { font-size: 1.8rem; }
+            .workspace-title p { font-size: 0.9rem; }
         }
 
         .workspace-panel {
@@ -41,59 +66,78 @@
             padding: 1.5rem;
             backdrop-filter: blur(12px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            margin-top: 2rem;
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .workspace-panel { padding: 0.8rem; border-radius: 14px; }
         }
 
         .panel-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            width: 100%;
         }
 
         .telemetry-board {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             font-family: 'Fira Code', monospace;
             font-weight: 700;
-            font-size: 1.1rem;
         }
 
+        .score-box, .high-score-box {
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
         .score-box {
             background: rgba(88, 166, 255, 0.05);
-            padding: 0.5rem 1.2rem;
-            border-radius: 10px;
             border: 1px solid rgba(88, 166, 255, 0.2);
             color: #58a6ff;
         }
-
         .high-score-box {
             background: rgba(245, 158, 11, 0.05);
-            padding: 0.5rem 1.2rem;
-            border-radius: 10px;
             border: 1px solid rgba(245, 158, 11, 0.2);
             color: #f59e0b;
         }
 
-        #gameCanvas {
-            background-color: var(--pcb-green);
-            border-radius: 12px;
+        /* Fixed aspect ratio scale map for mobile screens */
+        .canvas-container {
             width: 100%;
-            display: block;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
             border: 1px solid #21262d;
+            background-color: var(--pcb-green);
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent !important;
+        }
+
+        #gameCanvas {
+            width: 100%;
+            height: auto;
+            display: block;
             cursor: pointer;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent !important;
         }
 
         .inventory-dashboard {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
+            width: 100%;
         }
 
-        @media (max-width: 768px) {
-            .inventory-dashboard { grid-template-columns: repeat(2, 1fr); }
-        }
+        @media (max-width: 900px) { .inventory-dashboard { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .inventory-dashboard { grid-template-columns: 1fr; } }
 
         .inventory-item {
             background: rgba(22, 27, 34, 0.6);
@@ -109,19 +153,11 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
+            flex-shrink: 0;
         }
 
-        .inventory-info h4 {
-            margin: 0;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .inventory-info p {
-            margin: 0.2rem 0 0 0;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
+        .inventory-info h4 { margin: 0; font-size: 0.9rem; font-weight: 600; }
+        .inventory-info p { margin: 0.2rem 0 0 0; font-size: 0.75rem; color: var(--text-muted); }
     </style>
 </head>
 <body>
@@ -142,21 +178,23 @@
     </header>
 
     <div class="sandbox-wrapper">
-        <div>
-            <h2 style="font-size: 2.5rem; font-weight: 800; margin: 0; letter-spacing: -0.5px;">Kinematic Lab Workspace</h2>
+        <div class="workspace-title">
+            <h2>Kinematic Lab Workspace</h2>
             <p style="color: var(--text-muted); margin-top: 0.4rem; font-size: 1rem;">Test the mechatronic bipedal skeleton engine across custom electronic instrumentation components.</p>
         </div>
 
         <div class="workspace-panel">
             <div class="panel-header">
-                <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 600;"><i class="fa-solid fa-wave-square" style="color: #58a6ff; margin-right: 6px;"></i> OSCILLOSCOPE REALTIME KINEMATICS</span>
+                <span><i class="fa-solid fa-wave-square" style="color: #58a6ff; margin-right: 6px;"></i> REALTIME INSTRUMENTATION</span>
                 <div class="telemetry-board">
                     <div class="high-score-box">HI: <span id="highScore">0000</span></div>
                     <div class="score-box">SCORE: <span id="currentScore">0000</span></div>
                 </div>
             </div>
             
-            <canvas id="gameCanvas" width="900" height="280"></canvas>
+            <div class="canvas-container">
+                <canvas id="gameCanvas" width="900" height="280"></canvas>
+            </div>
         </div>
 
         <h3 style="margin-top: 2.5rem; font-size: 1.2rem; font-weight: 600; color: var(--text-main);">ECE Workbench Components Directory</h3>
@@ -171,7 +209,7 @@
             </div>
             <div class="inventory-item">
                 <div class="inventory-badge" style="background: #00b4d8;"></div>
-                <div class="inventory-info"><h4>I2C OLED Module</h4><p>0.96" Solid blue screen display</p></div>
+                <div class="inventory-info"><h4>I2C OLED Module</h4><p>0.96" Screen display module</p></div>
             </div>
             <div class="inventory-item">
                 <div class="inventory-badge" style="background: #ffb703;"></div>
@@ -184,14 +222,14 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
-        // Bipedal Chrome Dino-Style Skeleton Android Properties
+        const BASE_GROUND_Y = 230;
+
         const robot = {
             x: 90, y: 165, width: 44, height: 65,
             gravity: 0.65, jumpForce: -13.5, velocity: 0,
             isJumping: false, animCycle: 0
         };
 
-        // Complete Advanced Electronic Engineering Hardware Inventory List
         const componentTypes = [
             { type: 'resistor', color: '#d4a276', width: 45, height: 14, label: 'Resistor 10kΩ' },
             { type: 'electrolytic_cap', color: '#2a6f97', width: 22, height: 36, label: 'Capacitor 470µF' },
@@ -210,7 +248,6 @@
         let gameSpeed = 6.5;
         let spawnTimer = 0;
 
-        // Display saved initial high score
         document.getElementById('highScore').textContent = String(highScore).padStart(4, '0');
 
         function jump() {
@@ -222,8 +259,18 @@
             }
         }
 
+        // Clean event handling to catch jumps without firing screen gestures or colors
         window.addEventListener('keydown', (e) => { if (e.code === 'Space') { e.preventDefault(); jump(); } });
-        canvas.addEventListener('click', jump);
+        
+        canvas.addEventListener('touchstart', (e) => { 
+            e.preventDefault(); 
+            jump(); 
+        }, {passive: false});
+
+        canvas.addEventListener('click', (e) => {
+            e.preventDefault();
+            jump();
+        });
 
         function reset() {
             obstacles = []; score = 0; gameSpeed = 6.5;
@@ -233,10 +280,8 @@
             loop();
         }
 
-        // Vector Graphics Canvas Renderer for Real ECE Hardware Elements
         function drawComponent(ctx, x, y, spec) {
             ctx.lineWidth = 1.8;
-            
             if (spec.type === 'resistor') {
                 ctx.strokeStyle = '#a8a29e';
                 ctx.beginPath(); ctx.moveTo(x - 12, y + 7); ctx.lineTo(x + spec.width + 12, y + 7); ctx.stroke();
@@ -264,172 +309,7 @@
                 }
             }
             else if (spec.type === 'ultrasonic_hcsr04') {
-                ctx.fillStyle = '#104f55'; ctx.fillRect(x, y + 6, spec.width, spec.height - 6); // PCB Backplate
-                ctx.fillStyle = '#9ca3af'; // Dual Sonar Metal Barrels
+                ctx.fillStyle = '#104f55'; ctx.fillRect(x, y + 6, spec.width, spec.height - 6);
+                ctx.fillStyle = '#9ca3af';
                 ctx.beginPath(); ctx.arc(x + 14, y + 16, 10, 0, Math.PI * 2); ctx.fill();
                 ctx.beginPath(); ctx.arc(x + spec.width - 14, y + 16, 10, 0, Math.PI * 2); ctx.fill();
-                ctx.fillStyle = '#111827'; // Sensor mesh grids
-                ctx.beginPath(); ctx.arc(x + 14, y + 16, 7, 0, Math.PI * 2); ctx.fill();
-                ctx.beginPath(); ctx.arc(x + spec.width - 14, y + 16, 7, 0, Math.PI * 2); ctx.fill();
-            }
-            else if (spec.type === 'oled_display') {
-                ctx.fillStyle = spec.color; ctx.fillRect(x, y, spec.width, spec.height); // Frame
-                ctx.fillStyle = '#0077b6'; ctx.fillRect(x + 3, y + 3, spec.width - 6, spec.height - 12); // Illuminated Matrix Display
-                ctx.fillStyle = '#ffffff'; ctx.font = "6px monospace"; ctx.fillText("I2C ADDR", x + 6, y + 12);
-                ctx.fillStyle = '#9ca3af'; // Header pins
-                ctx.fillRect(x + (spec.width/2) - 8, y + spec.height - 3, 16, 3);
-            }
-            else if (spec.type === 'potentiometer') {
-                ctx.fillStyle = '#4b5563'; ctx.fillRect(x + 3, y + 16, spec.width - 6, spec.height - 16); // Structural housing
-                ctx.fillStyle = spec.color; ctx.beginPath(); ctx.arc(x + spec.width/2, y + 10, 9, 0, Math.PI*2); ctx.fill(); // Rotary dial knob
-                ctx.fillStyle = '#1f2937'; ctx.fillRect(x + spec.width/2 - 2, y + 2, 4, 8); // Selector indicator pointer
-                ctx.strokeStyle = '#d1d5db'; // Base pins
-                ctx.beginPath(); ctx.moveTo(x + 4, y + spec.height); ctx.lineTo(x + 4, y + spec.height + 6);
-                ctx.moveTo(x + spec.width/2, y + spec.height); ctx.lineTo(x + spec.width/2, y + spec.height + 6);
-                ctx.moveTo(x + spec.width - 4, y + spec.height); ctx.lineTo(x + spec.width - 4, y + spec.height + 6); ctx.stroke();
-            }
-            else if (spec.type === 'relay_5v') {
-                ctx.fillStyle = spec.color; ctx.fillRect(x, y, spec.width, spec.height); // Plastic core box
-                ctx.fillStyle = '#ffffff'; ctx.fillRect(x + 4, y + 4, spec.width - 8, 2); // Text markings lines
-            }
-            else if (spec.type === 'battery_9v') {
-                ctx.fillStyle = spec.color; ctx.fillRect(x, y + 6, spec.width, spec.height - 6);
-                ctx.fillStyle = '#f59e0b'; ctx.fillRect(x, y + 6, spec.width, 5);
-                ctx.fillStyle = '#9ca3af'; ctx.fillRect(x + 4, y, 6, 6);
-                ctx.beginPath(); ctx.arc(x + spec.width - 7, y + 3, 4, 0, Math.PI*2); ctx.fill();
-            }
-
-            // Instrumentation coordinate metadata text overlay
-            ctx.fillStyle = 'rgba(255,255,255,0.4)';
-            ctx.font = "9px 'Fira Code', monospace";
-            ctx.fillText(spec.label, x - 5, y - 8);
-        }
-
-        function loop() {
-            if (isGameOver) return;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Creative Schematic Blueprint Grid Line Matrix
-            ctx.strokeStyle = 'rgba(56, 189, 248, 0.04)'; ctx.lineWidth = 1;
-            for (let i = 0; i < canvas.width; i += 30) {
-                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
-            }
-            for (let j = 0; j < canvas.height; j += 30) {
-                ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(canvas.width, j); ctx.stroke();
-            }
-
-            // Heavy PCB terminal trace connection line (Ground Floor Track)
-            ctx.strokeStyle = "#30363d"; ctx.lineWidth = 4;
-            ctx.beginPath(); ctx.moveTo(0, 230); ctx.lineTo(canvas.width, 230); ctx.stroke();
-
-            // Handle kinematic acceleration curves
-            robot.velocity += robot.gravity; robot.y += robot.velocity;
-            if (robot.y > 165) { robot.y = 165; robot.velocity = 0; robot.isJumping = false; }
-            if (!robot.isJumping) robot.animCycle += 0.24;
-
-            // --- CHROME DINO-STYLE HIGH-FIDELITY MECHATRONIC SKELETON ANDROID ENGINE ---
-            const rx = robot.x, ry = robot.y;
-            
-            // Dynamic leg rotation linkages (oscillating bone pivots)
-            let legL = Math.sin(robot.animCycle) * 14;
-            let legR = Math.cos(robot.animCycle) * 14;
-            if (robot.isJumping) { legL = 10; legR = -10; }
-
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = '#e2e8f0'; // Outer visible skeleton bone rods
-            
-            // Left Structural Skeleton Leg Assembly (Thigh, Joint, Foot)
-            ctx.beginPath();
-            ctx.moveTo(rx + 14, ry + 44); // Hip link joint
-            ctx.lineTo(rx + 10 + legL * 0.6, ry + 54); // Knee pivot
-            ctx.lineTo(rx + 8 + legL, ry + 65); // Foot plate link
-            ctx.stroke();
-
-            // Right Structural Skeleton Leg Assembly
-            ctx.strokeStyle = '#64748b'; // Darker background bone shading layer
-            ctx.beginPath();
-            ctx.moveTo(rx + 30, ry + 44);
-            ctx.lineTo(rx + 26 + legR * 0.6, ry + 54);
-            ctx.lineTo(rx + 24 + legR, ry + 65);
-            ctx.stroke();
-
-            // Open Backbone Matrix Frame (Central Vertebrae Grid Columns)
-            ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 4;
-            ctx.beginPath(); ctx.moveTo(rx + 22, ry + 12); ctx.lineTo(rx + 22, ry + 44); ctx.stroke(); // Vertebral Column
-            
-            // Rib-cage Structural Bars Layer (Horizontal conduit panels)
-            ctx.lineWidth = 2.5;
-            ctx.beginPath(); ctx.moveTo(rx + 10, ry + 18); ctx.lineTo(rx + 34, ry + 18); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(rx + 8, ry + 26); ctx.lineTo(rx + 36, ry + 26); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(rx + 12, ry + 34); ctx.lineTo(rx + 32, ry + 34); ctx.stroke();
-
-            // Glowing Integrated PCB Micro-Controller Hub (Dino Core Energy Cluster)
-            ctx.fillStyle = '#58a6ff'; ctx.shadowBlur = 10; ctx.shadowColor = '#58a6ff';
-            ctx.beginPath(); ctx.arc(rx + 22, ry + 26, 6, 0, Math.PI * 2); ctx.fill();
-            ctx.shadowBlur = 0; // Disable shadow glow maps for downstream layouts
-
-            // Articulated Skeleton Arm Claws (Industrial manipulator links)
-            let armSwing = Math.sin(robot.animCycle) * 12;
-            if (robot.isJumping) armSwing = -18;
-            ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(rx + 24, ry + 16); // Shoulder link
-            ctx.lineTo(rx + 36 + armSwing * 0.5, ry + 24); // Elbow link
-            ctx.lineTo(rx + 42 + armSwing, ry + 32); // Claw gripper endpoint
-            ctx.stroke();
-
-            // Mechanical Articulated Skull Module Head Assembly
-            ctx.fillStyle = '#cbd5e1'; ctx.fillRect(rx + 12, ry - 6, 22, 14); // Structural Upper Jaw Cranium
-            ctx.fillStyle = '#94a3b8'; ctx.fillRect(rx + 16, ry + 8, 14, 4);  // Hinged Lower Mandible Jaw
-            ctx.fillStyle = '#0a140d'; ctx.fillRect(rx + 26, ry - 2, 5, 4);   // Dark socket cutout cavity
-            ctx.fillStyle = '#39ff14'; ctx.fillRect(rx + 27, ry - 1, 3, 2);   // Neon visor sensor node optics (glowing lens)
-
-            // --- COMPONENT VECTOR MATRIX SYSTEM UPDATES ---
-            spawnTimer++;
-            if (spawnTimer > Math.max(45, 95 - score / 6)) {
-                let rSpec = componentTypes[Math.floor(Math.random() * componentTypes.length)];
-                obstacles.push({
-                    x: canvas.width, y: 230 - rSpec.height,
-                    width: rSpec.width, height: rSpec.height,
-                    type: rSpec.type, color: rSpec.color, label: rSpec.label
-                });
-                spawnTimer = 0;
-            }
-
-            for (let i = obstacles.length - 1; i >= 0; i--) {
-                let o = obstacles[i]; o.x -= gameSpeed;
-                drawComponent(ctx, o.x, o.y, o);
-
-                // Accurate bounding grid-box physical collision mapping layout
-                if (rx < o.x + o.width && rx + robot.width > o.x &&
-                    ry < o.y + o.height && ry + robot.height > o.y) {
-                    isGameOver = true;
-                    
-                    // Hardware Crash Simulation Graphic Overlay Panel
-                    ctx.fillStyle = "rgba(13, 17, 23, 0.94)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = '#f85149'; ctx.font = "bold 20px 'Plus Jakarta Sans', sans-serif"; ctx.textAlign = "center";
-                    ctx.fillText("HARDWARE FAULT: CRITICAL SKELETON CONNECTOR SHORT-CIRCUIT", canvas.width/2, canvas.height/2 - 12);
-                    ctx.fillStyle = '#c9d1d9'; ctx.font = "13px 'Fira Code', monospace";
-                    ctx.fillText("Click Canvas Frame or Tap Spacebar to Re-deploy Fresh Unit Structure", canvas.width/2, canvas.height/2 + 22);
-                }
-
-                if (o.x + o.width < 0) {
-                    obstacles.splice(i, 1);
-                    score += 10;
-                    document.getElementById('currentScore').textContent = String(score).padStart(4, '0');
-                    
-                    // Sync High Score instantly if the current runtime breaks records
-                    if (score > highScore) {
-                        highScore = score;
-                        localStorage.setItem('ece_dino_high_score', highScore);
-                        document.getElementById('highScore').textContent = String(highScore).padStart(4, '0');
-                    }
-                    if (score % 120 === 0) gameSpeed += 0.55;
-                }
-            }
-            requestAnimationFrame(loop);
-        }
-        loop();
-    </script>
-</body>
-</html>
