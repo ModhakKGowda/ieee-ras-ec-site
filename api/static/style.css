@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. CORE RESET & SAFELISTS FOR THE GAME CANVAS
+   ORIGINAL STABLE GLOBAL CSS BASELINE
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -29,19 +29,8 @@ body {
     -webkit-tap-highlight-color: transparent !important;
 }
 
-/* GAME CANVAS ENGINE: Complete isolation from flex alignments to restore functionality */
-canvas, #game-canvas, #canvas-wrapper, .game-container canvas {
-    display: block !important;
-    margin: 0 auto !important;
-    max-width: 100% !important;
-    max-height: 100vh !important;
-    box-sizing: content-box !important; 
-    position: relative !important;
-    transform: none !important;
-}
-
 /* ==========================================================================
-   2. TYPOGRAPHY MATRIX
+   TYPOGRAPHY
    ========================================================================== */
 h1 {
     font-size: clamp(2.2rem, 5.5vw, 4rem);
@@ -89,7 +78,7 @@ h3, .card-title {
 }
 
 /* ==========================================================================
-   3. MULTI-BRAND NAVIGATION HEADER (FIXED LOGO VISIBILITY)
+   NAVIGATION NAVIGATION HEADER (ORIGINAL LOGO DISPLAY)
    ========================================================================== */
 .navbar {
     display: flex;
@@ -105,7 +94,6 @@ h3, .card-title {
     border-bottom: 1px solid rgba(59, 130, 246, 0.1);
 }
 
-/* White background badge container so dark RAS logo works everywhere */
 .logo-wrapper {
     background: #ffffff;      
     padding: 0px 14px;
@@ -130,16 +118,11 @@ h3, .card-title {
     image-rendering: -webkit-optimize-contrast;
 }
 
-/* Injected dark shield specifically behind the white PES text so it is highly visible */
 .logo-img-pes {
     width: 58px !important;
     height: 28px !important;
     object-fit: contain;
     image-rendering: -webkit-optimize-contrast;
-    background: #0b1528;
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .logo-divider {
@@ -159,16 +142,15 @@ h3, .card-title {
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
-    transition: all 0.2s ease;
-    padding: 0.4rem 0.6rem;
+    transition: color 0.25s ease;
 }
 
-.navbar nav a:hover, .navbar nav a.active {
+.navbar nav a:hover {
     color: #3b82f6;               
 }
 
 /* ==========================================================================
-   4. LAYOUT SYSTEM & LAPTOP/DESKTOP STRUCTURES
+   STRUCTURAL GRID LAYOUTS
    ========================================================================== */
 .section {
     padding: 6rem 5% 4rem 5%;
@@ -188,14 +170,18 @@ h3, .card-title {
     padding: 0 5%;
 }
 
-/* BUTTONS */
+.hero-content {
+    width: 100%;
+    max-width: 850px;
+}
+
 .btn-nav {
-    background: rgba(37, 99, 235, 0.12) !important;
+    background: rgba(37, 99, 235, 0.12);
     color: #3b82f6 !important; 
-    padding: 0.5rem 1.2rem !important;
-    border-radius: 6px !important;
-    border: 1px solid rgba(37, 99, 235, 0.4) !important;
-    font-weight: 600 !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    font-weight: 600;
 }
 
 .btn-primary {
@@ -211,24 +197,20 @@ h3, .card-title {
     box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
 }
 
-/* GRIDS */
-.team-grid, .events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* CARDS MATRIX & FLEX WRAPPING SYSTEM */
+.team-grid, .events-grid, .about-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2.5rem;
     margin-top: 4rem;
     width: 100%;
     max-width: 1050px;
-}
-
-/* Laptop Grid for About Section: Kept wide and expansive as originally intended */
-.about-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-    gap: 2.5rem;
-    margin-top: 4rem;
-    width: 100%;
-    max-width: 1150px;
 }
 
 .card, .about-card {
@@ -236,6 +218,9 @@ h3, .card-title {
     border: 1px solid rgba(59, 130, 246, 0.1);
     padding: 2.5rem 2rem;
     border-radius: 16px;
+    width: calc(33.333% - 1.7rem);
+    min-width: 290px;
+    text-align: center;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -247,105 +232,49 @@ h3, .card-title {
     box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
 }
 
-.about-card {
-    background: linear-gradient(145deg, rgba(10, 17, 34, 0.7) 0%, rgba(5, 8, 17, 0.95) 100%);
-    border: 1px solid rgba(59, 130, 246, 0.15);
-    position: relative;
-    overflow: hidden;
-}
-
-.about-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(to bottom, #3b82f6, transparent);
-}
-
 /* ==========================================================================
-   5. MOBILE PHONE RESPONSIVE BREAKPOINTS (FIXED BUTTONS & DYNAMIC GLOW)
+   RESPONSIVE PORTABLE MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 768px) {
-    /* Menu Links Grid Fix: Prevents overlap and stacking collisions */
     .navbar {
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.25rem;
         padding: 1.2rem 1rem;
-    }
-
-    .navbar nav {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.5rem;
-        width: 100%;
         text-align: center;
     }
 
+    .navbar nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.1rem;
+        width: 100%;
+    }
+
     .navbar nav a {
-        font-size: 0.85rem;
-        padding: 0.5rem 0.2rem;
-        background: rgba(59, 130, 246, 0.05);
-        border-radius: 6px;
-        border: 1px solid rgba(59, 130, 246, 0.05);
-    }
-    
-    .navbar nav a.active {
-        background: rgba(59, 130, 246, 0.15);
-        border-color: rgba(59, 130, 246, 0.3);
+        font-size: 0.9rem;
     }
 
-    .btn-nav {
-        grid-column: span 3;
-        margin-top: 0.25rem;
-    }
-
-    /* Logo scaling protection for small header panels */
     .logo-wrapper {
-        height: 42px;
-        padding: 0px 10px;
+        height: auto;
+        padding: 6px 12px;
+        max-width: 100%;
     }
     
     .logo-container { gap: 8px; }
     .logo-img-ras { width: 75px !important; height: 22px !important; }
-    .logo-img-pes { width: 46px !important; height: 24px !important; padding: 1px 4px; }
+    .logo-img-pes { width: 50px !important; height: 24px !important; }
     .logo-divider { height: 14px; }
 
     .section {
         padding: 4rem 1rem 2rem 1rem;
     }
 
-    /* Mobile grids: Enforces your preferred full width layout */
-    .team-grid, .events-grid, .about-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin-top: 2rem;
+    .hero {
+        padding: 2rem 1rem;
+        min-height: auto;
     }
 
-    /* Dynamic phone styling layout card glows */
-    .about-card {
-        padding: 1.75rem 1.25rem;
-    }
-
-    .about-card::after {
-        content: '';
-        position: absolute;
-        bottom: -20px;
-        right: -20px;
-        width: 100px;
-        height: 100px;
-        background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
-        pointer-events: none;
-    }
-}
-
-@media (max-width: 480px) {
-    .navbar nav {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .btn-nav {
-        grid-column: span 2;
+    .card, .about-card {
+        width: 100%;
     }
 }
