@@ -16,8 +16,7 @@
             --card-bg: rgba(13, 17, 23, 0.85);
             --card-border: #30363d;
             --accent-glow: #58a6ff;
-            --pcb-green: #0f1912;
-            --pcb-grid: rgba(56, 189, 248, 0.04);
+            --pcb-green: #0a140d;
         }
 
         body {
@@ -30,7 +29,7 @@
         }
 
         .sandbox-wrapper {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 7rem auto 4rem auto;
             padding: 0 2rem;
         }
@@ -55,7 +54,7 @@
         .live-score {
             font-family: 'Fira Code', monospace;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #39ff14;
             background: rgba(57, 255, 20, 0.05);
             padding: 0.5rem 1.2rem;
@@ -68,45 +67,49 @@
             border-radius: 12px;
             width: 100%;
             display: block;
-            border: 1px solid #21262d;
+            border: 1px solid #1f2d22;
             cursor: pointer;
         }
 
         .inventory-dashboard {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .inventory-dashboard { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 576px) {
+            .inventory-dashboard { grid-template-columns: 1fr; }
         }
 
         .inventory-item {
             background: rgba(22, 27, 34, 0.6);
             border: 1px solid var(--card-border);
-            padding: 1rem;
+            padding: 0.85rem;
             border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
         }
 
         .inventory-badge {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
+            flex-shrink: 0;
         }
 
         .inventory-info h4 {
             margin: 0;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
         }
 
         .inventory-info p {
-            margin: 0.2rem 0 0 0;
+            margin: 0.15rem 0 0 0;
             font-size: 0.75rem;
             color: var(--text-muted);
         }
@@ -131,36 +134,36 @@
 
     <div class="sandbox-wrapper">
         <div>
-            <h2 style="font-size: 2.5rem; font-weight: 800; margin: 0; letter-spacing: -0.5px;">Kinematic Lab Workspace</h2>
-            <p style="color: var(--text-muted); margin-top: 0.4rem; font-size: 1rem;">Real-time interactive hardware traversal matrix loop for ECE prototyping validation.</p>
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin: 0; letter-spacing: -0.5px;">Advanced Prototyping Laboratory</h2>
+            <p style="color: var(--text-muted); margin-top: 0.4rem; font-size: 1rem;">Interactive dynamic workbench simulation displaying essential embedded systems and electrical components.</p>
         </div>
 
         <div class="workspace-panel">
             <div class="panel-header">
-                <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 600;"><i class="fa-solid fa-wave-square" style="color: #58a6ff; margin-right: 6px;"></i> OSCILLOSCOPE DISPATCH: LIVE RUNTIME</span>
-                <div class="live-score">TELEMETRY: <span id="currentScore">0000</span></div>
+                <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 600;"><i class="fa-solid fa-microchip" style="color: #58a6ff; margin-right: 6px;"></i> WORKBENCH DIAGNOSTICS: RUNTIME ACTIVE</span>
+                <div class="live-score">DESK RUN: <span id="currentScore">0000</span></div>
             </div>
             
-            <canvas id="gameCanvas" width="900" height="280"></canvas>
+            <canvas id="gameCanvas" width="950" height="290"></canvas>
         </div>
 
-        <h3 style="margin-top: 2.5rem; font-size: 1.2rem; font-weight: 600; color: var(--text-main);">ECE Workbench Components Directory</h3>
+        <h3 style="margin-top: 2.5rem; font-size: 1.15rem; font-weight: 600; color: var(--text-main);">ECE Prototyping Hardware Matrix</h3>
         <div class="inventory-dashboard">
             <div class="inventory-item">
-                <div class="inventory-badge" style="background: #e07a5f;"></div>
-                <div class="inventory-info"><h4>Resistors & Inductors</h4><p>Axial carbon film / Toroid filters</p></div>
+                <div class="inventory-badge" style="background: #d4a276;"></div>
+                <div class="inventory-info"><h4>Passives & Logic</h4><p>10kΩ Axial, 470µF Polar Caps, NE555 Timers</p></div>
             </div>
             <div class="inventory-item">
-                <div class="inventory-badge" style="background: #3d5a80;"></div>
-                <div class="inventory-info"><h4>Capacitors</h4><p>Electrolytic polar & Ceramic disc</p></div>
+                <div class="inventory-badge" style="background: #0284c7;"></div>
+                <div class="inventory-info"><h4>Sensors & Transducers</h4><p>HC-SR04 Sonic Radars & Quartz Crystals</p></div>
             </div>
             <div class="inventory-item">
-                <div class="inventory-badge" style="background: #457b9d;"></div>
-                <div class="inventory-info"><h4>ICs & Microchips</h4><p>Atmega328p / NE555 Timers</p></div>
+                <div class="inventory-badge" style="background: #38bdf8;"></div>
+                <div class="inventory-info"><h4>Modules & Screens</h4><p>I2C 0.96" OLED Matrices & Power Shields</p></div>
             </div>
             <div class="inventory-item">
-                <div class="inventory-badge" style="background: #e63946;"></div>
-                <div class="inventory-info"><h4>Power & Crystals</h4><p>9V Cells / Quartz resonators</p></div>
+                <div class="inventory-badge" style="background: #f43f5e;"></div>
+                <div class="inventory-info"><h4>Actuation & Power</h4><p>5V Electromechanical Relays & 9V Cells</p></div>
             </div>
         </div>
     </div>
@@ -169,29 +172,30 @@
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
-        // Bipedal Mechatronic Robot Schema
         const robot = {
-            x: 90, y: 170, width: 40, height: 60,
-            gravity: 0.65, jumpForce: -13.5, velocity: 0,
+            x: 100, y: 180, width: 40, height: 60,
+            gravity: 0.68, jumpForce: -14.0, velocity: 0,
             isJumping: false, animCycle: 0
         };
 
-        // Realistic ECE Multi-Component Array Configuration
+        // Fully Comprehensive ECE Workbench Item Array Directory
         const componentTypes = [
-            { type: 'resistor', color: '#d4a276', width: 45, height: 14, label: 'Resistor 10kΩ' },
-            { type: 'electrolytic_cap', color: '#2a6f97', width: 22, height: 36, label: 'Capacitor 470µF' },
-            { type: 'ceramic_cap', color: '#b5838d', width: 18, height: 24, label: 'Ceramic 104' },
-            { type: 'ic_16pin', color: '#1c1d22', width: 48, height: 24, label: 'MCU Atmega328p' },
-            { type: 'ic_8pin', color: '#1c1d22', width: 28, height: 22, label: 'Timer NE555' },
-            { type: 'inductor', color: '#0077b6', width: 26, height: 26, label: 'Toroid Inductor' },
-            { type: 'crystal', color: '#e2e8f0', width: 24, height: 18, label: '16MHz Crystal' },
-            { type: 'battery_9v', color: '#2b2d42', width: 26, height: 42, label: '9V Battery' }
+            { type: 'resistor', color: '#d4a276', width: 46, height: 14, label: 'Resistor 10kΩ' },
+            { type: 'electrolytic_cap', color: '#1e6091', width: 22, height: 36, label: 'Capacitor 470µF' },
+            { type: 'ic_16pin', color: '#18191c', width: 50, height: 24, label: 'ATmega328P MCU' },
+            { type: 'ic_8pin', color: '#18191c', width: 30, height: 22, label: 'NE555 Timer' },
+            { type: 'crystal', color: '#cbd5e1', width: 26, height: 18, label: '16MHz Oscillator' },
+            { type: 'battery_9v', color: '#212529', width: 26, height: 44, label: '9V Power Block' },
+            { type: 'oled_screen', color: '#0d1117', width: 52, height: 38, label: '0.96" I2C OLED' },
+            { type: 'potentiometer', color: '#0284c7', width: 28, height: 32, label: '10k Pot Dial' },
+            { type: 'ultrasonic', color: '#334155', width: 54, height: 26, label: 'HC-SR04 Radar' },
+            { type: 'relay_module', color: '#0369a1', width: 36, height: 34, label: '5V SPDT Relay' }
         ];
 
         let obstacles = [];
         let score = 0;
         let isGameOver = false;
-        let gameSpeed = 6.5;
+        let gameSpeed = 7.0;
         let spawnTimer = 0;
 
         function jump() {
@@ -207,140 +211,149 @@
         canvas.addEventListener('click', jump);
 
         function reset() {
-            obstacles = []; score = 0; gameSpeed = 6.5;
-            robot.y = 170; robot.velocity = 0; robot.isJumping = false;
+            obstacles = []; score = 0; gameSpeed = 7.0;
+            robot.y = 180; robot.velocity = 0; robot.isJumping = false;
             isGameOver = false;
             document.getElementById('currentScore').textContent = "0000";
             loop();
         }
 
-        // Render Vector Circuit Elements on Canvas
+        // Structural Rendering Engine for Expanded Vector Hardware Elements
         function drawComponent(ctx, x, y, spec) {
             ctx.lineWidth = 1.8;
+            ctx.strokeStyle = '#64748b';
             
             if (spec.type === 'resistor') {
-                ctx.strokeStyle = '#a8a29e';
-                ctx.beginPath(); ctx.moveTo(x - 12, y + 7); ctx.lineTo(x + spec.width + 12, y + 7); ctx.stroke(); // Leads
-                ctx.fillStyle = spec.color; ctx.fillRect(x, y, spec.width, spec.height); // Body
-                ctx.fillStyle = '#6f4e37'; ctx.fillRect(x + 8, y, 4, spec.height); // Stripes
-                ctx.fillStyle = '#cc0000'; ctx.fillRect(x + 18, y, 4, spec.height);
-                ctx.fillStyle = '#gold'; ctx.fillRect(x + 30, y, 4, spec.height);
+                ctx.beginPath(); ctx.moveTo(x - 12, y + 7); ctx.lineTo(x + spec.width + 12, y + 7); ctx.stroke();
+                ctx.fillStyle = spec.color; ctx.fillRect(x, y, spec.width, spec.height);
+                ctx.fillStyle = '#78350f'; ctx.fillRect(x + 8, y, 4, spec.height);
+                ctx.fillStyle = '#b91c1c'; ctx.fillRect(x + 18, y, 4, spec.height);
+                ctx.fillStyle = '#eab308'; ctx.fillRect(x + 32, y, 4, spec.height);
             } 
             else if (spec.type === 'electrolytic_cap') {
                 ctx.fillStyle = spec.color; ctx.fillRect(x, y, spec.width, spec.height - 6);
-                ctx.fillStyle = '#9ca3af'; ctx.fillRect(x, y, spec.width, 6); // Vinyl header sleeve
-                ctx.fillStyle = '#ffffff'; ctx.fillRect(x + 6, y + 6, 4, spec.height - 12); // Negative polarity stripe
-                ctx.strokeStyle = '#9ca3af';
-                ctx.beginPath(); ctx.moveTo(x + 6, y + spec.height - 6); ctx.lineTo(x + 6, y + spec.height + 6); // Leads
+                ctx.fillStyle = '#64748b'; ctx.fillRect(x, y, spec.width, 6);
+                ctx.fillStyle = '#ffffff'; ctx.fillRect(x + 5, y + 6, 4, spec.height - 12);
+                ctx.beginPath(); ctx.moveTo(x + 6, y + spec.height - 6); ctx.lineTo(x + 6, y + spec.height + 6);
                 ctx.moveTo(x + spec.width - 6, y + spec.height - 6); ctx.lineTo(x + spec.width - 6, y + spec.height + 4); ctx.stroke();
             }
-            else if (spec.type === 'ceramic_cap') {
-                ctx.fillStyle = spec.color; ctx.beginPath(); ctx.arc(x + 9, y + 9, 9, 0, Math.PI * 2); ctx.fill(); // Disc
-                ctx.fillRect(x + 4, y + 8, 10, spec.height - 8);
-                ctx.strokeStyle = '#9ca3af';
-                ctx.beginPath(); ctx.moveTo(x + 6, y + spec.height - 4); ctx.lineTo(x + 6, y + spec.height + 6);
-                ctx.moveTo(x + 12, y + spec.height - 4); ctx.lineTo(x + 12, y + spec.height + 6); ctx.stroke();
-            }
             else if (spec.type === 'ic_16pin' || spec.type === 'ic_8pin') {
-                ctx.fillStyle = spec.color; ctx.fillRect(x, y, spec.width, spec.height); // Silicon housing
-                ctx.fillStyle = '#374151'; ctx.beginPath(); ctx.arc(x, y + spec.height/2, 3, 0, Math.PI*2); ctx.fill(); // Notch
-                ctx.fillStyle = '#d1d5db'; // Lead pins
-                let pinCount = spec.type === 'ic_16pin' ? 8 : 4;
-                let spacing = spec.width / pinCount;
-                for(let i = 0; i < pinCount; i++) {
-                    ctx.fillRect(x + (i * spacing) + 2, y - 5, 3, 5);
-                    ctx.fillRect(x + (i * spacing) + 2, y + spec.height, 3, 5);
-                }
-            }
-            else if (spec.type === 'inductor') {
-                ctx.fillStyle = '#023e8a'; ctx.beginPath(); ctx.arc(x + 13, y + 13, 13, 0, Math.PI*2); ctx.fill();
-                ctx.fillStyle = '#0077b6'; ctx.beginPath(); ctx.arc(x + 13, y + 13, 8, 0, Math.PI*2); ctx.fill(); // Toroid Core
-                ctx.strokeStyle = '#b7094c'; ctx.lineWidth = 3; // Copper wire winding coils
-                for(let i = -8; i <= 8; i += 4) {
-                    ctx.beginPath(); ctx.moveTo(x + 13 + i, y + 5); ctx.lineTo(x + 13 + i, y + 21); ctx.stroke();
+                ctx.fillStyle = spec.color; ctx.fillRect(x, y, spec.width, spec.height);
+                ctx.fillStyle = '#475569'; ctx.beginPath(); ctx.arc(x, y + spec.height/2, 3, 0, Math.PI*2); ctx.fill();
+                ctx.fillStyle = '#cbd5e1';
+                let pins = spec.type === 'ic_16pin' ? 8 : 4;
+                let step = spec.width / pins;
+                for(let i = 0; i < pins; i++) {
+                    ctx.fillRect(x + (i * step) + 2, y - 5, 3, 5);
+                    ctx.fillRect(x + (i * step) + 2, y + spec.height, 3, 5);
                 }
             }
             else if (spec.type === 'crystal') {
-                ctx.fillStyle = '#9ca3af'; ctx.fillRect(x, y, spec.width, spec.height);
+                ctx.fillStyle = '#94a3b8'; ctx.fillRect(x, y, spec.width, spec.height);
                 ctx.fillStyle = '#cbd5e1'; ctx.fillRect(x + 2, y + 2, spec.width - 4, spec.height - 4);
-                ctx.strokeStyle = '#6b7280'; ctx.strokeRect(x, y, spec.width, spec.height);
-                ctx.beginPath(); ctx.moveTo(x + 4, y + spec.height); ctx.lineTo(x + 4, y + spec.height + 6);
-                ctx.moveTo(x + spec.width - 4, y + spec.height); ctx.lineTo(x + spec.width - 4, y + spec.height + 6); ctx.stroke();
+                ctx.strokeRect(x, y, spec.width, spec.height);
+                ctx.beginPath(); ctx.moveTo(x + 5, y + spec.height); ctx.lineTo(x + 5, y + spec.height + 6);
+                ctx.moveTo(x + spec.width - 5, y + spec.height); ctx.lineTo(x + spec.width - 5, y + spec.height + 6); ctx.stroke();
             }
             else if (spec.type === 'battery_9v') {
                 ctx.fillStyle = spec.color; ctx.fillRect(x, y + 6, spec.width, spec.height - 6);
-                ctx.fillStyle = '#f59e0b'; ctx.fillRect(x, y + 6, spec.width, 5); // Warning accents
-                ctx.fillStyle = '#9ca3af'; ctx.fillRect(x + 3, y, 6, 6); // Terminals
+                ctx.fillStyle = '#ea580c'; ctx.fillRect(x, y + 6, spec.width, 5);
+                ctx.fillStyle = '#94a3b8'; ctx.fillRect(x + 3, y, 6, 6);
                 ctx.beginPath(); ctx.arc(x + spec.width - 6, y + 3, 4, 0, Math.PI*2); ctx.fill();
             }
+            else if (spec.type === 'oled_screen') {
+                ctx.fillStyle = '#1e293b'; ctx.fillRect(x, y, spec.width, spec.height); // PCB Board backer
+                ctx.fillStyle = spec.color; ctx.fillRect(x + 4, y + 4, spec.width - 8, spec.height - 12); // Glass panel frame
+                ctx.strokeStyle = '#38bdf8'; ctx.strokeRect(x + 4, y + 4, spec.width - 8, spec.height - 12);
+                ctx.fillStyle = '#38bdf8'; ctx.fillRect(x + 8, y + 10, 12, 2); ctx.fillRect(x + 8, y + 16, 20, 2); // Mimic pixel text arrays
+                ctx.fillStyle = '#e2e8f0'; for(let p=0; p<4; p++) ctx.fillRect(x + 8 + (p*10), y + spec.height - 5, 4, 5); // Header solder links
+            }
+            else if (spec.type === 'potentiometer') {
+                ctx.fillStyle = '#475569'; ctx.fillRect(x + 2, y + 14, spec.width - 4, spec.height - 14); // Structural shell
+                ctx.fillStyle = spec.color; ctx.beginPath(); ctx.arc(x + spec.width/2, y + 14, spec.width/2, 0, Math.PI*2); ctx.fill(); // Blue body
+                ctx.fillStyle = '#cbd5e1'; ctx.beginPath(); ctx.arc(x + spec.width/2, y + 14, 5, 0, Math.PI*2); ctx.fill(); // Inner plastic rotator knob
+                ctx.strokeStyle = '#94a3b8'; // Triple adjustment pins
+                ctx.beginPath(); ctx.moveTo(x + 4, y + spec.height - 4); ctx.lineTo(x + 4, y + spec.height + 6);
+                ctx.moveTo(x + spec.width/2, y + spec.height - 4); ctx.lineTo(x + spec.width/2, y + spec.height + 6);
+                ctx.moveTo(x + spec.width - 4, y + spec.height - 4); ctx.lineTo(x + spec.width - 4, y + spec.height + 6); ctx.stroke();
+            }
+            else if (spec.type === 'ultrasonic') {
+                ctx.fillStyle = '#1e3a8a'; ctx.fillRect(x, y + 4, spec.width, spec.height - 4); // Main base board panel
+                ctx.fillStyle = '#94a3b8'; // Dual metal acoustic transducer sensor columns
+                ctx.beginPath(); ctx.arc(x + 14, y + spec.height/2 + 2, 10, 0, Math.PI*2); ctx.fill();
+                ctx.beginPath(); ctx.arc(x + spec.width - 14, y + spec.height/2 + 2, 10, 0, Math.PI*2); ctx.fill();
+                ctx.fillStyle = '#1e293b'; // Acoustic wire grid core meshes
+                ctx.beginPath(); ctx.arc(x + 14, y + spec.height/2 + 2, 6, 0, Math.PI*2); ctx.fill();
+                ctx.beginPath(); ctx.arc(x + spec.width - 14, y + spec.height/2 + 2, 6, 0, Math.PI*2); ctx.fill();
+            }
+            else if (spec.type === 'relay_module') {
+                ctx.fillStyle = '#0f172a'; ctx.fillRect(x, y + 4, spec.width, spec.height - 4); // Relay PCB deck base frame
+                ctx.fillStyle = spec.color; ctx.fillRect(x + 2, y, spec.width - 4, spec.height - 6); // Cuboid terminal isolation box shell
+                ctx.fillStyle = '#e2e8f0'; ctx.fillRect(x + 6, y + spec.height - 6, spec.width - 12, 4); // Structural copper trace connector contacts
+            }
 
-            // High precision technical text element label overlay
-            ctx.fillStyle = 'rgba(255,255,255,0.4)';
-            ctx.font = "9px 'Fira Code', monospace";
-            ctx.fillText(spec.label, x - 5, y - 8);
+            // High Precision Schematic Matrix Bounding Text Labels
+            ctx.fillStyle = 'rgba(255,255,255,0.38)';
+            ctx.font = "8.5px 'Fira Code', monospace";
+            ctx.fillText(spec.label, x - 6, y - 8);
         }
 
         function loop() {
             if (isGameOver) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Creative Schematic Background Matrix Grid Layout
-            ctx.strokeStyle = 'rgba(56, 189, 248, 0.05)'; ctx.lineWidth = 1;
-            for (let i = 0; i < canvas.width; i += 30) {
-                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
-            }
-            for (let j = 0; j < canvas.height; j += 30) {
-                ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(canvas.width, j); ctx.stroke();
-            }
+            // Technical Engineering Blueprint background matrix grid mapping lines
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.04)'; ctx.lineWidth = 1;
+            for (let i = 0; i < canvas.width; i += 30) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke(); }
+            for (let j = 0; j < canvas.height; j += 30) { ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(canvas.width, j); ctx.stroke(); }
 
-            // Heavy duty ground plate line
-            ctx.strokeStyle = "#21262d"; ctx.lineWidth = 4;
-            ctx.beginPath(); ctx.moveTo(0, 230); ctx.lineTo(canvas.width, 230); ctx.stroke();
+            // Heavy duty ground runway trace line
+            ctx.strokeStyle = "#243227"; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(0, 240); ctx.lineTo(canvas.width, 240); ctx.stroke();
 
-            // Gravity mechanics update loop
             robot.velocity += robot.gravity; robot.y += robot.velocity;
-            if (robot.y > 170) { robot.y = 170; robot.velocity = 0; robot.isJumping = false; }
-            if (!robot.isJumping) robot.animCycle += 0.22;
+            if (robot.y > 180) { robot.y = 180; robot.velocity = 0; robot.isJumping = false; }
+            if (!robot.isJumping) robot.animCycle += 0.24;
 
-            // --- ADVANCED REALISTIC BIOMECHANICAL ANDROID GRAPHICS RENDERING ENGINE ---
+            // --- REALISTIC ARTICULATED ANDROID ROBOT TRAVERSAL RENDERER ---
             const rx = robot.x, ry = robot.y;
             let legSwingL = Math.sin(robot.animCycle) * 12, legSwingR = Math.cos(robot.animCycle) * 12;
             if (robot.isJumping) { legSwingL = 8; legSwingR = -8; }
 
-            // Structural Articulated Leg Assemblies (Brass & Steel Rod paths)
+            // Structural Mechanical Linkages
             ctx.lineWidth = 4.5;
-            ctx.strokeStyle = '#8b949e'; // Left assembly
+            ctx.strokeStyle = '#94a3b8'; // Outer Leg
             ctx.beginPath(); ctx.moveTo(rx + 12, ry + 42); ctx.lineTo(rx + 8 + legSwingL, ry + 52); ctx.lineTo(rx + 6 + legSwingL, ry + 60); ctx.stroke();
-            ctx.strokeStyle = '#484f58'; // Right assembly
+            ctx.strokeStyle = '#475569'; // Inner Hidden Leg
             ctx.beginPath(); ctx.moveTo(rx + 28, ry + 42); ctx.lineTo(rx + 24 + legSwingR, ry + 52); ctx.lineTo(rx + 22 + legSwingR, ry + 60); ctx.stroke();
 
-            // Structural Chassis Core Body Panels
-            ctx.fillStyle = '#30363d'; ctx.fillRect(rx, ry + 12, robot.width, 32); // Inner frame block
-            ctx.strokeStyle = '#8b949e'; ctx.lineWidth = 2; ctx.strokeRect(rx, ry + 12, robot.width, 32); // Outer casing plates
+            // Structural Casing Frame
+            ctx.fillStyle = '#334155'; ctx.fillRect(rx, ry + 12, robot.width, 32);
+            ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; ctx.strokeRect(rx, ry + 12, robot.width, 32);
             
-            // Glowing energy core blueprint
-            ctx.fillStyle = '#58a6ff'; ctx.shadowBlur = 8; ctx.shadowColor = '#58a6ff';
+            // Continuous Core Glow Array
+            ctx.fillStyle = '#38bdf8'; ctx.shadowBlur = 10; ctx.shadowColor = '#38bdf8';
             ctx.fillRect(rx + 10, ry + 18, robot.width - 20, 12);
-            ctx.shadowBlur = 0; // Turn off glow for downstream elements
+            ctx.shadowBlur = 0;
 
-            // Mechanical Neck & Head Module Assembly
-            ctx.fillStyle = '#8b949e'; ctx.fillRect(rx + (robot.width/2) - 4, ry + 4, 8, 8); // Steel column neck
-            ctx.fillStyle = '#21262d'; ctx.fillRect(rx + (robot.width/2) - 12, ry - 10, 24, 16); // Hardened casing shell head
-            ctx.strokeStyle = '#8b949e'; ctx.strokeRect(rx + (robot.width/2) - 12, ry - 10, 24, 16);
-            ctx.fillStyle = '#58a6ff'; ctx.fillRect(rx + (robot.width/2) + 2, ry - 4, 8, 4); // Continuous scanning visor optics
+            // Head Assembly Module
+            ctx.fillStyle = '#64748b'; ctx.fillRect(rx + (robot.width/2) - 4, ry + 4, 8, 8);
+            ctx.fillStyle = '#1e293b'; ctx.fillRect(rx + (robot.width/2) - 12, ry - 10, 24, 16);
+            ctx.strokeStyle = '#94a3b8'; ctx.strokeRect(rx + (robot.width/2) - 12, ry - 10, 24, 16);
+            ctx.fillStyle = '#38bdf8'; ctx.fillRect(rx + (robot.width/2) + 2, ry - 4, 8, 4);
 
-            // Articulated Arm Arrays
+            // Arm Manipulators
             let armOscillation = Math.sin(robot.animCycle) * 10;
             if (robot.isJumping) armOscillation = -16;
-            ctx.strokeStyle = '#8b949e'; ctx.lineWidth = 3.5;
-            ctx.beginPath(); ctx.moveTo(rx + 34, ry + 16); ctx.lineTo(rx + 42 + armOscillation, ry + 32); ctx.stroke(); // Front industrial armature
+            ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 3.5;
+            ctx.beginPath(); ctx.moveTo(rx + 34, ry + 16); ctx.lineTo(rx + 42 + armOscillation, ry + 32); ctx.stroke();
 
-            // --- COMPONENT VECTOR MATRIX SYSTEM UPDATES ---
+            // --- COMPONENT SPINNER MATRIX OPERATIONS ---
             spawnTimer++;
-            if (spawnTimer > Math.max(45, 95 - score / 6)) {
+            if (spawnTimer > Math.max(40, 90 - score / 7)) {
                 let rSpec = componentTypes[Math.floor(Math.random() * componentTypes.length)];
                 obstacles.push({
-                    x: canvas.width, y: 230 - rSpec.height,
+                    x: canvas.width, y: 240 - rSpec.height,
                     width: rSpec.width, height: rSpec.height,
                     type: rSpec.type, color: rSpec.color, label: rSpec.label
                 });
@@ -351,24 +364,23 @@
                 let o = obstacles[i]; o.x -= gameSpeed;
                 drawComponent(ctx, o.x, o.y, o);
 
-                // Precise structural bounding grid box collision detection mapping
+                // Dynamic Circuit Trace Collision Boundary Mappings
                 if (rx < o.x + o.width && rx + robot.width > o.x &&
                     ry < o.y + o.height && ry + robot.height > o.y) {
                     isGameOver = true;
                     
-                    // Hardware Crash Simulation Graphic Overlay Panel
-                    ctx.fillStyle = "rgba(13, 17, 23, 0.92)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = '#f85149'; ctx.font = "bold 20px 'Plus Jakarta Sans', sans-serif"; ctx.textAlign = "center";
-                    ctx.fillText("HARDWARE FAULT: CRITICAL CIRCUIT INTERFERENCE", canvas.width/2, canvas.height/2 - 12);
-                    ctx.fillStyle = '#c9d1d9'; ctx.font = "13px 'Fira Code', monospace";
-                    ctx.fillText("Click Canvas or Tap Spacebar to Clear Workbench and Re-engage Core", canvas.width/2, canvas.height/2 + 22);
+                    ctx.fillStyle = "rgba(10, 15, 20, 0.94)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#f43f5e'; ctx.font = "bold 19px 'Plus Jakarta Sans', sans-serif"; ctx.textAlign = "center";
+                    ctx.fillText("HARDWARE EXCEPTION DETECTED: COMPONENT DISRUPT OVERLOAD", canvas.width/2, canvas.height/2 - 12);
+                    ctx.fillStyle = '#cbd5e1'; ctx.font = "13px 'Fira Code', monospace";
+                    ctx.fillText("Click Prototyping Board or Press Spacebar to Re-deploy and Flush Solder Matrix", canvas.width/2, canvas.height/2 + 22);
                 }
 
                 if (o.x + o.width < 0) {
                     obstacles.splice(i, 1);
                     score += 10;
                     document.getElementById('currentScore').textContent = String(score).padStart(4, '0');
-                    if (score % 120 === 0) gameSpeed += 0.55; // Fluid velocity throttling escalation loop
+                    if (score % 100 === 0) gameSpeed += 0.5;
                 }
             }
             requestAnimationFrame(loop);
