@@ -1,5 +1,5 @@
 /* Core Reset Configuration */
-* {
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -7,6 +7,7 @@
 
 html {
     scroll-behavior: smooth;
+    width: 100%;
 }
 
 /* ROBOTICS BLUEPRINT SCI-FI SCROLLING CANVAS */
@@ -14,8 +15,8 @@ body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     color: #cbd5e1;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
+    overflow-x: hidden; /* Critical for stopping unwanted mobile sideways swaying */
+    width: 100%;
     
     background-color: #050811;
     background-image: 
@@ -24,8 +25,10 @@ body {
         linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px),
         radial-gradient(circle at 50% 40%, #0a1326 0%, #02040a 100%);
     background-size: 40px 40px, 40px 40px, 40px 40px, 100% 100%;
-    
     background-attachment: local, local, local, fixed; 
+
+    /* Eliminates accidental phone tap-flickering highlight boxes globally */
+    -webkit-tap-highlight-color: transparent !important;
 }
 
 /* GRADIENT ATTRACTIVE TYPOGRAPHY */
@@ -48,7 +51,7 @@ h1 {
 }
 
 h2, .section-title {
-    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-size: clamp(1.8rem, 4vw, 2.8rem); /* Slightly shrunk min bounds for small devices */
     background: linear-gradient(135deg, #ffffff 40%, #60a5fa 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -125,7 +128,7 @@ h3, .card-title {
     justify-content: space-between;
     align-items: center;
     padding: 0.85rem 5%;
-    background: rgba(5, 8, 17, 0.85);
+    background: rgba(5, 8, 17, 0.92); /* Marginally deeper fill for mobile overlap clarity */
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     position: sticky;
@@ -142,6 +145,7 @@ h3, .card-title {
     align-items: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     height: 44px; 
+    flex-shrink: 0;
 }
 
 .logo-container {
@@ -185,7 +189,7 @@ h3, .card-title {
 }
 
 .navbar nav a:hover {
-    color: #3b82f6;          
+    color: #3b82f6;               
 }
 
 .btn-nav {
@@ -230,30 +234,32 @@ h3, .card-title {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0 5%;
+    padding: 4rem 5%; /* Enhanced padding baseline to avoid running into stickied menus */
 }
 
 .hero-content {
+    width: 100%;
     max-width: 850px;
 }
 
 /* TEAM COMPONENT LAYOUTS */
 .team-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 3rem;
+    display: grid;
+    /* Replaces the rigid card wrapping with a system that calculates spaces 
+       between 290px and remaining screen share completely automatically */
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 2rem;
     margin-top: 4rem;
     width: 100%;
-    max-width: 900px;
+    max-width: 960px;
 }
 
 .card {
     background: rgba(10, 17, 34, 0.6);
     border: 1px solid rgba(59, 130, 246, 0.1);
-    padding: 2.5rem 2rem;
+    padding: 2.5rem 1.5rem;
     border-radius: 16px;
-    width: 320px;
+    width: 100%; /* Adapts flawlessly into its allocated slot calculated by CSS grid */
     text-align: center;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -280,4 +286,67 @@ h3, .card-title {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* ==========================================================================
+   GLOBAL RESPONSIVE MEDIA BREAKPOINTS (ADDED MOBILITY SHIELD)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* Navbar transformation logic for tablet and mobile viewports */
+    .navbar {
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.2rem 1rem;
+        text-align: center;
+    }
+
+    .navbar nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.2rem;
+        width: 100%;
+    }
+
+    .navbar nav a {
+        font-size: 0.9rem;
+    }
+
+    .btn-nav {
+        padding: 0.4rem 1rem;
+    }
+
+    /* Reduce vertical section paddings on handheld screens */
+    .section {
+        padding: 4rem 1rem 2rem 1rem;
+    }
+
+    .hero {
+        padding: 2rem 1rem;
+        min-height: auto;
+    }
+
+    .team-grid {
+        margin-top: 2rem;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Tight device spacing overrides */
+    .navbar nav {
+        gap: 0.85rem;
+    }
+    
+    .navbar nav a {
+        font-size: 0.85rem;
+    }
+    
+    .card {
+        padding: 2rem 1rem;
+    }
+    
+    .section-desc {
+        font-size: 0.95rem;
+    }
 }
