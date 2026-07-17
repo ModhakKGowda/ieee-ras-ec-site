@@ -1,4 +1,6 @@
-/* Core Reset Configuration */
+/* ==========================================================================
+   1. CORE RESET & MATRIX CONFIGURATION
+   ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -15,7 +17,9 @@ body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     color: #cbd5e1;
     line-height: 1.6;
-    overflow-x: hidden; /* Critical for stopping unwanted mobile sideways swaying */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Stops horizontal page swaying or text leaks on smartphones */
     width: 100%;
     
     background-color: #050811;
@@ -27,11 +31,13 @@ body {
     background-size: 40px 40px, 40px 40px, 40px 40px, 100% 100%;
     background-attachment: local, local, local, fixed; 
 
-    /* Eliminates accidental phone tap-flickering highlight boxes globally */
+    /* Eliminates annoying bright green/grey mobile tap-flickering highlight overlays */
     -webkit-tap-highlight-color: transparent !important;
 }
 
-/* GRADIENT ATTRACTIVE TYPOGRAPHY */
+/* ==========================================================================
+   2. TYPOGRAPHY MATRIX (CLAMP SCALED)
+   ========================================================================== */
 h1 {
     font-size: clamp(2.2rem, 5.5vw, 4rem);
     background: linear-gradient(135deg, #ffffff 40%, #3b82f6 100%);
@@ -51,7 +57,7 @@ h1 {
 }
 
 h2, .section-title {
-    font-size: clamp(1.8rem, 4vw, 2.8rem); /* Slightly shrunk min bounds for small devices */
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     background: linear-gradient(135deg, #ffffff 40%, #60a5fa 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -85,50 +91,15 @@ h3, .card-title {
     margin-bottom: 1rem;
 }
 
-/* SOCIAL MEDIA ANCHOR ICON BUTTON MATRIX */
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.25rem;
-    margin-top: 1.25rem;
-    min-height: 38px;
-}
-
-.social-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: rgba(59, 130, 246, 0.08);
-    border: 1px solid rgba(59, 130, 246, 0.15);
-    color: #94a3b8;
-    text-decoration: none;
-    font-size: 1.05rem;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.social-links a:hover {
-    color: #ffffff;
-    background: #2563eb;
-    border-color: #2563eb;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-}
-
-.placeholder-spacer {
-    display: block;
-    height: 38px;
-}
-
-/* NAVBAR STRUCTURE */
+/* ==========================================================================
+   3. NAVIGATION HEADER SETUP (DUAL RAS & PES LOGO SHIELD)
+   ========================================================================== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.85rem 5%;
-    background: rgba(5, 8, 17, 0.92); /* Marginally deeper fill for mobile overlap clarity */
+    background: rgba(5, 8, 17, 0.9);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     position: sticky;
@@ -192,40 +163,16 @@ h3, .card-title {
     color: #3b82f6;               
 }
 
-.btn-nav {
-    background: rgba(37, 99, 235, 0.12);
-    color: #3b82f6 !important; 
-    padding: 0.5rem 1.2rem;
-    border-radius: 6px;
-    border: 1px solid rgba(37, 99, 235, 0.3);
-    font-weight: 600;
-}
-
-.btn-primary {
-    display: inline-block;
-    background: #2563eb;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 0.8rem 2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    margin-top: 1.5rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-}
-
-/* Sections Layout */
+/* ==========================================================================
+   4. STRUCTURAL CONTENT LAYOUTS & INTERACTIVE ACTION SYSTEM
+   ========================================================================== */
 .section {
     padding: 6rem 5% 4rem 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .hero {
@@ -234,7 +181,7 @@ h3, .card-title {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 4rem 5%; /* Enhanced padding baseline to avoid running into stickied menus */
+    padding: 0 5%;
 }
 
 .hero-content {
@@ -242,111 +189,10 @@ h3, .card-title {
     max-width: 850px;
 }
 
-/* TEAM COMPONENT LAYOUTS */
-.team-grid {
-    display: grid;
-    /* Replaces the rigid card wrapping with a system that calculates spaces 
-       between 290px and remaining screen share completely automatically */
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: 2rem;
-    margin-top: 4rem;
-    width: 100%;
-    max-width: 960px;
-}
-
-.card {
-    background: rgba(10, 17, 34, 0.6);
-    border: 1px solid rgba(59, 130, 246, 0.1);
-    padding: 2.5rem 1.5rem;
-    border-radius: 16px;
-    width: 100%; /* Adapts flawlessly into its allocated slot calculated by CSS grid */
-    text-align: center;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(59, 130, 246, 0.3);
-    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
-}
-
-.image-container {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid rgba(59, 130, 246, 0.3);
-    background: #0f172a;
-}
-
-.team-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* ==========================================================================
-   GLOBAL RESPONSIVE MEDIA BREAKPOINTS (ADDED MOBILITY SHIELD)
-   ========================================================================== */
-
-@media (max-width: 768px) {
-    /* Navbar transformation logic for tablet and mobile viewports */
-    .navbar {
-        flex-direction: column;
-        gap: 1.25rem;
-        padding: 1.2rem 1rem;
-        text-align: center;
-    }
-
-    .navbar nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1.2rem;
-        width: 100%;
-    }
-
-    .navbar nav a {
-        font-size: 0.9rem;
-    }
-
-    .btn-nav {
-        padding: 0.4rem 1rem;
-    }
-
-    /* Reduce vertical section paddings on handheld screens */
-    .section {
-        padding: 4rem 1rem 2rem 1rem;
-    }
-
-    .hero {
-        padding: 2rem 1rem;
-        min-height: auto;
-    }
-
-    .team-grid {
-        margin-top: 2rem;
-        gap: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Tight device spacing overrides */
-    .navbar nav {
-        gap: 0.85rem;
-    }
-    
-    .navbar nav a {
-        font-size: 0.85rem;
-    }
-    
-    .card {
-        padding: 2rem 1rem;
-    }
-    
-    .section-desc {
-        font-size: 0.95rem;
-    }
-}
+.btn-nav {
+    background: rgba(37, 99, 235, 0.12);
+    color: #3b82f6 !important; 
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    font-weight:
