@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robo-Sandbox | IEEE RAS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root[data-theme="dark"] {
+            --bg-base: #03050d;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(10, 16, 36, 0.75);
+            --card-border: rgba(0, 245, 255, 0.15);
+            --accent-glow: #00f5ff;
+            --sandbox-panel: #060b1e;
+        }
+        :root[data-theme="light"] {
+            --bg-base: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(0, 180, 216, 0.2);
+            --accent-glow: #00b4d8;
+            --sandbox-panel: #e2e8f0;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .sandbox-wrapper {
+            max-width: 1200px;
+            margin: 7rem auto 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .sandbox-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .sandbox-grid { grid-template-columns: 1fr; }
+        }
+
+        .arcade-cabinet {
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            border-radius: 24px;
+            padding: 1.5rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .score-board {
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            color: var(--accent-glow);
+        }
+
+        #gameCanvas {
+            background: var(--sandbox-panel);
+            border-radius: 16px;
+            width: 100%;
+            display: block;
+            border: 1px solid var(--card-border);
+            cursor: pointer;
+        }
+
+        .console-panel {
+            background: #02040a;
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 320px;
+        }
+
+        .console-logs {
+            flex-grow: 1;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: #39ff14;
+            overflow-y: auto;
+        }
+
+        .controls-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .keycap {
+            background: var(--sandbox-panel);
+            border: 1px solid var(--card-border);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-glow);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-wrapper">
+            <div class="logo-container">
+                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" class="logo-img-ras" alt="IEEE RAS Logo">
+            </div>
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/events">Events</a>
+            <a href="/team">Team</a>
+            <a href="/sandbox" class="active">Sandbox</a>
+        </nav>
+    </header>
+
+    <div class="sandbox-wrapper">
+        <div>
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin: 0;">RAS Engineering Sandbox</h2>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">Test the autonomous Rover navigation engine.</p>
+        </div>
+
+        <div class="sandbox-grid">
+            <div>
+                <div class="arcade-cabinet">
+                    <div class="game-header">
+                        <span><i class="fa-solid fa-gamepad"></i> Simulation Active</span>
+                        <div class="score-board">Score: <span id="currentScore">0000</span></div>
+                    </div>
+                    <canvas id="gameCanvas" width="700" height="230"></canvas>
+                </div>
+                <div class="controls-card">
+                    <span>Press <span class="keycap">SPACEBAR</span> or <span class="keycap">Click Canvas</span> to Jump Over Obstacles</span>
+                </div>
+            </div>
+
+            <div class="console-panel">
+                <div style="font-family: 'Fira Code', monospace; font-size: 0.85rem; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem; color: var(--text-muted);">
+                    <i class="fa-solid fa-terminal"></i> system_telemetry.log
+                </div>
+                <div class="console-logs" id="consoleLogs">
+                    <div>>> [SYSTEM]: Telemetry online. Awaiting deployment...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const consoleLogs = document.getElementById('consoleLogs');
+
+        const rover = { x: 60, y: 170, width: 40, height: 30, gravity: 0.6, jumpForce: -11, velocity: 0, isJumping: false };
+        let obstacles = [];
+        let score = 0;
+        let isGameOver = false;
+        let gameSpeed = 5;
+        let spawnTimer = 0;
+
+        function addLog(msg) {
+            const entry = document.createElement('div');
+            entry.textContent = `>> ${msg}`;
+            consoleLogs.appendChild(entry);
+            consoleLogs.scrollTop = consoleLogs.scrollHeight;
+        }
+
+        function jump() {
+            if (!rover.isJumping && !isGameOver) {
+                rover.velocity = rover.jumpForce;
+                rover.isJumping = true;
+                addLog("rover_action: EXECUTE_JUMP");
+            } else if (isGameOver) {
+                reset();
+            }
+        }
+
+        window.addEventListener('keydown', (e) => { if (e.code === 'Space') { e.preventDefault(); jump(); } });
+        canvas.addEventListener('click', jump);
+
+        function reset() {
+            obstacles = [];
+            score = 0;
+            gameSpeed = 5;
+            rover.y = 170;
+            isGameOver = false;
+            addLog("SYSTEM: Diagnostics cleared. Core rebooted.");
+            loop();
+        }
+
+        function loop() {
+            if (isGameOver) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Ground line
+            ctx.strokeStyle = "#475569";
+            ctx.beginPath(); ctx.moveTo(0, 200); ctx.lineTo(canvas.width, 200); ctx.stroke();
+
+            // Physics
+            rover.velocity += rover.gravity;
+            rover.y += rover.velocity;
+            if (rover.y > 170) { rover.y = 170; rover.velocity = 0; rover.isJumping = false; }
+
+            // Draw Rover
+            ctx.fillStyle = "#00f5ff";
+            ctx.fillRect(rover.x, rover.y, rover.width, rover.height);
+
+            // Spawn Obstacles
+            spawnTimer++;
+            if (spawnTimer > 90) {
+                obstacles.push({ x: canvas.width, y: 170, width: 20, height: 30 });
+                spawnTimer = 0;
+            }
+
+            // Move Obstacles
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                obstacles[i].x -= gameSpeed;
+                ctx.fillStyle = "#ff9500";
+                ctx.fillRect(obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height);
+
+                // Collision
+                if (rover.x < obstacles[i].x + obstacles[i].width && rover.x + rover.width > obstacles[i].x &&
+                    rover.y < obstacles[i].y + obstacles[i].height && rover.y + rover.height > obstacles[i].y) {
+                    isGameOver = true;
+                    addLog("CRITICAL: Collision detected. Execution paused.");
+                    ctx.fillStyle = "rgba(0,0,0,0.8)";
+                    ctx.fillRect(0,0,canvas.width,canvas.height);
+                    ctx.fillStyle = "#ff3b30";
+                    ctx.font = "bold 20px sans-serif";
+                    ctx.fillText("SIMULATION CRASHED - Click to Retry", canvas.width/2 - 160, canvas.height/2);
+                }
+
+                if (obstacles[i].x + obstacles[i].width < 0) {
+                    obstacles.splice(i, 1);
+                    score += 10;
+                    document.getElementById('currentScore').textContent = String(score).padStart(4, '0');
+                }
+            }
+            requestAnimationFrame(loop);
+        }
+        loop();
+    </script>
+</body>
+</html>
