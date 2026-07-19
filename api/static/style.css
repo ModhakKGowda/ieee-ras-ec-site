@@ -78,7 +78,7 @@ h3, .card-title {
 }
 
 /* ==========================================================================
-   NAVIGATION NAVIGATION HEADER (ORIGINAL LOGO DISPLAY)
+   NAVIGATION HEADER
    ========================================================================== */
 .navbar {
     display: flex;
@@ -150,7 +150,7 @@ h3, .card-title {
 }
 
 /* ==========================================================================
-   STRUCTURAL GRID LAYOUTS
+   STRUCTURAL GRID LAYOUTS & RE-OPTIMIZED RESPONSIVE CONTAINERS
    ========================================================================== */
 .section {
     padding: 6rem 5% 4rem 5%;
@@ -202,11 +202,21 @@ h3, .card-title {
     box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
 
-/* CARDS MATRIX & FLEX WRAPPING SYSTEM */
-.team-grid, .events-grid, .about-container {
+/* CARDS MATRIX & MODERN FLEX/GRID SYSTEM */
+.team-grid, .about-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 2.5rem;
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 1050px;
+}
+
+/* Updated Responsive Events Grid (Fixes Mobile Congestion) */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2.5rem;
     margin-top: 4rem;
     width: 100%;
@@ -266,7 +276,7 @@ h3, .card-title {
     .logo-divider { height: 14px; }
 
     .section {
-        padding: 4rem 1rem 2rem 1rem;
+        padding: 4rem 1.5rem 2rem 1.5rem; /* Increased padding slightly for mobile breathing room */
     }
 
     .hero {
@@ -274,7 +284,20 @@ h3, .card-title {
         min-height: auto;
     }
 
+    /* Fixed mobile squishing: forces rows to stack cleanly */
+    .team-grid, .about-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .card, .about-card {
         width: 100%;
+        max-width: 450px; /* Prevents card from looking stretched out on large phones */
+        padding: 2rem 1.5rem; /* Roomier inner layout */
+    }
+    
+    .events-grid {
+        grid-template-columns: 1fr; /* Pure single column flow on mobile screens */
+        gap: 2rem;
     }
 }
