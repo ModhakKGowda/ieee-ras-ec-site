@@ -293,20 +293,32 @@ h3, .card-title {
         min-height: auto;
     }
 
-    /* 3. FIX CONGESTION: Force items to stack into a clean vertical list on phones */
-    .team-grid, .events-grid, .about-container {
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 2rem !important; /* Adds clear vertical spacing between elements */
-        margin-top: 2.5rem !important;
+    /* Force the navigation bar to stay exactly clamped to the phone window width */
+    .navbar {
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        flex-direction: column;
+        gap: 1.25rem;
     }
 
-    /* 4. Rescale cards cleanly for mobile viewports */
+    /* Force all grid sections to stay within the smartphone glass boundaries */
+    .section, .team-grid, .events-grid, .about-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Prevent any individual item inside the cards from causing horizontal leaks */
     .card, .about-card {
-        width: 100% !important; /* Takes full available smartphone row width */
-        max-width: 420px !important; /* Prevents cards from getting unnaturally wide */
-        min-width: unset !important; /* Breaks the strict baseline constraint causing layout overflow */
-        padding: 2rem 1.5rem !important; /* Shrinks huge padding so text content has more room */
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important; /* Forces layout calculations to respect the phone container boundary */
+        box-sizing: border-box !important;
     }
 
     /* 5. Scale font titles down slightly so long words don't wrap tightly */
