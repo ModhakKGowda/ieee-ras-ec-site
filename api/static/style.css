@@ -307,4 +307,26 @@ h3, .card-title {
         font-size: 1.8rem !important;
         letter-spacing: -0.25px !important;
     }
+
+   /* FORCE EVENT CARDS TO GROW WITH CONTENT */
+    .card, .about-card, .event-card {
+        width: 100% !important;
+        max-width: 420px !important;
+        min-width: unset !important;
+        
+        /* The Magic Lines: This breaks the cutoff bug */
+        height: auto !important;          /* Overrides any rigid desktop heights */
+        min-height: max-content !important; /* Forces the box to match the exact size of the text */
+        overflow: visible !important;      /* Ensures no content gets clipped out of bounds */
+        
+        padding: 2rem 1.5rem !important;   /* Optimizes spacing for small phone frames */
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* Ensure text elements inside the card don't break layout boundaries */
+    .card *, .about-card * {
+        max-width: 100% !important;
+        white-space: normal !important;    /* Forces text to wrap down cleanly instead of trailing off screen */
+    }
 }
