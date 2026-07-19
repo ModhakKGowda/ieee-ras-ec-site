@@ -313,6 +313,38 @@ h3, .card-title {
         margin-right: 0 !important;
     }
 
+    /* Force the list container to drop items vertically instead of horizontally */
+    .events-grid, 
+    .events-list,
+    ul, 
+    ol {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 1rem !important;
+        gap: 1.5rem !important; /* Elegant spacing between each list item */
+        box-sizing: border-box !important;
+    }
+
+    /* Force every list item / event box to respect screen bounds */
+    li, 
+    .event-item,
+    .card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        display: block !important;
+        text-align: left !important; /* Keeps event text reading neatly */
+        padding: 1.25rem !important;
+        background: rgba(10, 17, 34, 0.6) !important; /* Matches your glass theme */
+        border-radius: 12px !important;
+        border: 1px solid rgba(59, 130, 246, 0.1) !important;
+        box-sizing: border-box !important;
+    }
+}
+
     /* Prevent any individual item inside the cards from causing horizontal leaks */
     .card, .about-card {
         width: 100% !important;
