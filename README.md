@@ -10,20 +10,21 @@ Based on our verified deployment tree:
 
 ```text
 ├── api/
-│   └── app.py            # Main application server runtime (Flask / WSGI handler)
-├── static/
-│   ├── css/
-│   │   └── style.css     # Global baseline theme with mobile alignment fixes
-│   ├── js/
-│   │   └── game.js      # Game canvas configuration, physics, and touch inputs
-│   └── images/
-│       ├── ras_logo.png  # IEEE RAS Organization Brand asset
-│       └── pes_logo.png  # IEEE PES Organization Brand asset
-├── templates/
-│   ├── about.html        # About Platform layout 
-│   ├── events.html       # Events matrix tracking layout
-│   ├── index.html        # Main landing area and Game container shell
-│   └── admin.html        # Portal administration views
+│   ├── app.py            # Main application server runtime (Flask / WSGI handler)
+│   ├── static/
+│   │   ├── css/
+│   │   │    └── style.css     # Global baseline theme with mobile alignment fixes
+│   │   ├── js/
+│   │   │    └── game.js      # Game canvas configuration, physics, and touch inputs
+│   │   └── images/
+│   │        ├── ras_logo.png  # IEEE RAS Organization Brand asset
+│   │        └── pes_logo.png  # IEEE PES Organization Brand asset
+│   ├── templates/
+│           ├── about.html        # About Platform layout 
+│           ├── events.html       # Events matrix tracking layout
+│           ├── index.html       # Main landing area
+│           ├── sandbox.html        #Game container shell
+│           └── sandbox.html        # Portal administration views
 ├── requirements.txt      # Engine dependencies (Flask, etc.)
 └── README.md             # Repository documentation (This file)
 
