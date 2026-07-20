@@ -1,4 +1,17 @@
 from flask import Flask, render_template
+from flask import Response
+
+@app.route('/sitemap.xml')
+def sitemap():
+    xml = """<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url>
+        <loc>https://your-app-name.vercel.app/</loc>
+        <lastmod>2026-07-20</lastmod>
+        <priority>1.0</priority>
+      </url>
+    </urlset>"""
+    return Response(xml, mimetype='text/xml')
 
 app = Flask(__name__)
 
