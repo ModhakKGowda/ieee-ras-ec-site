@@ -1,5 +1,7 @@
+import os
 from flask import Flask, render_template
 
+# Point template and static folders relative to the root directory
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
 @app.route('/')
@@ -14,9 +16,9 @@ def about():
 def events():
     return render_template('events.html')
 
-@app.route('/admin')
-def admin():
-    return render_template('admin.html')
+@app.route('/team')
+def team():
+    return render_template('team.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
