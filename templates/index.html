@@ -3,34 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE_HERE" />
-    <title>IEEE RAS | EC Campus</title>
+    <title>IEEE RAS EC Campus | Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <header class="navbar">
         <div class="logo-wrapper">
-            <span style="color:#00f5ff; font-weight:800; font-size:1.2rem; letter-spacing:1px;">IEEE RAS EC</span>
+            <a href="/" style="color:#00f5ff; font-weight:800; font-size:1.3rem; text-decoration:none;">IEEE RAS EC</a>
         </div>
         <nav>
-            <a href="/" class="active">Home</a>
+            <a href="/">Home</a>
             <a href="/about">About</a>
             <a href="/events">Events</a>
-            <a href="/team">Team</a>
-            <a href="/sandbox">Sandbox</a>
+            <a href="/admin">Team</a>
         </nav>
     </header>
 
-    <main style="padding: 10rem 2rem 4rem 2rem; text-align: center; max-width: 900px; margin: 0 auto;">
-        <h1 style="font-size: 3rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">Advancing Robotics & Automation</h1>
-        <p style="color: #cbd5e1; font-size: 1.1rem; margin-bottom: 2rem;">Official Student Branch Chapter of IEEE Robotics and Automation Society at EC Campus.</p>
-        <div style="display: flex; gap: 1rem; justify-content: center;">
-            <a href="/events" style="background: #00f5ff; color: #04050d; padding: 0.8rem 1.8rem; border-radius: 8px; font-weight: 700; text-decoration: none;">Explore Events</a>
-            <a href="/team" style="border: 1px solid #00f5ff; color: #00f5ff; padding: 0.8rem 1.8rem; border-radius: 8px; font-weight: 700; text-decoration: none;">Meet the Team</a>
-        </div>
+    <main class="hero-section" style="padding-top: 10rem; text-align: center;">
+        <h1 style="font-size: 3.2rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">
+            IEEE Robotics & Automation Society
+        </h1>
+        <p style="font-size: 1.2rem; color: #00f5ff; font-weight: 600; margin-bottom: 1.5rem;">
+            EC Campus Student Chapter
+        </p>
+        <p style="max-width: 700px; margin: 0 auto 2rem auto; color: #cbd5e1; line-height: 1.8;">
+            Empowering students to design, innovate, and master autonomous robotics and embedded hardware systems.
+        </p>
+        <a href="/about" class="btn" style="display:inline-block; padding:0.8rem 2rem; background:#00f5ff; color:#050811; border-radius:30px; font-weight:700; text-decoration:none;">Learn More</a>
     </main>
+
+    <footer>
+        <p>© IEEE RAS EC Campus. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
