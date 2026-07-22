@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | IEEE RAS EC Campus| Robotics & Automation Society PES University Electronic City Campus</title>
+
+    <meta name="description" content="Official website of IEEE RAS PESU EC (PES University Electronic City Campus). Explore robotics events, technical workshops, projects, and community activities.">
+
+    <meta name="keywords" content="ieee ras pesu ec campus, ieee ras pesu, ieee pesu, ieee ras pesu ec, pesu ec campus robotics, ieee ras pes, ieee ras pes university">
+
+    <link rel="canonical" href="https://your-app.vercel.app/" />
+
+    <meta property="og:site_name" content="IEEE RAS PESU EC">
+    <meta property="og:title" content="IEEE RAS PESU EC | Official Student Chapter">
+    <meta property="og:description" content="Robotics & Automation Society at PES University Electronic City Campus. Join our events and explore technical projects.">
+    <meta property="og:url" content="https://your-app.vercel.app/">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: #020306;
+        }
+        .panoramic-wrapper {
+            width: 100%;
+            max-width: 1400px;
+            margin: 8rem auto 4rem auto;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        .header-centered-block {
+            text-align: center; /* Aligned exactly in the middle as requested */
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+        }
+        .panoramic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+        }
+        .panoramic-card {
+            background: rgba(6, 9, 20, 0.85);
+            border: 1px solid rgba(0, 245, 255, 0.15);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .panoramic-card:hover {
+            transform: scale(1.02) translateY(-4px);
+            border-color: #00f5ff;
+            box-shadow: 0 30px 70px rgba(0, 245, 255, 0.12);
+        }
+        .glow-bar {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, #00b4d8, #00f5ff);
+        }
+    </style>
+</head>
+<body style="color: #fff; overflow-x: hidden;">
+
+    <canvas id="bg-canvas"></canvas>
+
+    <header class="navbar">
+        <div class="logo-wrapper">
+            <div class="logo-container">
+                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" class="logo-img-ras">
+                <div class="logo-divider"></div>
+                <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" class="logo-img-pes">
+            </div>
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/events" class="active">Events</a>
+            <a href="/team">Team</a>
+        </nav>
+    </header>
+
+    <div class="panoramic-wrapper">
+        <div class="header-centered-block">
+            <h2 class="section-title" style="margin: 0; font-size: 3rem; font-weight: 800; letter-spacing: -1px;">Initiatives & Events</h2>
+            <p style="color: #94a3b8; font-size: 1.1rem; margin-top: 1rem; line-height: 1.6;">Explore upcoming tech challenges, structured engineering bootcamps, and full-stack mechanical hackathons hosted across campus.</p>
+        </div>
+
+        <div class="panoramic-grid">
+            <div class="panoramic-card">
+                <div class="glow-bar"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <span style="background: rgba(0,245,255,0.1); color: #00f5ff; padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; border: 1px solid rgba(0,245,255,0.2);">HARDWARE RUNTIME</span>
+                    <i class="fa-solid fa-microchip" style="color: #00f5ff; font-size: 1.5rem;"></i>
+                </div>
+                <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem;">Hands-on Arduino Bootcamp</h3>
+                <p style="color: #00f5ff; font-size: 0.9rem; margin-bottom: 1.5rem;"><i class="fa-regular fa-calendar-check"></i> Registration Active</p>
+                <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7; margin: 0;">
+                    An immersive engineering sprint where you write microcontrollers code, route real-time sensors, and wire up motors to design direct robotic mechanisms.
+                </p>
+            </div>
+
+            <div class="panoramic-card">
+                <div class="glow-bar"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <span style="background: rgba(0,180,216,0.1); color: #00b4d8; padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; border: 1px solid rgba(0,180,216,0.2);">DESIGN SPRINT</span>
+                    <i class="fa-solid fa-lightbulb" style="color: #00b4d8; font-size: 1.5rem;"></i>
+                </div>
+                <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem;">EC Campus Ideathon</h3>
+                <p style="color: #00b4d8; font-size: 0.9rem; margin-bottom: 1.5rem;"><i class="fa-regular fa-clock"></i> Commencing Phase 1</p>
+                <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7; margin: 0;">
+                    Pitch, construct, and compete! Frame creative structural blueprints solving industrial robotics, automation tracking, and mechanical control tasks.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let vortexParticles = [];
+        let mouse = { x: -500, y: -500 };
+
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        resize();
+
+        for(let i=0; i<150; i++) {
+            vortexParticles.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                speed: Math.random() * 0.5 + 0.2,
+                size: Math.random() * 1.5 + 1
+            });
+        }
+
+        function runSystem() {
+            ctx.fillStyle = 'rgba(2, 3, 6, 0.15)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            vortexParticles.forEach(p => {
+                p.y -= p.speed;
+                if(p.y < 0) p.y = canvas.height;
+
+                let dist = Math.hypot(mouse.x - p.x, mouse.y - p.y);
+                let currentX = p.x;
+                if(dist < 200) {
+                    let push = (200 - dist) * 0.08;
+                    currentX += Math.cos(Math.atan2(p.y - mouse.y, p.x - mouse.x)) * push;
+                }
+
+                ctx.fillStyle = 'rgba(0, 245, 255, 0.35)';
+                ctx.beginPath(); ctx.arc(currentX, p.y, p.size, 0, Math.PI*2); ctx.fill();
+            });
+
+            requestAnimationFrame(runSystem);
+        }
+        runSystem();
+    </script>
+</body>
+</html>
