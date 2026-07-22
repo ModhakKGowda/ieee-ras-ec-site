@@ -5,35 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | IEEE RAS EC Campus</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="navbar">
         <div class="logo-wrapper">
-            <span style="color:#00f5ff; font-weight:800; font-size:1.2rem; letter-spacing:1px;">IEEE RAS EC</span>
+            <a href="/" style="color:#00f5ff; font-weight:800; font-size:1.3rem; text-decoration:none;">IEEE RAS EC</a>
         </div>
         <nav>
             <a href="/">Home</a>
-            <a href="/about" class="active">About</a>
+            <a href="/about">About</a>
             <a href="/events">Events</a>
-            <a href="/team">Team</a>
-            <a href="/sandbox">Sandbox</a>
+            <a href="/admin">Team</a>
         </nav>
     </header>
 
-    <main style="padding: 8rem 2rem 4rem 2rem; max-width: 900px; margin: 0 auto; color: #fff;">
-        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: #00f5ff;">About IEEE RAS EC Campus</h1>
-        <p style="font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; margin-bottom: 2rem;">
-            The IEEE Robotics and Automation Society (RAS) Student Branch Chapter at EC Campus is dedicated to advancing the theory and practice of robotics, automation, and mechatronics engineering among students.
-        </p>
-        
-        <div style="background: rgba(10, 15, 30, 0.8); border: 1px solid rgba(0, 245, 255, 0.15); padding: 2rem; border-radius: 16px; margin-bottom: 2rem;">
-            <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: #fff;">Our Mission</h2>
-            <p style="color: #cbd5e1; line-height: 1.7;">
-                To foster technical expertise, innovation, and hands-on learning through interactive workshops, hardware hackathons, and real-world robotics development projects.
+    <section class="section-padding" style="padding-top: 8rem;">
+        <h1 style="color:#00f5ff; text-align:center; margin-bottom: 1.5rem;">About IEEE RAS EC</h1>
+        <div class="card" style="max-width:800px; margin:0 auto; padding:2rem; background:rgba(10,15,30,0.8); border:1px solid rgba(0,245,255,0.2); border-radius:12px;">
+            <p style="color:#cbd5e1; line-height:1.8;">
+                The IEEE Robotics and Automation Society (RAS) EC Campus chapter fosters innovation in microelectronics, mechatronics, autonomous software, and robotic systems engineering through practical workshops, collaborative projects, and hackathons.
             </p>
         </div>
-    </main>
+    </section>
 </body>
 </html>
