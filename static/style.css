@@ -3,31 +3,56 @@
     margin: 0;
     padding: 0;
 }
+
+html {
+    scroll-behavior: smooth;
+    width: 100%;
+}
+
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #04050d;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     color: #cbd5e1;
     line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+    background-color: #050811;
+    background-image: 
+        radial-gradient(rgba(59, 130, 246, 0.15) 1.5px, transparent 1.5px),
+        linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
 }
+
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 3rem;
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: rgba(4, 5, 13, 0.85);
-    backdrop-filter: blur(10px);
-    z-index: 100;
-    border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+    padding: 1.2rem 3rem;
+    background: rgba(5, 8, 17, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 245, 255, 0.15);
+    z-index: 1000;
 }
+
 .navbar nav a {
     color: #cbd5e1;
     text-decoration: none;
     margin-left: 2rem;
-    font-weight: 500;
-    transition: color 0.3s;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
-.navbar nav a:hover, .navbar nav a.active {
+
+.navbar nav a:hover {
     color: #00f5ff;
+}
+
+footer {
+    text-align: center;
+    padding: 3rem 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #64748b;
+    margin-top: 4rem;
 }
