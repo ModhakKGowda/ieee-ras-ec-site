@@ -1,7 +1,6 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 
-# Point template and static folders relative to the root directory
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
 @app.route('/')
@@ -19,6 +18,14 @@ def events():
 @app.route('/team')
 def team():
     return render_template('team.html')
+
+@app.route('/sandbox')
+def sandbox():
+    return render_template('sandbox.html')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return Response(render_template('sitemap.xml'), mimetype='application/xml')
 
 if __name__ == '__main__':
     app.run(debug=True)
