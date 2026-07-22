@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team | IEEE RAS EC Campus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: #04050d; }
+        .team-box { max-width: 1100px; margin: 8rem auto 4rem auto; padding: 0 2rem; text-align: center; position: relative; z-index: 2; }
+        .card { background: rgba(10, 15, 30, 0.8) !important; border: 1px solid rgba(0, 245, 255, 0.12) !important; backdrop-filter: blur(12px); border-radius: 24px !important; padding: 2.5rem 2rem !important; transition: all 0.4s ease; }
+        .card:hover { border-color: #00f5ff !important; transform: translateY(-6px); box-shadow: 0 20px 45px rgba(0, 245, 255, 0.15) !important; }
+        .img-wrapper { position: relative; width: 140px; height: 140px; margin: 0 auto 1.5rem auto; }
+        .team-photo { border-radius: 50%; width: 100%; height: 100%; object-fit: cover; border: 3px solid rgba(0, 245, 255, 0.15); }
+    </style>
+</head>
+<body style="color: #fff; overflow-x: hidden;">
+    <canvas id="bg-canvas"></canvas>
+
+    <header class="navbar">
+        <div class="logo-wrapper">
+            <span style="color:#00f5ff; font-weight:800; font-size:1.2rem; letter-spacing:1px;">IEEE RAS EC</span>
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/events">Events</a>
+            <a href="/team" class="active">Team</a>
+            <a href="/sandbox">Sandbox</a>
+        </nav>
+    </header>
+
+    <div class="team-box">
+        <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;">Core Operational Team</h2>
+        <p style="color: #cbd5e1; max-width: 600px; margin: 0 auto 4rem auto;">Connect with the coordinators directing IEEE RAS.</p>
+        
+        <div style="display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;">
+            <div class="card" style="width: 300px;">
+                <div class="img-wrapper">
+                    <img src="{{ url_for('static', filename='images/ieee-ras-ec-chair.png') }}" class="team-photo" alt="J Akhil">
+                </div>
+                <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.25rem;">J Akhil</h3>
+                <p style="color: #00f5ff; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem;">STUDENT CHAIR</p>
+                <div style="display: flex; gap: 1.25rem; justify-content: center; font-size: 1.2rem;">
+                    <a href="mailto:akhil01aj@gmail.com" target="_blank" style="color: #64748b;"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/akhil_01_aj" target="_blank" style="color: #64748b;"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/j-akhil-aj" target="_blank" style="color: #64748b;"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="card" style="width: 300px;">
+                <div class="img-wrapper">
+                    <img src="{{ url_for('static', filename='images/ieee-ras-ec-vicechair.png') }}" class="team-photo" alt="Modhak Kushalappa">
+                </div>
+                <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.25rem;">Modhak Kushalappa</h3>
+                <p style="color: #00f5ff; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem;">STUDENT VICE CHAIR</p>
+                <div style="display: flex; gap: 1.25rem; justify-content: center; font-size: 1.2rem;">
+                    <a href="mailto:modhakkushalappa@gmail.com" target="_blank" style="color: #64748b;"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/modhak_k_gowda" target="_blank" style="color: #64748b;"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/modhak-kushalappa-36a840379" target="_blank" style="color: #64748b;"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
