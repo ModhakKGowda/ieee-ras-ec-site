@@ -12,14 +12,6 @@
       "dest": "/static/$1"
     },
     {
-      "src": "/sitemap.xml",
-      "dest": "/sitemap.xml"
-    },
-    {
-      "src": "/robots.txt",
-      "dest": "/static/robots.txt"
-    },
-    {
       "src": "/(.*)",
       "dest": "api/app.py"
     }
