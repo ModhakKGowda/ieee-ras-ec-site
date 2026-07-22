@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinematic Lab | IEEE RAS EC Campus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        #game-canvas {
+            display: block;
+            margin: 2rem auto;
+            background: #020308;
+            border: 2px solid rgba(0, 245, 255, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-wrapper">
+            <span style="color:#00f5ff; font-weight:800; font-size:1.2rem; letter-spacing:1px;">IEEE RAS EC</span>
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/events">Events</a>
+            <a href="/team">Team</a>
+            <a href="/sandbox" class="active">Sandbox</a>
+        </nav>
+    </header>
+
+    <main style="padding: 8rem 2rem 4rem 2rem; text-align: center; color: #fff;">
+        <h1 style="font-size: 2.2rem; font-weight: 800;">Kinematic Sandbox & Physics Lab</h1>
+        <p style="color: #cbd5e1; margin-top: 0.5rem;">Interactive bipedal physics canvas simulation.</p>
+
+        <canvas id="game-canvas" width="800" height="400"></canvas>
+
+        <p style="color: #64748b; font-size: 0.9rem;">Press <strong>SPACEBAR</strong> or tap the canvas to jump.</p>
+    </main>
+
+    <script>
+        const canvas = document.getElementById('game-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let player = { x: 80, y: 300, width: 30, height: 30, dy: 0, gravity: 0.6, jump: -12, grounded: false };
+
+        function drawPlayer() {
+            ctx.fillStyle = '#00f5ff';
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+        }
+
+        function update() {
+            player.dy += player.gravity;
+            player.y += player.dy;
+
+            if (player.y + player.height >= 350) {
+                player.y = 350 - player.height;
+                player.dy = 0;
+                player.grounded = true;
+            } else {
+                player.grounded = false;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Floor line
+            ctx.strokeStyle = 'rgba(0, 245, 255, 0.4)';
+            ctx.beginPath();
+            ctx.moveTo(0, 350);
+            ctx.lineTo(800, 350);
+            ctx.stroke();
+
+            drawPlayer();
+            requestAnimationFrame(update);
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && player.grounded) {
+                player.dy = player.jump;
+            }
+        });
+
+        canvas.addEventListener('click', () => {
+            if (player.grounded) {
+                player.dy = player.jump;
+            }
+        });
+
+        update();
+    </script>
+</body>
+</html>
