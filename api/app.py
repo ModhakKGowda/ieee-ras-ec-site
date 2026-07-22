@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, Response
+from flask import Flask, render_template
 
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
@@ -15,17 +15,9 @@ def about():
 def events():
     return render_template('events.html')
 
-@app.route('/team')
-def team():
-    return render_template('team.html')
-
-@app.route('/sandbox')
-def sandbox():
-    return render_template('sandbox.html')
-
-@app.route('/sitemap.xml')
-def sitemap():
-    return Response(render_template('sitemap.xml'), mimetype='application/xml')
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
