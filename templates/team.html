@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team | IEEE RAS EC Campus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: #04050d;
+        }
+        .team-box {
+            max-width: 1100px;
+            margin: 8rem auto 4rem auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .card {
+            background: rgba(10, 15, 30, 0.8) !important;
+            border: 1px solid rgba(0, 245, 255, 0.12) !important;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important;
+            backdrop-filter: blur(12px);
+            border-radius: 24px !important;
+            padding: 2.5rem 2rem !important;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .card:hover {
+            border-color: #00f5ff !important;
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(0, 245, 255, 0.15) !important;
+        }
+        .img-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.5rem auto;
+        }
+        .team-photo {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 3px solid rgba(0, 245, 255, 0.15);
+            transition: border-color 0.3s;
+        }
+        .hud-canvas {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .card:hover .hud-canvas { opacity: 1; }
+        .card:hover .team-photo { border-color: #00f5ff; }
+    </style>
+</head>
+<body style="color: #fff; overflow-x: hidden;">
+
+    <canvas id="bg-canvas"></canvas>
+
+    <header class="navbar">
+        <div class="logo-wrapper">
+            <div class="logo-container">
+                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" class="logo-img-ras">
+                <div class="logo-divider"></div>
+                <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" class="logo-img-pes">
+            </div>
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/events">Events</a>
+            <a href="/team" class="active">Team</a>
+        </nav>
+    </header>
+
+    <div class="team-box">
+        <h2 class="section-title">Core Operational Team</h2>
+        <p class="section-desc" style="color: #cbd5e1; max-width: 600px; margin: 0 auto 4rem auto;">Connect with the coordinators directing the operational tracks of IEEE RAS.</p>
+        
+        <div class="team-grid" style="display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;">
+            <div class="card" style="width: 300px;">
+                <div class="img-wrapper">
+                    <img src="{{ url_for('static', filename='images/ieee-ras-ec-chair.png') }}" class="team-photo">
+                    <canvas class="hud-canvas" width="140" height="140"></canvas>
+                </div>
+                <h3 style="font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">J Akhil</h3>
+                <p style="color: #00f5ff; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem; letter-spacing: 1px;">STUDENT CHAIR</p>
+                <div class="social-links" style="display: flex; gap: 1.25rem; justify-content: center; font-size: 1.2rem;">
+                    <a href="mailto:akhil01aj@gmail.com" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/akhil_01_aj?igsh=dHk3OTJ6dXlsbTBw" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/j-akhil-aj?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="card" style="width: 300px;">
+                <div class="img-wrapper">
+                    <img src="{{ url_for('static', filename='images/ieee-ras-ec-vicechair.png') }}" class="team-photo">
+                    <canvas class="hud-canvas" width="140" height="140"></canvas>
+                </div>
+                <h3 style="font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Modhak Kushalappa</h3>
+                <p style="color: #00f5ff; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem; letter-spacing: 1px;">STUDENT VICE CHAIR</p>
+                <div class="social-links" style="display: flex; gap: 1.25rem; justify-content: center; font-size: 1.2rem;">
+                    <a href="mailto:modhakkushalappa@gmail.com" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/modhak_k_gowda?igsh=MWJud2Z1enZwZjU2eA==" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/modhak-kushalappa-36a840379/?skipRedirect=true" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let pulses = [];
+
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        window.addEventListener('mousemove', (e) => {
+            if(Math.random() < 0.15) {
+                pulses.push({ x: e.clientX, y: e.clientY, dx: (Math.random()-0.5)*3, dy: (Math.random()-0.5)*3, life: 1.0 });
+            }
+        });
+
+        const nodes = [];
+        for(let i=0; i<35; i++) { nodes.push({ x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight }); }
+
+        const huds = document.querySelectorAll('.hud-canvas');
+        let rotationAngle = 0;
+
+        function loop() {
+            ctx.fillStyle = "rgba(4, 5, 13, 0.25)";
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+
+            // Draw circuit link connections
+            ctx.strokeStyle = "rgba(0, 245, 255, 0.03)";
+            ctx.lineWidth = 1;
+            for(let i=0; i<nodes.length; i++) {
+                for(let j=i+1; j<nodes.length; j++) {
+                    let d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+                    if(d < 200) {
+                        ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo((nodes[i].x+nodes[j].x)/2, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
+                    }
+                }
+            }
+
+            // Draw pulses
+            pulses.forEach((p, idx) => {
+                p.x += p.dx; p.y += p.dy; p.life -= 0.015;
+                ctx.fillStyle = `rgba(0, 245, 255, ${p.life})`;
+                ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fill();
+                if(p.life <= 0) pulses.splice(idx, 1);
+            });
+
+            // Animate card HUDs
+            rotationAngle += 0.03;
+            huds.forEach(hud => {
+                let hctx = hud.getContext('2d');
+                hctx.clearRect(0,0,140,140);
+                hctx.strokeStyle = '#00f5ff'; hctx.lineWidth = 2;
+                hctx.beginPath(); hctx.arc(70, 70, 62, rotationAngle, rotationAngle + Math.PI*0.3); hctx.stroke();
+                hctx.beginPath(); hctx.arc(70, 70, 62, rotationAngle + Math.PI, rotationAngle + Math.PI*1.3); hctx.stroke();
+            });
+
+            requestAnimationFrame(loop);
+        }
+        loop();
+    </script>
+</body>
+</html>
