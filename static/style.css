@@ -245,7 +245,11 @@ h3, .card-title {
 /* ==========================================================================
    RESPONSIVE PORTABLE MEDIA QUERIES
    ========================================================================== */
+/* ==========================================================================
+   RESPONSIVE PORTABLE MEDIA QUERIES (OPTIMIZED FOR BREATHING ROOM)
+   ========================================================================== */
 @media (max-width: 768px) {
+    /* 1. Prevent navbar elements from feeling squished */
     .navbar {
         flex-direction: column;
         gap: 1.25rem;
@@ -275,8 +279,9 @@ h3, .card-title {
     .logo-img-pes { width: 50px !important; height: 24px !important; }
     .logo-divider { height: 14px; }
 
+    /* 2. Give the About and Event page sections breathing room on the sides */
     .section {
-        padding: 4rem 1.5rem 2rem 1.5rem; /* Increased padding slightly for mobile breathing room */
+        padding: 4rem 1.5rem 2rem 1.5rem !important; /* Prevents text from hitting the screen edges */
     }
 
     .hero {
@@ -284,20 +289,25 @@ h3, .card-title {
         min-height: auto;
     }
 
-    /* Fixed mobile squishing: forces rows to stack cleanly */
-    .team-grid, .about-container {
-        flex-direction: column;
-        align-items: center;
+    /* 3. FIX CONGESTION: Force items to stack into a clean vertical list on phones */
+    .team-grid, .events-grid, .about-container {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2rem !important; /* Adds clear vertical spacing between elements */
+        margin-top: 2.5rem !important;
     }
 
+    /* 4. Rescale cards cleanly for mobile viewports */
     .card, .about-card {
-        width: 100%;
-        max-width: 450px; /* Prevents card from looking stretched out on large phones */
-        padding: 2rem 1.5rem; /* Roomier inner layout */
+        width: 100% !important; /* Takes full available smartphone row width */
+        max-width: 420px !important; /* Prevents cards from getting unnaturally wide */
+        min-width: unset !important; /* Breaks the strict baseline constraint causing layout overflow */
+        padding: 2rem 1.5rem !important; /* Shrinks huge padding so text content has more room */
     }
-    
-    .events-grid {
-        grid-template-columns: 1fr; /* Pure single column flow on mobile screens */
-        gap: 2rem;
+
+    /* 5. Scale font titles down slightly so long words don't wrap tightly */
+    h2, .section-title {
+        font-size: 1.8rem !important;
+        letter-spacing: -0.25px !important;
     }
 }
