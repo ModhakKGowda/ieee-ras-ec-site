@@ -25,12 +25,12 @@ body {
     --text-muted: #94a3b8;
 }
 
-/* Navbar */
+/* Navbar Layout */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 5%;
+    padding: 1rem 5%;
     background: rgba(11, 17, 32, 0.85);
     backdrop-filter: blur(12px);
     position: sticky;
@@ -39,10 +39,33 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.navbar .logo {
+/* Flex Container for the Logos */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Logo Image Dimensions Constraints */
+.logo-img {
+    height: 40px;          /* Enforces consistent height constraints */
+    width: auto;           /* Maintains correct aspect ratio automatically */
+    object-fit: contain;
+}
+
+/* Visual vertical divider line between logos */
+.logo-divider {
+    width: 1px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.logo-text {
     font-weight: 800;
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     letter-spacing: -0.5px;
+    color: #ffffff;
+    margin-left: 0.25rem;
 }
 
 .accent-brand {
@@ -127,7 +150,7 @@ body {
     margin-bottom: 2.5rem;
 }
 
-/* Universal Interactive Buttons */
+/* Interactivity Action Buttons */
 .btn {
     display: inline-block;
     padding: 0.8rem 1.8rem;
@@ -157,7 +180,7 @@ body {
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* Sections Layout */
+/* Layout Core Elements */
 .section {
     padding: 6rem 5% 4rem;
     max-width: 1200px;
@@ -179,7 +202,7 @@ body {
     color: var(--text-muted);
 }
 
-/* Perks / Value Showcase Grid */
+/* Grid Showcase Modules */
 .perks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -208,7 +231,7 @@ body {
     font-size: 0.95rem;
 }
 
-/* Core Team Section Component */
+/* Committee Cards Elements */
 .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -259,7 +282,7 @@ body {
     font-weight: 600;
 }
 
-/* Call to Action Segment */
+/* Call to Action Container Section */
 .join-section {
     background: radial-gradient(circle at bottom, rgba(37, 99, 235, 0.1), transparent 70%);
 }
@@ -277,7 +300,6 @@ body {
     margin: 1rem 0 2rem;
 }
 
-/* Pulse animation for recruitment urgency */
 .btn-pulse {
     background: var(--primary);
     animation: pulse 2s infinite;
@@ -296,4 +318,12 @@ body {
     color: #475569;
     font-size: 0.9rem;
     border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* Media Query for Mobile Responsiveness */
+@media(max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
 }
