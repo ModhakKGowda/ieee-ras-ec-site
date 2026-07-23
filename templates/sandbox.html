@@ -3,102 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bipedal Skeleton Kinematics Lab | IEEE RAS EC</title>
+    <title>Bipedal Android Kinematics Lab | IEEE RAS EC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #080B11; color: #FFFFFF; }
-        canvas { background: #0F172A; border: 1px solid rgba(255, 255, 255, 0.1); }
+        body { background-color: #0B0F19; color: #FFFFFF; font-family: ui-sans-serif, system-ui, sans-serif; }
+        canvas { background-color: #070A10; border: 1px solid rgba(59, 130, 246, 0.2); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between p-6">
 
-    <header class="w-full max-w-5xl mx-auto flex items-center justify-between mb-6">
-        <a href="/" class="text-sm font-semibold text-blue-400 hover:underline">&larr; Return to Main Site</a>
-        <h1 class="text-xl font-bold text-yellow-500">🤖 Bipedal Mechatronic Skeleton Simulator</h1>
+    <header class="w-full max-w-5xl mx-auto flex items-center justify-between mb-4">
+        <a href="/" class="text-sm font-semibold text-blue-400 hover:underline">&larr; Back to Main Site</a>
+        <h1 class="text-xl font-bold text-yellow-500">🤖 Bipedal Android Kinematics Lab</h1>
     </header>
 
     <main class="flex-1 flex flex-col items-center justify-center">
-        <canvas id="simCanvas" width="800" height="450" class="rounded-2xl shadow-2xl mb-4"></canvas>
-        <div class="flex items-center gap-6 text-xs text-gray-400">
-            <div>Drive Controls: <span class="text-yellow-400 font-mono font-bold">A / D or Left/Right Arrow</span></div>
-            <div>Joint Actuation: <span class="text-blue-400 font-mono font-bold">W / S</span></div>
+        <div class="relative">
+            <canvas id="simCanvas" width="800" height="420" class="rounded-xl shadow-2xl"></canvas>
+            
+            <!-- HUD Telemetry Overlay -->
+            <div class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur border border-slate-700/50 p-3 rounded-lg text-xs font-mono space-y-1">
+                <div class="text-yellow-400 font-bold">TELEMETRY DATA</div>
+                <div>Hip Torque: <span id="hipVal" class="text-blue-400">0.00 Nm</span></div>
+                <div>Knee Angle: <span id="kneeVal" class="text-blue-400">0.00°</span></div>
+                <div>ECE Components: <span id="scoreVal" class="text-green-400">0</span></div>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-6 mt-4 text-xs text-gray-400 font-medium">
+            <div>Locomotion: <span class="text-yellow-400 font-mono font-bold">A / D or Left/Right Arrow</span></div>
+            <div>Jump Actuation: <span class="text-blue-400 font-mono font-bold">SPACE</span></div>
         </div>
     </main>
 
     <footer class="text-center text-xs text-gray-600">
-        IEEE RAS PES University EC Campus — Robotics Sandbox
+        IEEE RAS PES University EC Campus — Bipedal Kinematics Sandbox
     </footer>
 
     <script>
         const canvas = document.getElementById('simCanvas');
         const ctx = canvas.getContext('2d');
 
-        let botX = 400;
-        let walkCycle = 0;
-        let keys = {};
+        const hipVal = document.getElementById('hipVal');
+        const kneeVal = document.getElementById('kneeVal');
+        const scoreVal = document.getElementById('scoreVal');
 
+        let bot = {
+            x: 150,
+            y: 280,
+            vy: 0,
+            isJumping: false,
+            walkCycle: 0
+        };
+
+        let score = 0;
+        let item = { x: 500, y: 260, label: 'STM32 Microcontroller' };
+        let itemsList = ['STM32 Microcontroller', 'IMU Sensor 6-DOF', 'LiPo Battery 11.1V', 'Servo Actuator', 'LiDAR Module'];
+
+        let keys = {};
         window.addEventListener('keydown', e => keys[e.key] = true);
         window.addEventListener('keyup', e => keys[e.key] = false);
 
-        function drawSkeleton() {
+        function spawnItem() {
+            item.x = Math.random() * 600 + 100;
+            item.label = itemsList[Math.floor(Math.random() * itemsList.length)];
+        }
+
+        function drawBipedalSkeleton() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Floor
-            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            // Grid Background
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+            ctx.lineWidth = 1;
+            for(let x=0; x<canvas.width; x+=40) {
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+            }
+            for(let y=0; y<canvas.height; y+=40) {
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+            }
+
+            // Floor Line
+            ctx.strokeStyle = '#374151';
             ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(0, 380);
-            ctx.lineTo(800, 380);
-            ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(0, 340); ctx.lineTo(800, 340); ctx.stroke();
 
-            // Movement logic
-            if (keys['a'] || keys['A'] || keys['ArrowLeft']) { botX -= 2; walkCycle += 0.1; }
-            if (keys['d'] || keys['D'] || keys['ArrowRight']) { botX += 2; walkCycle += 0.1; }
+            // Controls logic
+            let moving = false;
+            if (keys['a'] || keys['A'] || keys['ArrowLeft']) { bot.x -= 2.5; bot.walkCycle -= 0.15; moving = true; }
+            if (keys['d'] || keys['D'] || keys['ArrowRight']) { bot.x += 2.5; bot.walkCycle += 0.15; moving = true; }
+            
+            if ((keys[' '] || keys['Spacebar']) && !bot.isJumping) {
+                bot.vy = -8.5;
+                bot.isJumping = true;
+            }
 
-            const hipY = 260 + Math.sin(walkCycle * 2) * 3;
-            const leftLegAngle = Math.sin(walkCycle) * 0.5;
-            const rightLegAngle = -Math.sin(walkCycle) * 0.5;
+            // Physics
+            bot.y += bot.vy;
+            bot.vy += 0.4; // Gravity
+            if (bot.y >= 280) {
+                bot.y = 280;
+                bot.vy = 0;
+                bot.isJumping = false;
+            }
 
-            ctx.strokeStyle = '#3B82F6';
-            ctx.lineWidth = 4;
+            // Bound constraints
+            bot.x = Math.max(30, Math.min(770, bot.x));
 
-            // Torso
-            ctx.beginPath();
-            ctx.moveTo(botX, hipY);
-            ctx.lineTo(botX, hipY - 70);
-            ctx.stroke();
+            // Kinematic Angles
+            const leftLegAngle = Math.sin(bot.walkCycle) * 0.6;
+            const rightLegAngle = -Math.sin(bot.walkCycle) * 0.6;
 
-            // Head / Sensor Node
+            hipVal.textContent = (Math.abs(Math.sin(bot.walkCycle)) * 12.4).toFixed(2) + ' Nm';
+            kneeVal.textContent = (Math.abs(leftLegAngle) * 57.3).toFixed(1) + '°';
+
+            // Draw Pickup Item
             ctx.fillStyle = '#F59E0B';
-            ctx.beginPath();
-            ctx.arc(botX, hipY - 85, 12, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.beginPath(); ctx.arc(item.x, item.y, 8, 0, Math.PI * 2); ctx.fill();
+            ctx.font = '10px monospace';
+            ctx.fillStyle = '#9CA3AF';
+            ctx.fillText(item.label, item.x - 40, item.y - 14);
 
-            // Left Leg Kinematics
-            let lKneeX = botX + Math.sin(leftLegAngle) * 40;
-            let lKneeY = hipY + Math.cos(leftLegAngle) * 40;
-            ctx.beginPath();
-            ctx.moveTo(botX, hipY);
-            ctx.lineTo(lKneeX, lKneeY);
-            ctx.lineTo(lKneeX + Math.sin(leftLegAngle + 0.3) * 40, 380);
-            ctx.stroke();
+            // Collision Check
+            if (Math.abs(bot.x - item.x) < 25 && Math.abs(bot.y - item.y) < 40) {
+                score++;
+                scoreVal.textContent = score;
+                spawnItem();
+            }
 
-            // Right Leg Kinematics
-            let rKneeX = botX + Math.sin(rightLegAngle) * 40;
-            let rKneeY = hipY + Math.cos(rightLegAngle) * 40;
+            // --- DRAW MECHATRONIC BIPEDAL SKELETON ---
+            const hipX = bot.x;
+            const hipY = bot.y;
+
+            ctx.lineWidth = 3;
+
+            // Spine / Torso
             ctx.strokeStyle = '#60A5FA';
-            ctx.beginPath();
-            ctx.moveTo(botX, hipY);
-            ctx.lineTo(rKneeX, rKneeY);
-            ctx.lineTo(rKneeX + Math.sin(rightLegAngle + 0.3) * 40, 380);
-            ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(hipX, hipY); ctx.lineTo(hipX, hipY - 55); ctx.stroke();
+
+            // Head / Visor Node
+            ctx.fillStyle = '#3B82F6';
+            ctx.beginPath(); ctx.arc(hipX, hipY - 65, 10, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = '#F59E0B';
+            ctx.fillRect(hipX - 4, hipY - 68, 10, 4); // Visor
+
+            // Left Leg (Back Leg)
+            let lKneeX = hipX + Math.sin(leftLegAngle) * 28;
+            let lKneeY = hipY + Math.cos(leftLegAngle) * 28;
+            let lAnkleX = lKneeX + Math.sin(leftLegAngle * 0.5) * 28;
+            let lAnkleY = Math.min(340, lKneeY + Math.cos(leftLegAngle * 0.5) * 28);
+
+            ctx.strokeStyle = '#1E40AF';
+            ctx.beginPath(); ctx.moveTo(hipX, hipY); ctx.lineTo(lKneeX, lKneeY); ctx.lineTo(lAnkleX, lAnkleY); ctx.stroke();
+
+            // Right Leg (Front Leg)
+            let rKneeX = hipX + Math.sin(rightLegAngle) * 28;
+            let rKneeY = hipY + Math.cos(rightLegAngle) * 28;
+            let rAnkleX = rKneeX + Math.sin(rightLegAngle * 0.5) * 28;
+            let rAnkleY = Math.min(340, rKneeY + Math.cos(rightLegAngle * 0.5) * 28);
+
+            ctx.strokeStyle = '#93C5FD';
+            ctx.beginPath(); ctx.moveTo(hipX, hipY); ctx.lineTo(rKneeX, rKneeY); ctx.lineTo(rAnkleX, rAnkleY); ctx.stroke();
+
+            // Joint Actuator Circles
+            ctx.fillStyle = '#F59E0B';
+            ctx.beginPath(); ctx.arc(hipX, hipY, 3.5, 0, Math.PI*2); ctx.fill();
+            ctx.beginPath(); ctx.arc(lKneeX, lKneeY, 3, 0, Math.PI*2); ctx.fill();
+            ctx.beginPath(); ctx.arc(rKneeX, rKneeY, 3, 0, Math.PI*2); ctx.fill();
         }
 
-        function loop() {
-            drawSkeleton();
-            requestAnimationFrame(loop);
+        function gameLoop() {
+            drawBipedalSkeleton();
+            requestAnimationFrame(gameLoop);
         }
-        loop();
+        gameLoop();
     </script>
 </body>
 </html>
