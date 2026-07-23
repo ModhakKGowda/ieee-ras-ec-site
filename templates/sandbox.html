@@ -3,117 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2D Kinematic Robot Game | IEEE RAS EC</title>
+    <title>Bipedal Skeleton Kinematics Lab | IEEE RAS EC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0B0F19; color: #FFFFFF; }
-        canvas { background-color: #111827; border: 2px solid #374151; }
+        body { background-color: #080B11; color: #FFFFFF; }
+        canvas { background: #0F172A; border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-between p-6">
+<body class="min-h-screen flex flex-col justify-between p-6">
 
-    <header class="w-full max-w-4xl flex items-center justify-between mb-6">
-        <a href="/" class="text-xl font-bold text-blue-400 hover:underline">&larr; Back to Main Site</a>
-        <h1 class="text-2xl font-extrabold text-yellow-500">🤖 Robo-Sandbox Simulation</h1>
+    <header class="w-full max-w-5xl mx-auto flex items-center justify-between mb-6">
+        <a href="/" class="text-sm font-semibold text-blue-400 hover:underline">&larr; Return to Main Site</a>
+        <h1 class="text-xl font-bold text-yellow-500">🤖 Bipedal Mechatronic Skeleton Simulator</h1>
     </header>
 
-    <main class="flex flex-col items-center gap-4">
-        <p class="text-gray-400 text-sm">Drive the robot rover using **W, A, S, D** or **Arrow Keys** to collect targets!</p>
-        
-        <canvas id="gameCanvas" width="600" height="400" class="rounded-lg shadow-xl"></canvas>
-        
-        <div class="flex items-center gap-8 text-sm font-semibold">
-            <div>Score: <span id="score" class="text-yellow-400 font-mono text-lg">0</span></div>
-            <div>Controls: <span class="text-blue-400 font-mono">WASD / Arrow Keys</span></div>
+    <main class="flex-1 flex flex-col items-center justify-center">
+        <canvas id="simCanvas" width="800" height="450" class="rounded-2xl shadow-2xl mb-4"></canvas>
+        <div class="flex items-center gap-6 text-xs text-gray-400">
+            <div>Drive Controls: <span class="text-yellow-400 font-mono font-bold">A / D or Left/Right Arrow</span></div>
+            <div>Joint Actuation: <span class="text-blue-400 font-mono font-bold">W / S</span></div>
         </div>
     </main>
 
-    <footer class="mt-8 text-xs text-gray-600">
-        IEEE RAS PESU EC Chapter Interactive Lab
+    <footer class="text-center text-xs text-gray-600">
+        IEEE RAS PES University EC Campus — Robotics Sandbox
     </footer>
 
     <script>
-        const canvas = document.getElementById('gameCanvas');
+        const canvas = document.getElementById('simCanvas');
         const ctx = canvas.getContext('2d');
-        const scoreEl = document.getElementById('score');
 
-        let robot = { x: 300, y: 200, radius: 15, angle: 0, speed: 0 };
-        let target = { x: 100, y: 100, radius: 10 };
-        let score = 0;
+        let botX = 400;
+        let walkCycle = 0;
         let keys = {};
 
         window.addEventListener('keydown', e => keys[e.key] = true);
         window.addEventListener('keyup', e => keys[e.key] = false);
 
-        function resetTarget() {
-            target.x = Math.random() * (canvas.width - 40) + 20;
-            target.y = Math.random() * (canvas.height - 40) + 20;
-        }
-
-        function update() {
-            if (keys['w'] || keys['W'] || keys['ArrowUp']) robot.speed = 3;
-            else if (keys['s'] || keys['S'] || keys['ArrowDown']) robot.speed = -2;
-            else robot.speed = 0;
-
-            if (keys['a'] || keys['A'] || keys['ArrowLeft']) robot.angle -= 0.05;
-            if (keys['d'] || keys['D'] || keys['ArrowRight']) robot.angle += 0.05;
-
-            robot.x += Math.cos(robot.angle) * robot.speed;
-            robot.y += Math.sin(robot.angle) * robot.speed;
-
-            // Boundaries
-            robot.x = Math.max(15, Math.min(canvas.width - 15, robot.x));
-            robot.y = Math.max(15, Math.min(canvas.height - 15, robot.y));
-
-            // Collision Check
-            let dx = robot.x - target.x;
-            let dy = robot.y - target.y;
-            let dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < robot.radius + target.radius) {
-                score += 10;
-                scoreEl.textContent = score;
-                resetTarget();
-            }
-        }
-
-        function draw() {
+        function drawSkeleton() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Target
-            ctx.fillStyle = '#F59E0B';
+            // Floor
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.arc(target.x, target.y, target.radius, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Robot Body
-            ctx.save();
-            ctx.translate(robot.x, robot.y);
-            ctx.rotate(robot.angle);
-
-            ctx.fillStyle = '#3B82F6';
-            ctx.beginPath();
-            ctx.arc(0, 0, robot.radius, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Heading Pointer
-            ctx.strokeStyle = '#FFFFFF';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(0, 0);
-            ctx.lineTo(20, 0);
+            ctx.moveTo(0, 380);
+            ctx.lineTo(800, 380);
             ctx.stroke();
 
-            ctx.restore();
+            // Movement logic
+            if (keys['a'] || keys['A'] || keys['ArrowLeft']) { botX -= 2; walkCycle += 0.1; }
+            if (keys['d'] || keys['D'] || keys['ArrowRight']) { botX += 2; walkCycle += 0.1; }
+
+            const hipY = 260 + Math.sin(walkCycle * 2) * 3;
+            const leftLegAngle = Math.sin(walkCycle) * 0.5;
+            const rightLegAngle = -Math.sin(walkCycle) * 0.5;
+
+            ctx.strokeStyle = '#3B82F6';
+            ctx.lineWidth = 4;
+
+            // Torso
+            ctx.beginPath();
+            ctx.moveTo(botX, hipY);
+            ctx.lineTo(botX, hipY - 70);
+            ctx.stroke();
+
+            // Head / Sensor Node
+            ctx.fillStyle = '#F59E0B';
+            ctx.beginPath();
+            ctx.arc(botX, hipY - 85, 12, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Left Leg Kinematics
+            let lKneeX = botX + Math.sin(leftLegAngle) * 40;
+            let lKneeY = hipY + Math.cos(leftLegAngle) * 40;
+            ctx.beginPath();
+            ctx.moveTo(botX, hipY);
+            ctx.lineTo(lKneeX, lKneeY);
+            ctx.lineTo(lKneeX + Math.sin(leftLegAngle + 0.3) * 40, 380);
+            ctx.stroke();
+
+            // Right Leg Kinematics
+            let rKneeX = botX + Math.sin(rightLegAngle) * 40;
+            let rKneeY = hipY + Math.cos(rightLegAngle) * 40;
+            ctx.strokeStyle = '#60A5FA';
+            ctx.beginPath();
+            ctx.moveTo(botX, hipY);
+            ctx.lineTo(rKneeX, rKneeY);
+            ctx.lineTo(rKneeX + Math.sin(rightLegAngle + 0.3) * 40, 380);
+            ctx.stroke();
         }
 
-        function gameLoop() {
-            update();
-            draw();
-            requestAnimationFrame(gameLoop);
+        function loop() {
+            drawSkeleton();
+            requestAnimationFrame(loop);
         }
-
-        gameLoop();
+        loop();
     </script>
 </body>
 </html>
