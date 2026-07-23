@@ -1,18 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events | IEEE RAS PESU EC</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>body { background-color: #080B11; color: #FFFFFF; }</style>
+    <title>Events | IEEE RAS EC Campus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Theme Variables */
+        :root[data-theme="dark"] {
+            --bg-base: #020306;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --text-card-body: #cbd5e1;
+            --card-bg: rgba(6, 9, 20, 0.85);
+            --card-border: rgba(0, 245, 255, 0.15);
+            --card-shadow: rgba(0,0,0,0.6);
+            --accent-glow: #00f5ff;
+            --particle-color: rgba(0, 245, 255, 0.35);
+        }
+        :root[data-theme="light"] {
+            --bg-base: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --text-card-body: #334155;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(0, 180, 216, 0.25);
+            --card-shadow: rgba(148, 163, 184, 0.15);
+            --accent-glow: #00b4d8;
+            --particle-color: rgba(0, 180, 216, 0.45);
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: var(--bg-base);
+            transition: background 0.4s ease;
+        }
+        .panoramic-wrapper {
+            width: 100%;
+            max-width: 1400px;
+            margin: 8rem auto 4rem auto;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        .header-centered-block {
+            text-align: center; /* Maintained explicitly centered */
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+        }
+        .panoramic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+        }
+        .panoramic-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .panoramic-card:hover {
+            transform: scale(1.02) translateY(-4px);
+            border-color: var(--accent-glow);
+        }
+        .glow-bar {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, #00b4d8, var(--accent-glow));
+        }
+
+        .theme-toggle-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--accent-glow);
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            box-shadow: 0 10px 25px var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between p-6">
-    <div class="max-w-4xl mx-auto w-full">
-        <a href="/" class="text-blue-400 hover:underline">&larr; Back to Home</a>
-        <h1 class="text-3xl font-extrabold text-yellow-500 mt-6 mb-4">Workshops & Events</h1>
-        <p class="text-gray-300">Stay tuned for upcoming hackathons, hardware bootcamps, and industrial mentorship sessions!</p>
+<body style="color: var(--text-main); overflow-x: hidden; transition: color 0.4s ease;">
+
+    <canvas id="bg-canvas"></canvas>
+
+    <button class="theme-toggle-btn" id="themeBtn" onclick="toggleTheme()">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <header class="navbar">
+        <div class="logo-wrapper">
+            <div class="logo-container">
+                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" class="logo-img-ras">
+                <div class="logo-divider"></div>
+                <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" class="logo-img-pes">
+            </div>
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/events" class="active">Events</a>
+            <a href="/team">Team</a>
+        </nav>
+    </header>
+
+    <div class="panoramic-wrapper">
+        <div class="header-centered-block">
+            <h2 class="section-title" style="margin: 0; font-size: 3rem; font-weight: 800; letter-spacing: -1px;">Initiatives & Events</h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 1rem; line-height: 1.6;">Explore upcoming tech challenges, structured engineering bootcamps, and full-stack mechanical hackathons hosted across campus.</p>
+        </div>
+
+        <div class="panoramic-grid">
+            <div class="panoramic-card">
+                <div class="glow-bar"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <span style="background: rgba(0,245,255,0.1); color: var(--accent-glow); padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; border: 1px solid var(--card-border);">HARDWARE RUNTIME</span>
+                    <i class="fa-solid fa-microchip" style="color: var(--accent-glow); font-size: 1.5rem;"></i>
+                </div>
+                <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem;">Hands-on Arduino Bootcamp</h3>
+                <p style="color: var(--accent-glow); font-size: 0.9rem; margin-bottom: 1.5rem;"><i class="fa-regular fa-calendar-check"></i> Registration Active</p>
+                <p style="color: var(--text-card-body); font-size: 1rem; line-height: 1.7; margin: 0;">
+                    An immersive engineering sprint where you write microcontrollers code, route real-time sensors, and wire up motors to design direct robotic mechanisms.
+                </p>
+            </div>
+
+            <div class="panoramic-card">
+                <div class="glow-bar"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <span style="background: rgba(0,180,216,0.1); color: #00b4d8; padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; border: 1px solid var(--card-border);">DESIGN SPRINT</span>
+                    <i class="fa-solid fa-lightbulb" style="color: #00b4d8; font-size: 1.5rem;"></i>
+                </div>
+                <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem;">EC Campus Ideathon</h3>
+                <p style="color: #00b4d8; font-size: 0.9rem; margin-bottom: 1.5rem;"><i class="fa-regular fa-clock"></i> Commencing Phase 1</p>
+                <p style="color: var(--text-card-body); font-size: 1rem; line-height: 1.7; margin: 0;">
+                    Pitch, construct, and compete! Frame creative structural blueprints solving industrial robotics, automation tracking, and mechanical control tasks.
+                </p>
+            </div>
+        </div>
     </div>
-    <footer class="text-center text-xs text-gray-600 py-4">&copy; 2026 IEEE RAS PESU EC</footer>
+
+    <script>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('ras-theme', newTheme);
+            
+            document.getElementById('themeBtn').innerHTML = newTheme === 'dark' 
+                ? '<i class="fa-solid fa-moon"></i>' 
+                : '<i class="fa-solid fa-sun"></i>';
+        }
+        
+        const savedTheme = localStorage.getItem('ras-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.getElementById('themeBtn').innerHTML = savedTheme === 'dark' 
+            ? '<i class="fa-solid fa-moon"></i>' 
+            : '<i class="fa-solid fa-sun"></i>';
+
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let vortexParticles = [];
+        let mouse = { x: -500, y: -500 };
+
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        resize();
+
+        for(let i=0; i<150; i++) {
+            vortexParticles.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                speed: Math.random() * 0.5 + 0.2,
+                size: Math.random() * 1.5 + 1
+            });
+        }
+
+        function runSystem() {
+            // Get live colors from computed styles
+            const styles = getComputedStyle(document.documentElement);
+            let particleColor = styles.getPropertyValue('--particle-color').trim();
+            let baseBg = styles.getAttribute ? '' : styles.getPropertyValue('--bg-base').trim();
+
+            ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'dark' 
+                ? 'rgba(2, 3, 6, 0.15)' 
+                : 'rgba(248, 250, 252, 0.15)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            vortexParticles.forEach(p => {
+                p.y -= p.speed;
+                if(p.y < 0) p.y = canvas.height;
+
+                let dist = Math.hypot(mouse.x - p.x, mouse.y - p.y);
+                let currentX = p.x;
+                if(dist < 200) {
+                    let push = (200 - dist) * 0.08;
+                    currentX += Math.cos(Math.atan2(p.y - mouse.y, p.x - mouse.x)) * push;
+                }
+
+                ctx.fillStyle = particleColor;
+                ctx.beginPath(); ctx.arc(currentX, p.y, p.size, 0, Math.PI*2); ctx.fill();
+            });
+
+            requestAnimationFrame(runSystem);
+        }
+        runSystem();
+    </script>
 </body>
 </html>
