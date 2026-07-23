@@ -11,9 +11,24 @@ html {
 
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #0b1120; /* Beautiful Deep Dark Blue restored */
-    color: #e2e8f0;           /* Clean text for dark mode readability */
+    color: #e2e8f0;
     line-height: 1.6;
+    
+    /* Interactive Deep Space Robotics Background */
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(147, 51, 234, 0.12) 0%, transparent 45%),
+        linear-gradient(135deg, #070b14 0%, #0b1120 50%, #020617 100%);
+    
+    background-attachment: fixed; /* This makes the background move beautifully on scroll */
+    background-size: 200% 200%;
+    animation: backgroundShift 25s ease infinite alternate;
+}
+
+/* Add this keyframe block anywhere in your file to power the background animation */
+@keyframes backgroundShift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
 }
 
 /* Color Variables */
@@ -25,45 +40,51 @@ body {
     --text-muted: #94a3b8;     
 }
 
-/* Navbar Layout - RESTORED TO PREMIUM MATCHING DARK BLUE */
+/* Navbar Layout - Blends flawlessly into the new background */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
-    background: rgba(11, 17, 32, 0.9); /* Blends smoothly with the #0b1120 body */
-    backdrop-filter: blur(12px);
+    padding: 0.75rem 5%;
+    background: rgba(11, 17, 32, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Flex Container for the Logos */
+/* Clean White Badge Box surrounding the logos */
+.logo-wrapper {
+    background: #ffffff;      
+    padding: 0.45rem 1.2rem;
+    border-radius: 10px;       
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1.2rem;
 }
 
-/* Logo Image Dimensions Constraints */
+/* HIGH-DEFINITION IMAGE TUNING (Maintains original brand colors perfectly) */
 .logo-img {
-    height: 36px;          
+    height: 34px;          
     width: auto;           
     object-fit: contain;
+    image-rendering: -webkit-optimize-contrast; /* Strips out browser blur */
+    image-rendering: crisp-edges;
+    filter: contrast(1.05) brightness(1.02);    /* Sharpens up clarity natively */
 }
 
-/* Magic Filter: Strips the hardcoded white boxes out and makes graphic contents clear on dark themes */
-.logo-darkmode-fix {
-    mix-blend-mode: screen; 
-    filter: brightness(1.5) contrast(1.2);
-}
-
-/* Light divider line for dark background theme */
 .logo-divider {
     width: 1px;
-    height: 22px;
-    background-color: rgba(255, 255, 255, 0.2);
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
 /* Navbar Links calibrated for dark blue visibility */
