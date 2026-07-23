@@ -18,15 +18,6 @@
             --accent-glow: #00f5ff;
             --sandbox-panel: #060b1e;
         }
-        :root[data-theme="light"] {
-            --bg-base: #f1f5f9;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --card-border: rgba(0, 180, 216, 0.2);
-            --accent-glow: #00b4d8;
-            --sandbox-panel: #e2e8f0;
-        }
 
         body {
             background-color: var(--bg-base);
@@ -36,20 +27,9 @@
         }
 
         .sandbox-wrapper {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 7rem auto 4rem auto;
             padding: 0 2rem;
-        }
-
-        .sandbox-grid {
-            display: grid;
-            grid-template-columns: 1.8fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 900px) {
-            .sandbox-grid { grid-template-columns: 1fr; }
         }
 
         .arcade-cabinet {
@@ -57,20 +37,26 @@
             border: 2px solid var(--card-border);
             border-radius: 24px;
             padding: 1.5rem;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            margin-top: 2rem;
         }
 
         .game-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .score-board {
             font-family: 'Fira Code', monospace;
             font-weight: 700;
+            font-size: 1.2rem;
             color: var(--accent-glow);
+            background: rgba(0, 245, 255, 0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 245, 255, 0.2);
         }
 
         #gameCanvas {
@@ -78,44 +64,39 @@
             border-radius: 16px;
             width: 100%;
             display: block;
-            border: 1px solid var(--card-border);
+            border: 2px solid var(--card-border);
             cursor: pointer;
         }
 
-        .console-panel {
-            background: #02040a;
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            height: 320px;
-        }
-
-        .console-logs {
-            flex-grow: 1;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            color: #39ff14;
-            overflow-y: auto;
-        }
-
-        .controls-card {
+        .legend-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 16px;
-            padding: 1rem;
-            margin-top: 1rem;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
             text-align: center;
         }
 
-        .keycap {
-            background: var(--sandbox-panel);
-            border: 1px solid var(--card-border);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-family: 'Fira Code', monospace;
-            color: var(--accent-glow);
+        @media (max-width: 768px) {
+            .legend-card { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .legend-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            margin-bottom: 0.4rem;
         }
     </style>
 </head>
@@ -138,31 +119,35 @@
 
     <div class="sandbox-wrapper">
         <div>
-            <h2 style="font-size: 2.5rem; font-weight: 800; margin: 0;">RAS Engineering Sandbox</h2>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">Test the autonomous Rover navigation engine.</p>
+            <h2 style="font-size: 2.6rem; font-weight: 800; margin: 0; background: linear-gradient(45deg, #fff, var(--accent-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">IEEE RAS Hardware Simulator</h2>
+            <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.05rem;">Guide the mechanical android safely through the path while avoiding incoming electrical components.</p>
         </div>
 
-        <div class="sandbox-grid">
-            <div>
-                <div class="arcade-cabinet">
-                    <div class="game-header">
-                        <span><i class="fa-solid fa-gamepad"></i> Simulation Active</span>
-                        <div class="score-board">Score: <span id="currentScore">0000</span></div>
-                    </div>
-                    <canvas id="gameCanvas" width="700" height="230"></canvas>
-                </div>
-                <div class="controls-card">
-                    <span>Press <span class="keycap">SPACEBAR</span> or <span class="keycap">Click Canvas</span> to Jump Over Obstacles</span>
-                </div>
+        <div class="arcade-cabinet">
+            <div class="game-header">
+                <span style="font-weight: 600; letter-spacing: 0.5px; color: var(--text-muted);"><i class="fa-solid fa-microchip" style="color: var(--accent-glow);"></i> Live Kinematic Engine</span>
+                <div class="score-board">Score: <span id="currentScore">0000</span></div>
             </div>
+            
+            <canvas id="gameCanvas" width="800" height="260"></canvas>
+        </div>
 
-            <div class="console-panel">
-                <div style="font-family: 'Fira Code', monospace; font-size: 0.85rem; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem; color: var(--text-muted);">
-                    <i class="fa-solid fa-terminal"></i> system_telemetry.log
-                </div>
-                <div class="console-logs" id="consoleLogs">
-                    <div>>> [SYSTEM]: Telemetry online. Awaiting deployment...</div>
-                </div>
+        <div class="legend-card">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ff5e62;"></div>
+                <strong>Resistor Hazard</strong>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ffb347;"></div>
+                <strong>Capacitor Hazard</strong>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #4facfe;"></div>
+                <strong>IC Microchip</strong>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #00ffd2;"></div>
+                <strong>DC Battery Cell</strong>
             </div>
         </div>
     </div>
@@ -170,27 +155,38 @@
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
-        const consoleLogs = document.getElementById('consoleLogs');
 
-        const rover = { x: 60, y: 170, width: 40, height: 30, gravity: 0.6, jumpForce: -11, velocity: 0, isJumping: false };
+        // Bipedal Robot Properties
+        const robot = {
+            x: 80,
+            y: 160,
+            width: 35,
+            height: 50,
+            gravity: 0.6,
+            jumpForce: -12.5,
+            velocity: 0,
+            isJumping: false,
+            animCycle: 0
+        };
+
+        // Electrical Components Inventory
+        const componentTypes = [
+            { type: 'resistor', color: '#ff5e62', width: 35, height: 18 },
+            { type: 'capacitor', color: '#ffb347', width: 22, height: 32 },
+            { type: 'ic_chip', color: '#4facfe', width: 32, height: 24 },
+            { type: 'battery', color: '#00ffd2', width: 20, height: 36 }
+        ];
+
         let obstacles = [];
         let score = 0;
         let isGameOver = false;
-        let gameSpeed = 5;
+        let gameSpeed = 6;
         let spawnTimer = 0;
 
-        function addLog(msg) {
-            const entry = document.createElement('div');
-            entry.textContent = `>> ${msg}`;
-            consoleLogs.appendChild(entry);
-            consoleLogs.scrollTop = consoleLogs.scrollHeight;
-        }
-
         function jump() {
-            if (!rover.isJumping && !isGameOver) {
-                rover.velocity = rover.jumpForce;
-                rover.isJumping = true;
-                addLog("rover_action: EXECUTE_JUMP");
+            if (!robot.isJumping && !isGameOver) {
+                robot.velocity = robot.jumpForce;
+                robot.isJumping = true;
             } else if (isGameOver) {
                 reset();
             }
@@ -202,59 +198,164 @@
         function reset() {
             obstacles = [];
             score = 0;
-            gameSpeed = 5;
-            rover.y = 170;
+            gameSpeed = 6;
+            robot.y = 160;
+            robot.velocity = 0;
+            robot.isJumping = false;
             isGameOver = false;
-            addLog("SYSTEM: Diagnostics cleared. Core rebooted.");
+            document.getElementById('currentScore').textContent = "0000";
             loop();
+        }
+
+        // Draw Electrical Components Manually via Vector Canvas Paths
+        function drawElectricalComponent(ctx, x, y, spec) {
+            ctx.fillStyle = spec.color;
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1.5;
+
+            if (spec.type === 'resistor') {
+                // Outer leads
+                ctx.beginPath(); ctx.moveTo(x - 8, y + 9); ctx.lineTo(x + spec.width + 8, y + 9); ctx.stroke();
+                // Resistor body
+                ctx.fillRect(x, y, spec.width, spec.height);
+                // Band markers
+                ctx.fillStyle = 'rgba(0,0,0,0.3)';
+                ctx.fillRect(x + 6, y, 4, spec.height);
+                ctx.fillRect(x + 14, y, 4, spec.height);
+                ctx.fillRect(x + 22, y, 4, spec.height);
+            } 
+            else if (spec.type === 'capacitor') {
+                // Base capacitor body
+                ctx.fillRect(x, y + 4, spec.width, spec.height - 4);
+                // Top terminal metallic plate
+                ctx.fillStyle = '#e2e8f0';
+                ctx.fillRect(x + 2, y, spec.width - 4, 4);
+                // Down leads
+                ctx.beginPath(); ctx.moveTo(x + 6, y + spec.height); ctx.lineTo(x + 6, y + spec.height + 6);
+                ctx.moveTo(x + spec.width - 6, y + spec.height); ctx.lineTo(x + spec.width - 6, y + spec.height + 6);
+                ctx.stroke();
+            } 
+            else if (spec.type === 'ic_chip') {
+                // Main silicon package
+                ctx.fillRect(x, y, spec.width, spec.height);
+                // Microchip pin connectors
+                ctx.fillStyle = '#e2e8f0';
+                for (let i = 2; i < spec.width; i += 8) {
+                    ctx.fillRect(x + i, y - 4, 4, 4); // Top pins
+                    ctx.fillRect(x + i, y + spec.height, 4, 4); // Bottom pins
+                }
+            } 
+            else if (spec.type === 'battery') {
+                // Cylindrical container
+                ctx.fillRect(x, y + 5, spec.width, spec.height - 5);
+                // Positive terminal nodule
+                ctx.fillStyle = '#e2e8f0';
+                ctx.fillRect(x + (spec.width/2) - 3, y, 6, 5);
+            }
         }
 
         function loop() {
             if (isGameOver) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Ground line
-            ctx.strokeStyle = "#475569";
-            ctx.beginPath(); ctx.moveTo(0, 200); ctx.lineTo(canvas.width, 200); ctx.stroke();
+            // Floor Track
+            ctx.strokeStyle = "#1e293b";
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(0, 210); ctx.lineTo(canvas.width, 210); ctx.stroke();
 
-            // Physics
-            rover.velocity += rover.gravity;
-            rover.y += rover.velocity;
-            if (rover.y > 170) { rover.y = 170; rover.velocity = 0; rover.isJumping = false; }
+            // Physics processing
+            robot.velocity += robot.gravity;
+            robot.y += robot.velocity;
+            if (robot.y > 160) { robot.y = 160; robot.velocity = 0; robot.isJumping = false; }
 
-            // Draw Rover
-            ctx.fillStyle = "#00f5ff";
-            ctx.fillRect(rover.x, rover.y, rover.width, rover.height);
+            // Increment movement animation cycles
+            if (!robot.isJumping) robot.animCycle += 0.2;
 
-            // Spawn Obstacles
+            // --- ANIMATED ANDROID ROBOT DRAWING ENGINE ---
+            const rx = robot.x;
+            const ry = robot.y;
+            
+            // Kinetic Leg Motions (Trigonometric oscillations)
+            let leftLegOffset = Math.sin(robot.animCycle) * 10;
+            let rightLegOffset = Math.cos(robot.animCycle) * 10;
+            if (robot.isJumping) { leftLegOffset = 5; rightLegOffset = -5; }
+
+            ctx.strokeStyle = '#64748b';
+            ctx.lineWidth = 4;
+            // Left Leg
+            ctx.beginPath(); ctx.moveTo(rx + 10, ry + 35); ctx.lineTo(rx + 8 + leftLegOffset, ry + 50); ctx.stroke();
+            // Right Leg
+            ctx.beginPath(); ctx.moveTo(rx + 25, ry + 35); ctx.lineTo(rx + 27 + rightLegOffset, ry + 50); ctx.stroke();
+
+            // Kinetic Arm Motions
+            let armSwing = Math.sin(robot.animCycle) * 8;
+            if (robot.isJumping) armSwing = -12;
+            // Back Arm
+            ctx.strokeStyle = '#475569';
+            ctx.beginPath(); ctx.moveTo(rx + 8, ry + 15); ctx.lineTo(rx + 2 - armSwing, ry + 28); ctx.stroke();
+
+            // Main Metal Chassis Body
+            ctx.fillStyle = '#94a3b8';
+            ctx.fillRect(rx, ry + 10, robot.width, 26);
+            ctx.fillStyle = varColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-glow').trim();
+            ctx.fillRect(rx + 6, ry + 16, robot.width - 12, 14); // Glowing Core chestplate
+
+            // Mechanical Neck & Head
+            ctx.fillStyle = '#64748b';
+            ctx.fillRect(rx + (robot.width/2) - 4, ry + 6, 8, 5); // Neck
+            ctx.fillStyle = '#cbd5e1';
+            ctx.fillRect(rx + (robot.width/2) - 10, ry - 8, 20, 15); // Head Capsule
+            ctx.fillStyle = '#39ff14';
+            ctx.fillRect(rx + (robot.width/2) + 2, ry - 3, 6, 4); // Neon Visor eye
+
+            // Front Arm
+            ctx.strokeStyle = '#94a3b8';
+            ctx.beginPath(); ctx.moveTo(rx + 28, ry + 15); ctx.lineTo(rx + 34 + armSwing, ry + 28); ctx.stroke();
+
+            // --- SPARK & HAZARD GENERATION ---
             spawnTimer++;
-            if (spawnTimer > 90) {
-                obstacles.push({ x: canvas.width, y: 170, width: 20, height: 30 });
+            if (spawnTimer > Math.max(50, 100 - score / 5)) {
+                let randSpec = componentTypes[Math.floor(Math.random() * componentTypes.length)];
+                obstacles.push({
+                    x: canvas.width,
+                    y: 210 - randSpec.height,
+                    width: randSpec.width,
+                    height: randSpec.height,
+                    color: randSpec.color,
+                    type: randSpec.type
+                });
                 spawnTimer = 0;
             }
 
-            // Move Obstacles
+            // Loop and collision mapping
             for (let i = obstacles.length - 1; i >= 0; i--) {
-                obstacles[i].x -= gameSpeed;
-                ctx.fillStyle = "#ff9500";
-                ctx.fillRect(obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height);
+                let o = obstacles[i];
+                o.x -= gameSpeed;
 
-                // Collision
-                if (rover.x < obstacles[i].x + obstacles[i].width && rover.x + rover.width > obstacles[i].x &&
-                    rover.y < obstacles[i].y + obstacles[i].height && rover.y + rover.height > obstacles[i].y) {
+                drawElectricalComponent(ctx, o.x, o.y, o);
+
+                // Precise Hitbox Mapping
+                if (rx < o.x + o.width && rx + robot.width > o.x &&
+                    ry < o.y + o.height && ry + robot.height > o.y) {
                     isGameOver = true;
-                    addLog("CRITICAL: Collision detected. Execution paused.");
-                    ctx.fillStyle = "rgba(0,0,0,0.8)";
-                    ctx.fillRect(0,0,canvas.width,canvas.height);
-                    ctx.fillStyle = "#ff3b30";
-                    ctx.font = "bold 20px sans-serif";
-                    ctx.fillText("SIMULATION CRASHED - Click to Retry", canvas.width/2 - 160, canvas.height/2);
+                    
+                    // Render Game Over Overlays
+                    ctx.fillStyle = "rgba(3, 5, 13, 0.85)";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = "#ff5e62";
+                    ctx.font = "bold 22px 'Plus Jakarta Sans', sans-serif";
+                    ctx.textAlign = "center";
+                    ctx.fillText("HARDWARE SHORT CIRCUIT DETECTED", canvas.width/2, canvas.height/2 - 10);
+                    ctx.fillStyle = "#ffffff";
+                    ctx.font = "14px 'Fira Code', monospace";
+                    ctx.fillText("Press Spacebar or Click Screen to Deploy New Unit", canvas.width/2, canvas.height/2 + 25);
                 }
 
-                if (obstacles[i].x + obstacles[i].width < 0) {
+                if (o.x + o.width < 0) {
                     obstacles.splice(i, 1);
                     score += 10;
                     document.getElementById('currentScore').textContent = String(score).padStart(4, '0');
+                    if (score % 100 === 0) gameSpeed += 0.6;
                 }
             }
             requestAnimationFrame(loop);
