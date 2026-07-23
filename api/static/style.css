@@ -9,60 +9,66 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Core Page Canvas Configuration */
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #e2e8f0;
+    color: #cbd5e1; /* Smooth light gray body text instead of harsh stark white */
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
     
-    /* Interactive Deep Space Robotics Background */
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(147, 51, 234, 0.12) 0%, transparent 45%),
-        linear-gradient(135deg, #070b14 0%, #0b1120 50%, #020617 100%);
-    
-    background-attachment: fixed; /* This makes the background move beautifully on scroll */
-    background-size: 200% 200%;
-    animation: backgroundShift 25s ease infinite alternate;
+    /* True Dynamic Parallax Tech Scroll Canvas */
+    background: linear-gradient(180deg, #070a13 0%, #0b1528 40%, #030712 100%);
+    background-attachment: scroll; /* Keeps background relative to page content flow */
+    background-size: 100% 100%;
 }
 
-/* Add this keyframe block anywhere in your file to power the background animation */
-@keyframes backgroundShift {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
+/* Enhancing Typography: Headings are no longer plain flat white */
+h1, h2, .section-title {
+    color: #ffffff;
+    background: linear-gradient(135deg, #ffffff 30%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: -0.5px;
 }
 
-/* Color Variables */
-:root {
-    --primary: #2563eb;       
-    --accent: #1d4ed8;
-    --brand-gold: #f59e0b;     
-    --surface: #1e293b;       
-    --text-muted: #94a3b8;     
+/* Card titles inside the team section */
+.card-title {
+    color: #f8fafc;
+    margin-top: 1rem;
+    font-size: 1.25rem;
 }
 
-/* Navbar Layout - Blends flawlessly into the new background */
+.role {
+    color: #60a5fa; /* Electric blue accent text for structural hierarchy */
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Navbar Container styling */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 5%;
-    background: rgba(11, 17, 32, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(7, 10, 19, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Clean White Badge Box surrounding the logos */
+/* Safe White Container for Logo Assets */
 .logo-wrapper {
     background: #ffffff;      
     padding: 0.45rem 1.2rem;
-    border-radius: 10px;       
+    border-radius: 8px;       
     display: flex;
     align-items: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .logo-container {
@@ -71,31 +77,24 @@ body {
     gap: 1.2rem;
 }
 
-/* HIGH-DEFINITION IMAGE TUNING (Maintains original brand colors perfectly) */
+/* High Definition Clarity Rules for Images */
 .logo-img {
-    height: 34px;          
+    height: 32px;          
     width: auto;           
     object-fit: contain;
-    image-rendering: -webkit-optimize-contrast; /* Strips out browser blur */
-    image-rendering: crisp-edges;
-    filter: contrast(1.05) brightness(1.02);    /* Sharpens up clarity natively */
+    image-rendering: -webkit-optimize-contrast;
+    filter: contrast(1.05) brightness(1.02);
 }
 
 .logo-divider {
     width: 1px;
-    height: 20px;
+    height: 18px;
     background-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Navbar Links calibrated for dark blue visibility */
-.navbar nav {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
+/* Nav Menu Typography Configuration */
 .navbar nav a {
-    color: var(--text-muted);
+    color: #94a3b8;   
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
@@ -103,18 +102,17 @@ body {
 }
 
 .navbar nav a:hover {
-    color: #ffffff;          
+    color: #3b82f6; /* Hover color changes to matching tech blue */
 }
 
-/* Join Button adjustments for dark layout navbar */
+/* Button UI */
 .btn-nav {
-    background: rgba(37, 99, 235, 0.1);
+    background: rgba(37, 99, 235, 0.15);
     color: #3b82f6 !important; 
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
     border: 1px solid rgba(37, 99, 235, 0.3);
 }
-
 /* Hero Section Styles */
 .hero {
     min-height: 85vh;
