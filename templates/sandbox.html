@@ -1,366 +1,119 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robo-Sandbox | IEEE RAS</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>2D Kinematic Robot Game | IEEE RAS EC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root[data-theme="dark"] {
-            --bg-base: #03050d;
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --card-bg: rgba(10, 16, 36, 0.75);
-            --card-border: rgba(0, 245, 255, 0.15);
-            --accent-glow: #00f5ff;
-            --sandbox-panel: #060b1e;
-        }
-
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            margin: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        .sandbox-wrapper {
-            max-width: 1000px;
-            margin: 7rem auto 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .arcade-cabinet {
-            background: var(--card-bg);
-            border: 2px solid var(--card-border);
-            border-radius: 24px;
-            padding: 1.5rem;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-            margin-top: 2rem;
-        }
-
-        .game-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .score-board {
-            font-family: 'Fira Code', monospace;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--accent-glow);
-            background: rgba(0, 245, 255, 0.1);
-            padding: 0.4rem 1rem;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 245, 255, 0.2);
-        }
-
-        #gameCanvas {
-            background: var(--sandbox-panel);
-            border-radius: 16px;
-            width: 100%;
-            display: block;
-            border: 2px solid var(--card-border);
-            cursor: pointer;
-        }
-
-        .legend-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 1.2rem;
-            margin-top: 1.5rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .legend-card { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        .legend-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .legend-color {
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
-            margin-bottom: 0.4rem;
-        }
+        body { background-color: #0B0F19; color: #FFFFFF; }
+        canvas { background-color: #111827; border: 2px solid #374151; }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col items-center justify-between p-6">
 
-    <header class="navbar">
-        <div class="logo-wrapper">
-            <div class="logo-container">
-                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" class="logo-img-ras" alt="IEEE RAS Logo">
-            </div>
-        </div>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/events">Events</a>
-            <a href="/team">Team</a>
-            <a href="/sandbox" class="active">Sandbox</a>
-        </nav>
+    <header class="w-full max-w-4xl flex items-center justify-between mb-6">
+        <a href="/" class="text-xl font-bold text-blue-400 hover:underline">&larr; Back to Main Site</a>
+        <h1 class="text-2xl font-extrabold text-yellow-500">🤖 Robo-Sandbox Simulation</h1>
     </header>
 
-    <div class="sandbox-wrapper">
-        <div>
-            <h2 style="font-size: 2.6rem; font-weight: 800; margin: 0; background: linear-gradient(45deg, #fff, var(--accent-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">IEEE RAS Hardware Simulator</h2>
-            <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.05rem;">Guide the mechanical android safely through the path while avoiding incoming electrical components.</p>
+    <main class="flex flex-col items-center gap-4">
+        <p class="text-gray-400 text-sm">Drive the robot rover using **W, A, S, D** or **Arrow Keys** to collect targets!</p>
+        
+        <canvas id="gameCanvas" width="600" height="400" class="rounded-lg shadow-xl"></canvas>
+        
+        <div class="flex items-center gap-8 text-sm font-semibold">
+            <div>Score: <span id="score" class="text-yellow-400 font-mono text-lg">0</span></div>
+            <div>Controls: <span class="text-blue-400 font-mono">WASD / Arrow Keys</span></div>
         </div>
+    </main>
 
-        <div class="arcade-cabinet">
-            <div class="game-header">
-                <span style="font-weight: 600; letter-spacing: 0.5px; color: var(--text-muted);"><i class="fa-solid fa-microchip" style="color: var(--accent-glow);"></i> Live Kinematic Engine</span>
-                <div class="score-board">Score: <span id="currentScore">0000</span></div>
-            </div>
-            
-            <canvas id="gameCanvas" width="800" height="260"></canvas>
-        </div>
-
-        <div class="legend-card">
-            <div class="legend-item">
-                <div class="legend-color" style="background: #ff5e62;"></div>
-                <strong>Resistor Hazard</strong>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #ffb347;"></div>
-                <strong>Capacitor Hazard</strong>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #4facfe;"></div>
-                <strong>IC Microchip</strong>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #00ffd2;"></div>
-                <strong>DC Battery Cell</strong>
-            </div>
-        </div>
-    </div>
+    <footer class="mt-8 text-xs text-gray-600">
+        IEEE RAS PESU EC Chapter Interactive Lab
+    </footer>
 
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('score');
 
-        // Bipedal Robot Properties
-        const robot = {
-            x: 80,
-            y: 160,
-            width: 35,
-            height: 50,
-            gravity: 0.6,
-            jumpForce: -12.5,
-            velocity: 0,
-            isJumping: false,
-            animCycle: 0
-        };
-
-        // Electrical Components Inventory
-        const componentTypes = [
-            { type: 'resistor', color: '#ff5e62', width: 35, height: 18 },
-            { type: 'capacitor', color: '#ffb347', width: 22, height: 32 },
-            { type: 'ic_chip', color: '#4facfe', width: 32, height: 24 },
-            { type: 'battery', color: '#00ffd2', width: 20, height: 36 }
-        ];
-
-        let obstacles = [];
+        let robot = { x: 300, y: 200, radius: 15, angle: 0, speed: 0 };
+        let target = { x: 100, y: 100, radius: 10 };
         let score = 0;
-        let isGameOver = false;
-        let gameSpeed = 6;
-        let spawnTimer = 0;
+        let keys = {};
 
-        function jump() {
-            if (!robot.isJumping && !isGameOver) {
-                robot.velocity = robot.jumpForce;
-                robot.isJumping = true;
-            } else if (isGameOver) {
-                reset();
+        window.addEventListener('keydown', e => keys[e.key] = true);
+        window.addEventListener('keyup', e => keys[e.key] = false);
+
+        function resetTarget() {
+            target.x = Math.random() * (canvas.width - 40) + 20;
+            target.y = Math.random() * (canvas.height - 40) + 20;
+        }
+
+        function update() {
+            if (keys['w'] || keys['W'] || keys['ArrowUp']) robot.speed = 3;
+            else if (keys['s'] || keys['S'] || keys['ArrowDown']) robot.speed = -2;
+            else robot.speed = 0;
+
+            if (keys['a'] || keys['A'] || keys['ArrowLeft']) robot.angle -= 0.05;
+            if (keys['d'] || keys['D'] || keys['ArrowRight']) robot.angle += 0.05;
+
+            robot.x += Math.cos(robot.angle) * robot.speed;
+            robot.y += Math.sin(robot.angle) * robot.speed;
+
+            // Boundaries
+            robot.x = Math.max(15, Math.min(canvas.width - 15, robot.x));
+            robot.y = Math.max(15, Math.min(canvas.height - 15, robot.y));
+
+            // Collision Check
+            let dx = robot.x - target.x;
+            let dy = robot.y - target.y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < robot.radius + target.radius) {
+                score += 10;
+                scoreEl.textContent = score;
+                resetTarget();
             }
         }
 
-        window.addEventListener('keydown', (e) => { if (e.code === 'Space') { e.preventDefault(); jump(); } });
-        canvas.addEventListener('click', jump);
-
-        function reset() {
-            obstacles = [];
-            score = 0;
-            gameSpeed = 6;
-            robot.y = 160;
-            robot.velocity = 0;
-            robot.isJumping = false;
-            isGameOver = false;
-            document.getElementById('currentScore').textContent = "0000";
-            loop();
-        }
-
-        // Draw Electrical Components Manually via Vector Canvas Paths
-        function drawElectricalComponent(ctx, x, y, spec) {
-            ctx.fillStyle = spec.color;
-            ctx.strokeStyle = '#ffffff';
-            ctx.lineWidth = 1.5;
-
-            if (spec.type === 'resistor') {
-                // Outer leads
-                ctx.beginPath(); ctx.moveTo(x - 8, y + 9); ctx.lineTo(x + spec.width + 8, y + 9); ctx.stroke();
-                // Resistor body
-                ctx.fillRect(x, y, spec.width, spec.height);
-                // Band markers
-                ctx.fillStyle = 'rgba(0,0,0,0.3)';
-                ctx.fillRect(x + 6, y, 4, spec.height);
-                ctx.fillRect(x + 14, y, 4, spec.height);
-                ctx.fillRect(x + 22, y, 4, spec.height);
-            } 
-            else if (spec.type === 'capacitor') {
-                // Base capacitor body
-                ctx.fillRect(x, y + 4, spec.width, spec.height - 4);
-                // Top terminal metallic plate
-                ctx.fillStyle = '#e2e8f0';
-                ctx.fillRect(x + 2, y, spec.width - 4, 4);
-                // Down leads
-                ctx.beginPath(); ctx.moveTo(x + 6, y + spec.height); ctx.lineTo(x + 6, y + spec.height + 6);
-                ctx.moveTo(x + spec.width - 6, y + spec.height); ctx.lineTo(x + spec.width - 6, y + spec.height + 6);
-                ctx.stroke();
-            } 
-            else if (spec.type === 'ic_chip') {
-                // Main silicon package
-                ctx.fillRect(x, y, spec.width, spec.height);
-                // Microchip pin connectors
-                ctx.fillStyle = '#e2e8f0';
-                for (let i = 2; i < spec.width; i += 8) {
-                    ctx.fillRect(x + i, y - 4, 4, 4); // Top pins
-                    ctx.fillRect(x + i, y + spec.height, 4, 4); // Bottom pins
-                }
-            } 
-            else if (spec.type === 'battery') {
-                // Cylindrical container
-                ctx.fillRect(x, y + 5, spec.width, spec.height - 5);
-                // Positive terminal nodule
-                ctx.fillStyle = '#e2e8f0';
-                ctx.fillRect(x + (spec.width/2) - 3, y, 6, 5);
-            }
-        }
-
-        function loop() {
-            if (isGameOver) return;
+        function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Floor Track
-            ctx.strokeStyle = "#1e293b";
+            // Target
+            ctx.fillStyle = '#F59E0B';
+            ctx.beginPath();
+            ctx.arc(target.x, target.y, target.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Robot Body
+            ctx.save();
+            ctx.translate(robot.x, robot.y);
+            ctx.rotate(robot.angle);
+
+            ctx.fillStyle = '#3B82F6';
+            ctx.beginPath();
+            ctx.arc(0, 0, robot.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Heading Pointer
+            ctx.strokeStyle = '#FFFFFF';
             ctx.lineWidth = 3;
-            ctx.beginPath(); ctx.moveTo(0, 210); ctx.lineTo(canvas.width, 210); ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(20, 0);
+            ctx.stroke();
 
-            // Physics processing
-            robot.velocity += robot.gravity;
-            robot.y += robot.velocity;
-            if (robot.y > 160) { robot.y = 160; robot.velocity = 0; robot.isJumping = false; }
-
-            // Increment movement animation cycles
-            if (!robot.isJumping) robot.animCycle += 0.2;
-
-            // --- ANIMATED ANDROID ROBOT DRAWING ENGINE ---
-            const rx = robot.x;
-            const ry = robot.y;
-            
-            // Kinetic Leg Motions (Trigonometric oscillations)
-            let leftLegOffset = Math.sin(robot.animCycle) * 10;
-            let rightLegOffset = Math.cos(robot.animCycle) * 10;
-            if (robot.isJumping) { leftLegOffset = 5; rightLegOffset = -5; }
-
-            ctx.strokeStyle = '#64748b';
-            ctx.lineWidth = 4;
-            // Left Leg
-            ctx.beginPath(); ctx.moveTo(rx + 10, ry + 35); ctx.lineTo(rx + 8 + leftLegOffset, ry + 50); ctx.stroke();
-            // Right Leg
-            ctx.beginPath(); ctx.moveTo(rx + 25, ry + 35); ctx.lineTo(rx + 27 + rightLegOffset, ry + 50); ctx.stroke();
-
-            // Kinetic Arm Motions
-            let armSwing = Math.sin(robot.animCycle) * 8;
-            if (robot.isJumping) armSwing = -12;
-            // Back Arm
-            ctx.strokeStyle = '#475569';
-            ctx.beginPath(); ctx.moveTo(rx + 8, ry + 15); ctx.lineTo(rx + 2 - armSwing, ry + 28); ctx.stroke();
-
-            // Main Metal Chassis Body
-            ctx.fillStyle = '#94a3b8';
-            ctx.fillRect(rx, ry + 10, robot.width, 26);
-            ctx.fillStyle = varColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-glow').trim();
-            ctx.fillRect(rx + 6, ry + 16, robot.width - 12, 14); // Glowing Core chestplate
-
-            // Mechanical Neck & Head
-            ctx.fillStyle = '#64748b';
-            ctx.fillRect(rx + (robot.width/2) - 4, ry + 6, 8, 5); // Neck
-            ctx.fillStyle = '#cbd5e1';
-            ctx.fillRect(rx + (robot.width/2) - 10, ry - 8, 20, 15); // Head Capsule
-            ctx.fillStyle = '#39ff14';
-            ctx.fillRect(rx + (robot.width/2) + 2, ry - 3, 6, 4); // Neon Visor eye
-
-            // Front Arm
-            ctx.strokeStyle = '#94a3b8';
-            ctx.beginPath(); ctx.moveTo(rx + 28, ry + 15); ctx.lineTo(rx + 34 + armSwing, ry + 28); ctx.stroke();
-
-            // --- SPARK & HAZARD GENERATION ---
-            spawnTimer++;
-            if (spawnTimer > Math.max(50, 100 - score / 5)) {
-                let randSpec = componentTypes[Math.floor(Math.random() * componentTypes.length)];
-                obstacles.push({
-                    x: canvas.width,
-                    y: 210 - randSpec.height,
-                    width: randSpec.width,
-                    height: randSpec.height,
-                    color: randSpec.color,
-                    type: randSpec.type
-                });
-                spawnTimer = 0;
-            }
-
-            // Loop and collision mapping
-            for (let i = obstacles.length - 1; i >= 0; i--) {
-                let o = obstacles[i];
-                o.x -= gameSpeed;
-
-                drawElectricalComponent(ctx, o.x, o.y, o);
-
-                // Precise Hitbox Mapping
-                if (rx < o.x + o.width && rx + robot.width > o.x &&
-                    ry < o.y + o.height && ry + robot.height > o.y) {
-                    isGameOver = true;
-                    
-                    // Render Game Over Overlays
-                    ctx.fillStyle = "rgba(3, 5, 13, 0.85)";
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = "#ff5e62";
-                    ctx.font = "bold 22px 'Plus Jakarta Sans', sans-serif";
-                    ctx.textAlign = "center";
-                    ctx.fillText("HARDWARE SHORT CIRCUIT DETECTED", canvas.width/2, canvas.height/2 - 10);
-                    ctx.fillStyle = "#ffffff";
-                    ctx.font = "14px 'Fira Code', monospace";
-                    ctx.fillText("Press Spacebar or Click Screen to Deploy New Unit", canvas.width/2, canvas.height/2 + 25);
-                }
-
-                if (o.x + o.width < 0) {
-                    obstacles.splice(i, 1);
-                    score += 10;
-                    document.getElementById('currentScore').textContent = String(score).padStart(4, '0');
-                    if (score % 100 === 0) gameSpeed += 0.6;
-                }
-            }
-            requestAnimationFrame(loop);
+            ctx.restore();
         }
-        loop();
+
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
     </script>
 </body>
 </html>
