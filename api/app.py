@@ -1,27 +1,18 @@
 from flask import Flask, render_template
 
-app = Flask(__name__, template_folder='../templates', static_folder='../static')
+app = Flask(__name__)
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
 @app.route('/about')
-def about():
+def about_page():
     return render_template('about.html')
 
-@app.route('/events')
-def events():
-    return render_template('events.html')
-
 @app.route('/team')
-def team():
+def team_page():
     return render_template('team.html')
-
-# The dedicated game page route
-@app.route('/sandbox')
-def sandbox():
-    return render_template('sandbox.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
