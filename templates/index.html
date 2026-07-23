@@ -4,65 +4,195 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IEEE RAS PESU EC Chapter</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-        body { background-color: #0B0F19; color: #FFFFFF; }
-        .hero-gradient { background: radial-gradient(circle at 50% 20%, rgba(30, 58, 138, 0.35) 0%, rgba(11, 15, 25, 1) 70%); }
-        .text-gold { color: #F59E0B; }
+        body {
+            background-color: #080B11;
+            color: #FFFFFF;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            overflow-x: hidden;
+        }
+
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .blueprint-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .text-gold {
+            color: #F59E0B;
+        }
     </style>
 </head>
-<body class="min-h-screen hero-gradient flex flex-col justify-between">
+<body class="blueprint-grid min-h-screen flex flex-col justify-between relative selection:bg-blue-600 selection:text-white">
 
-    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-        <div class="flex items-center space-x-3">
-            <div class="w-8 h-8 bg-blue-900 rounded flex items-center justify-center border border-blue-500/30 text-xs font-bold text-blue-400">⚡</div>
-            <div class="w-8 h-8 bg-blue-900 rounded flex items-center justify-center border border-blue-500/30 text-xs font-bold text-blue-400">🤖</div>
-            <a href="/" class="text-xl font-extrabold tracking-tight">
-                IEEE <span class="text-blue-500">RAS</span> <span class="text-gold">EC</span>
-            </a>
-        </div>
+    <!-- Interactive Particle Background Canvas -->
+    <canvas id="particle-canvas"></canvas>
 
-        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
-            <a href="/" class="text-white">Home</a>
-            <a href="/about" class="hover:text-white transition">About</a>
-            <a href="/events" class="hover:text-white transition">Events</a>
-            <a href="/team" class="hover:text-white transition">Team</a>
-            <a href="/sandbox" class="text-gold hover:text-yellow-400 transition font-semibold">🎮 Play Sandbox</a>
-        </nav>
-    </header>
+    <div class="relative z-10 flex flex-col min-h-screen justify-between">
 
-    <main class="flex-1 flex flex-col items-center justify-center text-center px-4 max-w-4xl mx-auto py-12">
-        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-yellow-600/40 bg-yellow-950/20 text-gold text-xs font-semibold mb-8">
-            <span>🚀</span>
-            <span>IEEE RAS EC Chapter</span>
-        </div>
+        <!-- Navigation Header -->
+        <header class="w-full max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 bg-blue-950/80 rounded-lg flex items-center justify-center border border-blue-500/30 text-sm font-bold text-blue-400 shadow-lg shadow-blue-900/20">
+                    ⚡
+                </div>
+                <div class="w-9 h-9 bg-blue-950/80 rounded-lg flex items-center justify-center border border-blue-500/30 text-sm font-bold text-blue-400 shadow-lg shadow-blue-900/20">
+                    🤖
+                </div>
+                <a href="/" class="text-xl font-extrabold tracking-tight">
+                    IEEE <span class="text-blue-500">RAS</span> <span class="text-gold">EC</span>
+                </a>
+            </div>
 
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-4">
-            IEEE Robotics & <br class="hidden sm:inline" />
-            Automation Society
-        </h1>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="/" class="text-white border-b-2 border-blue-500 pb-1">Home</a>
+                <a href="/about" class="hover:text-white transition">About</a>
+                <a href="/events" class="hover:text-white transition">Events</a>
+                <a href="/team" class="hover:text-white transition">Team</a>
+                <a href="/sandbox" class="px-4 py-2 bg-yellow-500/10 hover:bg-yellow-500/20 border border-yellow-500/40 text-gold rounded-lg transition font-semibold">
+                    🎮 Robo-Sandbox
+                </a>
+            </nav>
+        </header>
 
-        <h2 class="text-lg md:text-xl font-bold text-gold mb-6">
-            Student Chapter of PES University — Electronic City Campus
-        </h2>
+        <!-- Hero Section -->
+        <main class="flex-1 flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto py-12">
+            
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-yellow-600/40 bg-yellow-950/30 text-gold text-xs font-semibold mb-8 backdrop-blur-md shadow-lg shadow-yellow-950/40">
+                <span>🚀</span>
+                <span>IEEE RAS EC Chapter</span>
+            </div>
 
-        <p class="text-gray-400 text-sm md:text-base max-w-2xl mb-10 leading-relaxed">
-            Promoting growth in Robotics and Automation among students through hands-on development, hackathons, and industrial mentorship.
-        </p>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-none mb-6">
+                IEEE Robotics & <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-yellow-400">
+                    Automation Society
+                </span>
+            </h1>
 
-        <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            <a href="/sandbox" class="w-full sm:w-auto px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-black font-bold rounded-lg shadow-lg shadow-yellow-500/20 transition text-center text-sm">
-                🎮 Try Interactive Sandbox
-            </a>
-            <a href="/about" class="w-full sm:w-auto px-6 py-3 border border-gray-700 hover:border-gray-500 bg-gray-900/50 text-gray-200 font-semibold rounded-lg transition text-center text-sm">
-                Explore Society
-            </a>
-        </div>
-    </main>
+            <h2 class="text-base sm:text-xl font-bold text-gold/90 mb-6 tracking-wide">
+                Student Chapter of PES University — Electronic City Campus
+            </h2>
 
-    <footer class="py-6 text-center text-xs text-gray-600">
-        &copy; 2026 IEEE RAS PESU EC Chapter.
-    </footer>
+            <p class="text-gray-400 text-sm sm:text-base max-w-2xl mb-10 leading-relaxed">
+                Promoting growth in Robotics and Automation among students through hands-on development, hackathons, computer vision, kinematic simulations, and industrial mentorship.
+            </p>
 
+            <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                <a href="/sandbox" class="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg shadow-blue-600/30 transition text-center text-sm">
+                    Launch Interactive Sandbox
+                </a>
+                <a href="/about" class="w-full sm:w-auto px-8 py-3.5 border border-gray-700 hover:border-gray-500 bg-slate-900/40 text-gray-200 font-semibold rounded-xl transition text-center text-sm">
+                    Explore Focus Tracks
+                </a>
+            </div>
+
+            <!-- Focus Domain Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-20 text-left">
+                <div class="glass-card p-6 rounded-2xl transition">
+                    <div class="text-2xl mb-3">🦾</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Kinematics & Control</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Designing bipedal mechanisms, inverse kinematics algorithms, and motor actuation controls.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl transition">
+                    <div class="text-2xl mb-3">👁️</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Computer Vision & AI</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Real-time object tracking, spatial mapping, and autonomous obstacle avoidance navigation.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl transition">
+                    <div class="text-2xl mb-3">⚡</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Embedded Systems</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Hardware prototyping with microcontrollers, real-time telemetry, and sensor integration.</p>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="py-8 text-center text-xs text-gray-500 border-t border-gray-800/50">
+            &copy; 2026 IEEE RAS PES University EC Campus. All rights reserved.
+        </footer>
+
+    </div>
+
+    <!-- Particle Background Animation Script -->
+    <script>
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = Array.from({ length: 60 }, () => ({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            vx: (Math.random() - 0.5) * 0.6,
+            vy: (Math.random() - 0.5) * 0.6,
+            radius: Math.random() * 2 + 1
+        }));
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.fillStyle = 'rgba(59, 130, 246, 0.4)';
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 130) {
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${1 - dist / 130 * 0.8})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
 </body>
 </html>
