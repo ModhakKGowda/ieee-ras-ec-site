@@ -1,41 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEEE RAS EC Campus | Home</title>
+    <title>IEEE RAS | Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
+
     <header class="navbar">
         <div class="logo-wrapper">
-            <a href="/" style="color:#00f5ff; font-weight:800; font-size:1.3rem; text-decoration:none;">IEEE RAS EC</a>
+            <div class="logo-container">
+                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" class="logo-img-ras" alt="IEEE RAS Logo">
+            </div>
         </div>
         <nav>
-            <a href="/">Home</a>
+            <a href="/" class="active">Home</a>
             <a href="/about">About</a>
             <a href="/events">Events</a>
-            <a href="/admin">Team</a>
+            <a href="/team">Team</a>
+            <a href="/sandbox"><i class="fa-solid fa-gamepad" style="margin-right: 5px;"></i>Sandbox</a>
         </nav>
     </header>
 
-    <main class="hero-section" style="padding-top: 10rem; text-align: center;">
-        <h1 style="font-size: 3.2rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">
-            IEEE Robotics & Automation Society
-        </h1>
-        <p style="font-size: 1.2rem; color: #00f5ff; font-weight: 600; margin-bottom: 1.5rem;">
-            EC Campus Student Chapter
-        </p>
-        <p style="max-width: 700px; margin: 0 auto 2rem auto; color: #cbd5e1; line-height: 1.8;">
-            Empowering students to design, innovate, and master autonomous robotics and embedded hardware systems.
-        </p>
-        <a href="/about" class="btn" style="display:inline-block; padding:0.8rem 2rem; background:#00f5ff; color:#050811; border-radius:30px; font-weight:700; text-decoration:none;">Learn More</a>
-    </main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to <span class="highlight">IEEE RAS</span></h1>
+            <p class="hero-subtitle">Innovating the future of robotics and automation. Join us to build, learn, and excel.</p>
+            <div class="hero-buttons">
+                <a href="/about" class="btn btn-primary">Learn More</a>
+                <a href="/sandbox" class="btn btn-secondary"><i class="fa-solid fa-play"></i> Play Sandbox</a>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>© IEEE RAS EC Campus. All Rights Reserved.</p>
+    <footer class="footer">
+        <p>&copy; 2026 IEEE Robotics and Automation Society. All Rights Reserved.</p>
     </footer>
+
 </body>
 </html>
