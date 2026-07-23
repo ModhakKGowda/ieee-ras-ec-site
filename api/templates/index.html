@@ -30,15 +30,21 @@
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="badge">🚀 IEEE RAS EC Chapter</div>
-            <h1>IEEE Robotics & Automation Society</h1>
-            <p class="subtitle">Student Chapter of PES University — Electronic City Campus</p>
-            <p class="hero-description">Promoting growth in Robotics and Automation among students through hands-on development, hackathons, and industrial mentorship.</p>
-            <div class="hero-cta">
-                <a href="#join" class="btn">Get Started Now</a>
-                <a href="#about" class="btn btn-secondary">Explore Projects</a>
+    <section id="team" class="section">
+        <h2 class="section-title">Our Core Team</h2>
+        <p class="section-desc">Meet the minds leading the IEEE RAS EC Chapter initiatives.</p>
+    
+        <div class="team-grid">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/ieee-ras-ec-chair.png') }}" alt="EC Chair" class="team-photo">
+                <h3 class="card-title">Chairperson</h3>
+                <p class="role">IEEE RAS EC Chair</p>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/ieee-ras-ec-vicechair.png') }}" alt="EC Vice Chair" class="team-photo">
+                <h3 class="card-title">Vice-Chairperson</h3>
+                <p class="role">IEEE RAS EC Vice-Chair</p>
             </div>
         </div>
     </section>
