@@ -1,4 +1,4 @@
-/* Core Document Engine Reset Rules */
+/* Core Reset Configuration */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,35 +9,42 @@ html {
     scroll-behavior: smooth;
 }
 
-/* INTERACTIVE LIVE SCROLLING BACKGROUND ARCHITECTURE */
+/* ROBOTICS BLUEPRINT SCI-FI SCROLLING CANVAS */
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #cbd5e1; /* Calmed text color down from harsh flat pure white */
+    color: #cbd5e1;
     line-height: 1.6;
     margin: 0;
     padding: 0;
     
-    /* Dual-layered tech mesh background matrix */
-    background-color: #060913;
+    background-color: #050811;
     background-image: 
-        linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px),
-        radial-gradient(circle at 50% 50%, #0a1224 0%, #02050f 100%);
-    background-size: 50px 50px, 50px 50px, 100% 100%;
+        radial-gradient(rgba(59, 130, 246, 0.15) 1.5px, transparent 1.5px), 
+        linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 50% 40%, #0a1326 0%, #02040a 100%);
+    background-size: 40px 40px, 40px 40px, 40px 40px, 100% 100%;
     
-    /* Local positioning moves the technical mesh layer interactively when scrolling down */
-    background-attachment: local, local, fixed; 
+    background-attachment: local, local, local, fixed; 
 }
 
-/* TYPOGRAPHY ATTRACTIVE UPGRADE: HEADINGS ARE NO LONGER FLAT WHITE */
+/* GRADIENT ATTRACTIVE TYPOGRAPHY */
 h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    background: linear-gradient(135deg, #ffffff 30%, #3b82f6 100%);
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    background: linear-gradient(135deg, #ffffff 40%, #3b82f6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
     letter-spacing: -1.5px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-tagline {
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    color: #60a5fa;
+    font-weight: 600;
+    letter-spacing: -0.25px;
+    margin-bottom: 2rem;
 }
 
 h2, .section-title {
@@ -68,49 +75,93 @@ h3, .card-title {
 }
 
 .role {
-    color: #3b82f6; /* Premium vivid tech blue highlights */
+    color: #3b82f6; 
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     letter-spacing: 0.5px;
+    margin-bottom: 1rem;
 }
 
-/* NAVBAR STRUCTURAL FLOW CONTAINER */
+/* SOCIAL MEDIA ANCHOR ICON BUTTON MATRIX */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+    min-height: 38px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-links a:hover {
+    color: #ffffff;
+    background: #2563eb;
+    border-color: #2563eb;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.placeholder-spacer {
+    display: block;
+    height: 38px;
+}
+
+/* NAVBAR STRUCTURE */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.85rem 5%;
-    background: rgba(6, 9, 19, 0.8);
+    background: rgba(5, 8, 17, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
 }
 
-/* Unmodified Protected White Box Badge Area For Logos */
 .logo-wrapper {
     background: #ffffff;      
-    padding: 0.45rem 1.2rem;
+    padding: 0px 14px;
     border-radius: 8px;       
     display: flex;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    height: 44px; 
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: 12px;
 }
 
-.logo-img {
-    height: 32px;          
-    width: auto;           
+.logo-img-ras {
+    width: 90px !important;
+    height: 26px !important;
     object-fit: contain;
     image-rendering: -webkit-optimize-contrast;
-    filter: contrast(1.05) brightness(1.02);
+}
+
+.logo-img-pes {
+    width: 58px !important;
+    height: 28px !important;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .logo-divider {
@@ -119,7 +170,6 @@ h3, .card-title {
     background-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Navbar Menu Links */
 .navbar nav {
     display: flex;
     align-items: center;
@@ -138,7 +188,6 @@ h3, .card-title {
     color: #3b82f6;          
 }
 
-/* Buttons System */
 .btn-nav {
     background: rgba(37, 99, 235, 0.12);
     color: #3b82f6 !important; 
@@ -166,7 +215,7 @@ h3, .card-title {
     box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
 
-/* Layout Page Grid Structures */
+/* Sections Layout */
 .section {
     padding: 6rem 5% 4rem 5%;
     display: flex;
@@ -188,7 +237,7 @@ h3, .card-title {
     max-width: 850px;
 }
 
-/* Core Team Section Matrix Styling Rules */
+/* TEAM COMPONENT LAYOUTS */
 .team-grid {
     display: flex;
     justify-content: center;
@@ -200,20 +249,21 @@ h3, .card-title {
 }
 
 .card {
-    background: rgba(15, 23, 42, 0.45);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(10, 17, 34, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.1);
     padding: 2.5rem 2rem;
     border-radius: 16px;
     width: 320px;
     text-align: center;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    border-color: rgba(59, 130, 246, 0.25);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
 }
 
 .image-container {
@@ -222,11 +272,106 @@ h3, .card-title {
     margin: 0 auto;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid rgba(59, 130, 246, 0.2);
+    border: 3px solid rgba(59, 130, 246, 0.3);
+    background: #0f172a;
 }
 
 .team-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Append to the bottom of your existing style.css */
+
+.container-width {
+    width: 100%;
+    max-width: 900px;
+}
+
+.sub-team-heading {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: #60a5fa;
+    border-bottom: 2px solid rgba(59, 130, 246, 0.15);
+    padding-bottom: 0.5rem;
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
+}
+
+/* NEWS COMPONENT ELEMENTS */
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    width: 100%;
+}
+
+.news-item {
+    background: rgba(10, 17, 34, 0.4);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.news-date {
+    font-size: 0.85rem;
+    color: #3b82f6;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.news-item h3 {
+    margin-top: 0.25rem;
+    font-size: 1.25rem;
+    color: #f1f5f9;
+}
+
+/* EVENT DOCK STRUCTURES */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+    width: 100%;
+}
+
+.event-card {
+    background: rgba(15, 23, 42, 0.5);
+    border-left: 4px solid #2563eb;
+    border-top: 1px solid rgba(59, 130, 246, 0.1);
+    border-right: 1px solid rgba(59, 130, 246, 0.1);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+    padding: 1.75rem;
+    border-radius: 0 12px 12px 0;
+    text-align: left;
+}
+
+.event-card h4 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+}
+
+.event-meta {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 0.75rem;
+}
+
+/* Empty Avatar Graphic Element */
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: rgba(59, 130, 246, 0.4);
+    background: #0f172a;
 }
