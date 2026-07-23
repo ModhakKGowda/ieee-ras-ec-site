@@ -10,10 +10,6 @@ def home():
 def about():
     return render_template('about.html')
 
-@app.route('/events')
-def events():
-    return render_template('events.html')
-
 @app.route('/team')
 def team():
     return render_template('team.html')
