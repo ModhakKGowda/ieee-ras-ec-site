@@ -46,17 +46,17 @@ body {
     gap: 1rem;
 }
 
-/* Logo Image Dimensions and Theme Blending */
+/* Logo Image Dimensions Constraints */
 .logo-img {
     height: 38px;          /* Enforces consistent height constraints */
     width: auto;           /* Maintains correct aspect ratio automatically */
     object-fit: contain;
 }
 
-/* Special class to remove white backgrounds and blend with your dark theme */
+/* Knock out white backgrounds so logos blend into your dark theme colors natively */
 .logo-blend {
-    mix-blend-mode: lighten; /* Makes dark elements blend natively into dark backgrounds */
-    opacity: 0.95;           /* Keeps them bright but polished */
+    mix-blend-mode: multiply; 
+    filter: brightness(1.1) contrast(1.1); /* Keeps colors vibrant on a dark backdrop */
 }
 
 /* Visual vertical divider line between logos */
@@ -64,12 +64,6 @@ body {
     width: 1px;
     height: 22px;
     background-color: rgba(255, 255, 255, 0.15);
-}
-.accent-brand {
-    color: var(--brand-gold);
-    background: linear-gradient(45deg, #f59e0b, #ef4444);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .navbar nav {
