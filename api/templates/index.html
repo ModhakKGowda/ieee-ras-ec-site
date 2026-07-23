@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEEE RAS EC Chapter</title>
+    <title>IEEE RAS PESU EC Chapter</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
 
@@ -21,29 +22,24 @@
         </div>
         
         <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#team">Team</a>
+            <a href="/">Home</a>
+            <a href="/about">About & News</a>
+            <a href="/team">Our Team</a>
             <a href="#join" class="btn-nav">Join Club</a>
         </nav>
     </header>
 
-    <section id="home" class="hero">
+    <section class="hero">
         <div class="hero-content">
-            <p class="hero-subtitle">🚀 IEEE RAS EC Chapter</p>
-            <h1>Robotics & Automation Society</h1>
+            <h1>IEEE Robotics & Automation Society</h1>
+            <p class="hero-tagline">Student Chapter of PES University</p>
             <p class="section-desc">Innovating the future through intelligent automation, research, and hands-on engineering exploration.</p>
-            <a href="#about" class="btn-primary">Explore Chapter</a>
+            <a href="/about" class="btn-primary">Explore Chapter</a>
         </div>
     </section>
 
-    <section id="about" class="section">
-        <h2 class="section-title">About Our Chapter</h2>
-        <p class="section-desc">The IEEE Robotics and Automation Society EC Chapter focuses on practical education, advanced development projects, and building collaborative bridges between academic theory and real-world industrial robotic implementations.</p>
-    </section>
-
-    <section id="team" class="section">
-        <h2 class="section-title">Our Core Team</h2>
+    <section class="section">
+        <h2 class="section-title">Leadership Core</h2>
         <p class="section-desc">Meet the minds leading the IEEE RAS EC Chapter initiatives.</p>
         
         <div class="team-grid">
@@ -53,6 +49,11 @@
                 </div>
                 <h3 class="card-title">Student Chair</h3>
                 <p class="role">J Akhil</p>
+                <div class="social-links">
+                    <a href="mailto:akhil01aj@gmail.com" title="Email" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/akhil_01_aj?igsh=dHk3OTJ6dXlsbTBw" title="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/j-akhil-aj?utm_source=share_via&utm_content=profile&utm_medium=member_android" title="LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
             </div>
 
             <div class="card">
@@ -61,8 +62,13 @@
                 </div>
                 <h3 class="card-title">Student Vice Chair</h3>
                 <p class="role">Modhak Kushalappa</p>
+                <div class="social-links empty-placeholder">
+                     <span class="placeholder-spacer"></span>
+                </div>
             </div>
         </div>
+        <br><br>
+        <a href="/team" class="btn-primary">View Full Committee Directory</a>
     </section>
 
     <section id="join" class="section">
