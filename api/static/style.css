@@ -9,28 +9,51 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Core Page Canvas Configuration */
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #cbd5e1; /* Smooth light gray body text instead of harsh stark white */
+    color: #cbd5e1; /* Smooth tech gray instead of jarring stark white for paragraphs */
     line-height: 1.6;
     margin: 0;
     padding: 0;
     
-    /* True Dynamic Parallax Tech Scroll Canvas */
-    background: linear-gradient(180deg, #070a13 0%, #0b1528 40%, #030712 100%);
-    background-attachment: scroll; /* Keeps background relative to page content flow */
-    background-size: 100% 100%;
+    /* Premium Robotics Dark Grid Theme */
+    background-color: #070a13;
+    background-image: 
+        linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, #0b1528 0%, #030712 100%);
+    background-size: 40px 40px, 40px 40px, 100% 100%;
+    
+    /* Crucial Property: Makes the grid lines move at a different speed when scrolling */
+    background-attachment: local, local, fixed; 
 }
 
-/* Enhancing Typography: Headings are no longer plain flat white */
+/* Eye-Catching Neon Tech Headings */
 h1, h2, .section-title {
-    color: #ffffff;
-    background: linear-gradient(135deg, #ffffff 30%, #3b82f6 100%);
+    background: linear-gradient(135deg, #ffffff 40%, #3b82f6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
     letter-spacing: -0.5px;
+}
+
+/* Subsection & Card Titles Styling */
+h3, .card-title {
+    color: #f1f5f9; /* Clear, bright clean cream white */
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+/* Sub-text accents under headings or roles */
+.section-desc {
+    color: #94a3b8; /* Calmed down slate gray */
+    font-size: 1.1rem;
+}
+
+.role {
+    color: #60a5fa; /* Electric bright blue role highlights for your team */
+    font-weight: 600;
+    font-size: 0.95rem;
 }
 
 /* Card titles inside the team section */
