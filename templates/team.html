@@ -3,183 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team | IEEE RAS EC Campus</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Team & Leadership | IEEE RAS PESU EC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        #bg-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: #04050d;
-        }
-        .team-box {
-            max-width: 1100px;
-            margin: 8rem auto 4rem auto;
-            padding: 0 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-        .card {
-            background: rgba(10, 15, 30, 0.8) !important;
-            border: 1px solid rgba(0, 245, 255, 0.12) !important;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important;
-            backdrop-filter: blur(12px);
-            border-radius: 24px !important;
-            padding: 2.5rem 2rem !important;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-        .card:hover {
-            border-color: #00f5ff !important;
-            transform: translateY(-6px);
-            box-shadow: 0 20px 45px rgba(0, 245, 255, 0.15) !important;
-        }
-        .img-wrapper {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 1.5rem auto;
-        }
-        .team-photo {
-            border-radius: 50%;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border: 3px solid rgba(0, 245, 255, 0.15);
-            transition: border-color 0.3s;
-        }
-        .hud-canvas {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .card:hover .hud-canvas { opacity: 1; }
-        .card:hover .team-photo { border-color: #00f5ff; }
+        body { background-color: #080B11; color: #FFFFFF; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
+        .text-gold { color: #F59E0B; }
+        .glass-card { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
     </style>
 </head>
-<body style="color: #fff; overflow-x: hidden;">
+<body class="min-h-screen flex flex-col justify-between p-6">
 
-    <canvas id="bg-canvas"></canvas>
+    <div class="max-w-6xl mx-auto w-full">
+        <header class="flex items-center justify-between py-4 border-b border-gray-800 mb-10">
+            <a href="/" class="text-sm font-semibold text-blue-400 hover:underline">&larr; Back to Home</a>
+            <h1 class="text-xl font-bold text-yellow-500">IEEE RAS PESU EC Chapter</h1>
+        </header>
 
-    <header class="navbar">
-        <div class="logo-wrapper">
-            <div class="logo-container">
-                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" class="logo-img-ras">
-                <div class="logo-divider"></div>
-                <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" class="logo-img-pes">
-            </div>
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold tracking-tight mb-3">Our Leadership & Team</h1>
+            <p class="text-gray-400 text-sm max-w-xl mx-auto">Meet the core committee and domain teams driving innovation at PES University Electronic City Campus.</p>
         </div>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/events">Events</a>
-            <a href="/team" class="active">Team</a>
-        </nav>
-    </header>
 
-    <div class="team-box">
-        <h2 class="section-title">Core Operational Team</h2>
-        <p class="section-desc" style="color: #cbd5e1; max-width: 600px; margin: 0 auto 4rem auto;">Connect with the coordinators directing the operational tracks of IEEE RAS.</p>
-        
-        <div class="team-grid" style="display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;">
-            <div class="card" style="width: 300px;">
-                <div class="img-wrapper">
-                    <img src="{{ url_for('static', filename='images/ieee-ras-ec-chair.png') }}" class="team-photo">
-                    <canvas class="hud-canvas" width="140" height="140"></canvas>
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-center text-gold mb-8">Executive Committee</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center shadow-xl border-t-2 border-yellow-500">
+                    <div class="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 mb-4 overflow-hidden">
+                        <span class="text-3xl">👤</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-300">[ Student Chair Name ]</h3>
+                    <p class="text-yellow-500 font-semibold text-xs mb-4">Student Chair</p>
+                    <div class="flex space-x-4 text-gray-500 text-xs">
+                        <a href="#" class="hover:text-blue-400">Email</a>
+                        <a href="#" class="hover:text-blue-400">LinkedIn</a>
+                        <a href="#" class="hover:text-blue-400">Instagram</a>
+                    </div>
                 </div>
-                <h3 style="font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">J Akhil</h3>
-                <p style="color: #00f5ff; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem; letter-spacing: 1px;">STUDENT CHAIR</p>
-                <div class="social-links" style="display: flex; gap: 1.25rem; justify-content: center; font-size: 1.2rem;">
-                    <a href="mailto:akhil01aj@gmail.com" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://www.instagram.com/akhil_01_aj?igsh=dHk3OTJ6dXlsbTBw" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/j-akhil-aj?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-brands fa-linkedin-in"></i></a>
+
+                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center shadow-xl border-t-2 border-blue-500">
+                    <div class="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 mb-4 overflow-hidden">
+                        <span class="text-3xl">👤</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-300">[ Student Vice Chair Name ]</h3>
+                    <p class="text-blue-400 font-semibold text-xs mb-4">Student Vice Chair</p>
+                    <div class="flex space-x-4 text-gray-500 text-xs">
+                        <a href="#" class="hover:text-blue-400">Email</a>
+                        <a href="#" class="hover:text-blue-400">LinkedIn</a>
+                        <a href="#" class="hover:text-blue-400">Instagram</a>
+                    </div>
                 </div>
+
+                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center shadow-xl border-t-2 border-emerald-500">
+                    <div class="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 mb-4 overflow-hidden">
+                        <span class="text-3xl">👤</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-300">[ Secretary Name ]</h3>
+                    <p class="text-emerald-400 font-semibold text-xs mb-4">Secretary</p>
+                    <div class="flex space-x-4 text-gray-500 text-xs">
+                        <a href="#" class="hover:text-blue-400">Email</a>
+                        <a href="#" class="hover:text-blue-400">LinkedIn</a>
+                        <a href="#" class="hover:text-blue-400">Instagram</a>
+                    </div>
+                </div>
+
             </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-center text-gold mb-8">Domain Heads & Teams</h2>
             
-            <div class="card" style="width: 300px;">
-                <div class="img-wrapper">
-                    <img src="{{ url_for('static', filename='images/ieee-ras-ec-vicechair.png') }}" class="team-photo">
-                    <canvas class="hud-canvas" width="140" height="140"></canvas>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-purple-400 bg-purple-950/40 px-3 py-1 rounded-full border border-purple-500/30">Operations Domain</span>
+                            <span class="text-xl">⚙️</span>
+                        </div>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                                <span class="text-xl">👤</span>
+                            </div>
+                            <div>
+                                <h3 class="text-base font-bold text-white">[ Operations Head Name ]</h3>
+                                <p class="text-xs text-gray-400 mb-2">Domain Head — Operations</p>
+                                <div class="flex space-x-3 text-xs text-gray-400">
+                                    <a href="#" class="hover:text-blue-400">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400">Email</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-800 pt-4">
+                        <button onclick="toggleDomain('ops-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
+                            <span>View Operations Members</span>
+                            <span id="ops-members-arrow">&darr;</span>
+                        </button>
+                        <div id="ops-members" class="hidden mt-3 pl-2 border-l border-purple-500/30 space-y-1 text-xs text-gray-400 font-mono">
+                            <p>• [ Member Name 1 ]</p>
+                            <p>• [ Member Name 2 ]</p>
+                            <p>• [ Member Name 3 ]</p>
+                        </div>
+                    </div>
                 </div>
-                <h3 style="font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Modhak Kushalappa</h3>
-                <p style="color: #00f5ff; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem; letter-spacing: 1px;">VICE STUDENT CHAIR</p>
-                <div class="social-links" style="display: flex; gap: 1.25rem; justify-content: center; font-size: 1.2rem;">
-                    <a href="mailto:modhakkushalappa@gmail.com" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://www.instagram.com/modhak_k_gowda?igsh=MWJud2Z1enZwZjU2eA==" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/modhak-kushalappa-36a840379/?skipRedirect=true" target="_blank" style="color: #64748b; transition: color 0.2s;"><i class="fa-brands fa-linkedin-in"></i></a>
+
+                <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-950/40 px-3 py-1 rounded-full border border-blue-500/30">Technical Domain</span>
+                            <span class="text-xl">💻</span>
+                        </div>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                                <span class="text-xl">👤</span>
+                            </div>
+                            <div>
+                                <h3 class="text-base font-bold text-white">[ Technical Head Name ]</h3>
+                                <p class="text-xs text-gray-400 mb-2">Domain Head — Technical</p>
+                                <div class="flex space-x-3 text-xs text-gray-400">
+                                    <a href="#" class="hover:text-blue-400">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400">Email</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-800 pt-4">
+                        <button onclick="toggleDomain('tech-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
+                            <span>View Technical Members</span>
+                            <span id="tech-members-arrow">&darr;</span>
+                        </button>
+                        <div id="tech-members" class="hidden mt-3 pl-2 border-l border-blue-500/30 space-y-1 text-xs text-gray-400 font-mono">
+                            <p>• [ Member Name 1 ]</p>
+                            <p>• [ Member Name 2 ]</p>
+                            <p>• [ Member Name 3 ]</p>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-pink-400 bg-pink-950/40 px-3 py-1 rounded-full border border-pink-500/30">Social Media & Marketing</span>
+                            <span class="text-xl">📢</span>
+                        </div>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                                <span class="text-xl">👤</span>
+                            </div>
+                            <div>
+                                <h3 class="text-base font-bold text-white">[ Marketing Head Name ]</h3>
+                                <p class="text-xs text-gray-400 mb-2">Domain Head — Social Media & Marketing</p>
+                                <div class="flex space-x-3 text-xs text-gray-400">
+                                    <a href="#" class="hover:text-blue-400">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400">Email</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-800 pt-4">
+                        <button onclick="toggleDomain('smm-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
+                            <span>View Marketing & Social Media Members</span>
+                            <span id="smm-members-arrow">&darr;</span>
+                        </button>
+                        <div id="smm-members" class="hidden mt-3 pl-2 border-l border-pink-500/30 space-y-1 text-xs text-gray-400 font-mono">
+                            <p>• [ Member Name 1 ]</p>
+                            <p>• [ Member Name 2 ]</p>
+                            <p>• [ Member Name 3 ]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-yellow-400 bg-yellow-950/40 px-3 py-1 rounded-full border border-yellow-500/30">Design Domain</span>
+                            <span class="text-xl">🎨</span>
+                        </div>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                                <span class="text-xl">👤</span>
+                            </div>
+                            <div>
+                                <h3 class="text-base font-bold text-white">[ Design Head Name ]</h3>
+                                <p class="text-xs text-gray-400 mb-2">Domain Head — Design</p>
+                                <div class="flex space-x-3 text-xs text-gray-400">
+                                    <a href="#" class="hover:text-blue-400">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400">Email</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-800 pt-4">
+                        <button onclick="toggleDomain('design-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
+                            <span>View Design Members</span>
+                            <span id="design-members-arrow">&darr;</span>
+                        </button>
+                        <div id="design-members" class="hidden mt-3 pl-2 border-l border-yellow-500/30 space-y-1 text-xs text-gray-400 font-mono">
+                            <p>• [ Member Name 1 ]</p>
+                            <p>• [ Member Name 2 ]</p>
+                            <p>• [ Member Name 3 ]</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </section>
+
     </div>
 
+    <footer class="text-center text-xs text-gray-600 border-t border-gray-800/50 pt-6">
+        &copy; 2026 IEEE RAS PES University EC Campus
+    </footer>
+
     <script>
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let pulses = [];
-
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize);
-        resize();
-
-        window.addEventListener('mousemove', (e) => {
-            if(Math.random() < 0.15) {
-                pulses.push({ x: e.clientX, y: e.clientY, dx: (Math.random()-0.5)*3, dy: (Math.random()-0.5)*3, life: 1.0 });
+        function toggleDomain(id) {
+            const list = document.getElementById(id);
+            const arrow = document.getElementById(id + '-arrow');
+            if (list.classList.contains('hidden')) {
+                list.classList.remove('hidden');
+                arrow.innerHTML = '&uarr;';
+            } else {
+                list.classList.add('hidden');
+                arrow.innerHTML = '&darr;';
             }
-        });
-
-        const nodes = [];
-        for(let i=0; i<35; i++) { nodes.push({ x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight }); }
-
-        const huds = document.querySelectorAll('.hud-canvas');
-        let rotationAngle = 0;
-
-        function loop() {
-            ctx.fillStyle = "rgba(4, 5, 13, 0.25)";
-            ctx.fillRect(0,0,canvas.width,canvas.height);
-
-            // Draw circuit link connections
-            ctx.strokeStyle = "rgba(0, 245, 255, 0.03)";
-            ctx.lineWidth = 1;
-            for(let i=0; i<nodes.length; i++) {
-                for(let j=i+1; j<nodes.length; j++) {
-                    let d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
-                    if(d < 200) {
-                        ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo((nodes[i].x+nodes[j].x)/2, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
-                    }
-                }
-            }
-
-            // Draw pulses
-            pulses.forEach((p, idx) => {
-                p.x += p.dx; p.y += p.dy; p.life -= 0.015;
-                ctx.fillStyle = `rgba(0, 245, 255, ${p.life})`;
-                ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fill();
-                if(p.life <= 0) pulses.splice(idx, 1);
-            });
-
-            // Animate card HUDs
-            rotationAngle += 0.03;
-            huds.forEach(hud => {
-                let hctx = hud.getContext('2d');
-                hctx.clearRect(0,0,140,140);
-                hctx.strokeStyle = '#00f5ff'; hctx.lineWidth = 2;
-                hctx.beginPath(); hctx.arc(70, 70, 62, rotationAngle, rotationAngle + Math.PI*0.3); hctx.stroke();
-                hctx.beginPath(); hctx.arc(70, 70, 62, rotationAngle + Math.PI, rotationAngle + Math.PI*1.3); hctx.stroke();
-            });
-
-            requestAnimationFrame(loop);
         }
-        loop();
     </script>
 </body>
 </html>
