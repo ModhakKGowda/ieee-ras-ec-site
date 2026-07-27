@@ -3,67 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team & Leadership | IEEE RAS PESU EC</title>
+    <title>Team & Governance | IEEE RAS PESU EC</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #080B11; color: #FFFFFF; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
-        .text-gold { color: #F59E0B; }
-        .glass-card { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        body { 
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: #050811; 
+            color: #cbd5e1;
+            overflow-x: hidden;
+        }
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .content-layer {
+            position: relative;
+            z-index: 10;
+        }
+        .glass-card { 
+            background: rgba(15, 23, 42, 0.65); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+        }
+        .text-gold { color: #f59e0b; }
+        .bg-gold-glow { box-shadow: 0 0 15px rgba(245, 158, 11, 0.2); }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between p-6">
+<body class="min-h-screen flex flex-col justify-between p-4 md:p-8">
 
-    <div class="max-w-6xl mx-auto w-full">
-        <header class="flex items-center justify-between py-4 border-b border-gray-800 mb-10">
-            <a href="/" class="text-sm font-semibold text-blue-400 hover:underline">&larr; Back to Home</a>
-            <h1 class="text-xl font-bold text-yellow-500">IEEE RAS PESU EC Chapter</h1>
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="content-layer max-w-6xl mx-auto w-full">
+        <header class="flex items-center justify-between py-4 border-b border-gray-800/80 mb-10">
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded bg-blue-600/20 border border-blue-500/40 flex items-center justify-center font-bold text-xs text-blue-400">IEEE</div>
+                    <div class="w-8 h-8 rounded bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center font-bold text-xs text-yellow-400">RAS</div>
+                </div>
+                <span class="text-sm font-bold tracking-wide text-gray-200 hidden sm:inline">IEEE RAS PESU EC</span>
+            </div>
+
+            <a href="/" class="text-xs font-semibold text-blue-400 hover:text-blue-300 transition flex items-center space-x-1 bg-blue-950/40 px-3 py-1.5 rounded-full border border-blue-500/30">
+                <span>&larr;</span>
+                <span>Back to Main Page</span>
+            </a>
         </header>
 
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-extrabold tracking-tight mb-3">Our Leadership & Team</h1>
-            <p class="text-gray-400 text-sm max-w-xl mx-auto">Meet the core committee and domain teams driving innovation at PES University Electronic City Campus.</p>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-3">Our Leadership & Team</h1>
+            <p class="text-gray-400 text-xs md:text-sm max-w-xl mx-auto">Meet the core committee and domain teams driving robotics innovation at PES University Electronic City Campus.</p>
         </div>
 
         <section class="mb-16">
-            <h2 class="text-2xl font-bold text-center text-gold mb-8">Executive Committee</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-center text-gold mb-8 uppercase tracking-widest">Executive Committee</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center shadow-xl border-t-2 border-yellow-500">
-                    <div class="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 mb-4 overflow-hidden">
+                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center border-t-2 border-yellow-500">
+                    <div class="w-24 h-24 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-yellow-500/30 mb-4 overflow-hidden">
                         <span class="text-3xl">👤</span>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-300">[ Student Chair Name ]</h3>
+                    <h3 class="text-base font-bold text-white">[ Student Chair Name ]</h3>
                     <p class="text-yellow-500 font-semibold text-xs mb-4">Student Chair</p>
-                    <div class="flex space-x-4 text-gray-500 text-xs">
-                        <a href="#" class="hover:text-blue-400">Email</a>
-                        <a href="#" class="hover:text-blue-400">LinkedIn</a>
-                        <a href="#" class="hover:text-blue-400">Instagram</a>
+                    <div class="flex space-x-4 text-gray-400 text-xs">
+                        <a href="#" class="hover:text-blue-400 transition">Email</a>
+                        <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                        <a href="#" class="hover:text-blue-400 transition">Instagram</a>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center shadow-xl border-t-2 border-blue-500">
-                    <div class="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 mb-4 overflow-hidden">
+                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center border-t-2 border-blue-500">
+                    <div class="w-24 h-24 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-blue-500/30 mb-4 overflow-hidden">
                         <span class="text-3xl">👤</span>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-300">[ Student Vice Chair Name ]</h3>
+                    <h3 class="text-base font-bold text-white">[ Student Vice Chair Name ]</h3>
                     <p class="text-blue-400 font-semibold text-xs mb-4">Student Vice Chair</p>
-                    <div class="flex space-x-4 text-gray-500 text-xs">
-                        <a href="#" class="hover:text-blue-400">Email</a>
-                        <a href="#" class="hover:text-blue-400">LinkedIn</a>
-                        <a href="#" class="hover:text-blue-400">Instagram</a>
+                    <div class="flex space-x-4 text-gray-400 text-xs">
+                        <a href="#" class="hover:text-blue-400 transition">Email</a>
+                        <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                        <a href="#" class="hover:text-blue-400 transition">Instagram</a>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center shadow-xl border-t-2 border-emerald-500">
-                    <div class="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 mb-4 overflow-hidden">
+                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center border-t-2 border-emerald-500">
+                    <div class="w-24 h-24 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-emerald-500/30 mb-4 overflow-hidden">
                         <span class="text-3xl">👤</span>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-300">[ Secretary Name ]</h3>
+                    <h3 class="text-base font-bold text-white">[ Secretary Name ]</h3>
                     <p class="text-emerald-400 font-semibold text-xs mb-4">Secretary</p>
-                    <div class="flex space-x-4 text-gray-500 text-xs">
-                        <a href="#" class="hover:text-blue-400">Email</a>
-                        <a href="#" class="hover:text-blue-400">LinkedIn</a>
-                        <a href="#" class="hover:text-blue-400">Instagram</a>
+                    <div class="flex space-x-4 text-gray-400 text-xs">
+                        <a href="#" class="hover:text-blue-400 transition">Email</a>
+                        <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                        <a href="#" class="hover:text-blue-400 transition">Instagram</a>
                     </div>
                 </div>
 
@@ -71,38 +112,38 @@
         </section>
 
         <section class="mb-16">
-            <h2 class="text-2xl font-bold text-center text-gold mb-8">Domain Heads & Teams</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-center text-gold mb-8 uppercase tracking-widest">Domain Heads & Teams</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="text-xs font-bold uppercase tracking-wider text-purple-400 bg-purple-950/40 px-3 py-1 rounded-full border border-purple-500/30">Operations Domain</span>
-                            <span class="text-xl">⚙️</span>
+                            <span class="text-lg">⚙️</span>
                         </div>
                         <div class="flex items-center space-x-4 mb-6">
-                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                            <div class="w-16 h-16 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
                                 <span class="text-xl">👤</span>
                             </div>
                             <div>
-                                <h3 class="text-base font-bold text-white">[ Operations Head Name ]</h3>
+                                <h3 class="text-sm font-bold text-white">[ Operations Head Name ]</h3>
                                 <p class="text-xs text-gray-400 mb-2">Domain Head — Operations</p>
                                 <div class="flex space-x-3 text-xs text-gray-400">
-                                    <a href="#" class="hover:text-blue-400">LinkedIn</a>
-                                    <a href="#" class="hover:text-blue-400">Instagram</a>
-                                    <a href="#" class="hover:text-blue-400">Email</a>
+                                    <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Email</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="border-t border-gray-800 pt-4">
+                    <div class="border-t border-gray-800/80 pt-4">
                         <button onclick="toggleDomain('ops-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
                             <span>View Operations Members</span>
                             <span id="ops-members-arrow">&darr;</span>
                         </button>
-                        <div id="ops-members" class="hidden mt-3 pl-2 border-l border-purple-500/30 space-y-1 text-xs text-gray-400 font-mono">
+                        <div id="ops-members" class="hidden mt-3 pl-3 border-l-2 border-purple-500/40 space-y-1 text-xs text-gray-400 font-mono">
                             <p>• [ Member Name 1 ]</p>
                             <p>• [ Member Name 2 ]</p>
                             <p>• [ Member Name 3 ]</p>
@@ -110,34 +151,34 @@
                     </div>
                 </div>
 
-                <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-950/40 px-3 py-1 rounded-full border border-blue-500/30">Technical Domain</span>
-                            <span class="text-xl">💻</span>
+                            <span class="text-lg">💻</span>
                         </div>
                         <div class="flex items-center space-x-4 mb-6">
-                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                            <div class="w-16 h-16 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
                                 <span class="text-xl">👤</span>
                             </div>
                             <div>
-                                <h3 class="text-base font-bold text-white">[ Technical Head Name ]</h3>
+                                <h3 class="text-sm font-bold text-white">[ Technical Head Name ]</h3>
                                 <p class="text-xs text-gray-400 mb-2">Domain Head — Technical</p>
                                 <div class="flex space-x-3 text-xs text-gray-400">
-                                    <a href="#" class="hover:text-blue-400">LinkedIn</a>
-                                    <a href="#" class="hover:text-blue-400">Instagram</a>
-                                    <a href="#" class="hover:text-blue-400">Email</a>
+                                    <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Email</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="border-t border-gray-800 pt-4">
+                    <div class="border-t border-gray-800/80 pt-4">
                         <button onclick="toggleDomain('tech-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
                             <span>View Technical Members</span>
                             <span id="tech-members-arrow">&darr;</span>
                         </button>
-                        <div id="tech-members" class="hidden mt-3 pl-2 border-l border-blue-500/30 space-y-1 text-xs text-gray-400 font-mono">
+                        <div id="tech-members" class="hidden mt-3 pl-3 border-l-2 border-blue-500/40 space-y-1 text-xs text-gray-400 font-mono">
                             <p>• [ Member Name 1 ]</p>
                             <p>• [ Member Name 2 ]</p>
                             <p>• [ Member Name 3 ]</p>
@@ -145,34 +186,34 @@
                     </div>
                 </div>
 
-                <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="text-xs font-bold uppercase tracking-wider text-pink-400 bg-pink-950/40 px-3 py-1 rounded-full border border-pink-500/30">Social Media & Marketing</span>
-                            <span class="text-xl">📢</span>
+                            <span class="text-lg">📢</span>
                         </div>
                         <div class="flex items-center space-x-4 mb-6">
-                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                            <div class="w-16 h-16 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
                                 <span class="text-xl">👤</span>
                             </div>
                             <div>
-                                <h3 class="text-base font-bold text-white">[ Marketing Head Name ]</h3>
-                                <p class="text-xs text-gray-400 mb-2">Domain Head — Social Media & Marketing</p>
+                                <h3 class="text-sm font-bold text-white">[ Marketing Head Name ]</h3>
+                                <p class="text-xs text-gray-400 mb-2">Domain Head — Marketing</p>
                                 <div class="flex space-x-3 text-xs text-gray-400">
-                                    <a href="#" class="hover:text-blue-400">LinkedIn</a>
-                                    <a href="#" class="hover:text-blue-400">Instagram</a>
-                                    <a href="#" class="hover:text-blue-400">Email</a>
+                                    <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Email</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="border-t border-gray-800 pt-4">
+                    <div class="border-t border-gray-800/80 pt-4">
                         <button onclick="toggleDomain('smm-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
-                            <span>View Marketing & Social Media Members</span>
+                            <span>View Marketing & SMM Members</span>
                             <span id="smm-members-arrow">&darr;</span>
                         </button>
-                        <div id="smm-members" class="hidden mt-3 pl-2 border-l border-pink-500/30 space-y-1 text-xs text-gray-400 font-mono">
+                        <div id="smm-members" class="hidden mt-3 pl-3 border-l-2 border-pink-500/40 space-y-1 text-xs text-gray-400 font-mono">
                             <p>• [ Member Name 1 ]</p>
                             <p>• [ Member Name 2 ]</p>
                             <p>• [ Member Name 3 ]</p>
@@ -180,34 +221,34 @@
                     </div>
                 </div>
 
-                <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="text-xs font-bold uppercase tracking-wider text-yellow-400 bg-yellow-950/40 px-3 py-1 rounded-full border border-yellow-500/30">Design Domain</span>
-                            <span class="text-xl">🎨</span>
+                            <span class="text-lg">🎨</span>
                         </div>
                         <div class="flex items-center space-x-4 mb-6">
-                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                            <div class="w-16 h-16 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
                                 <span class="text-xl">👤</span>
                             </div>
                             <div>
-                                <h3 class="text-base font-bold text-white">[ Design Head Name ]</h3>
+                                <h3 class="text-sm font-bold text-white">[ Design Head Name ]</h3>
                                 <p class="text-xs text-gray-400 mb-2">Domain Head — Design</p>
                                 <div class="flex space-x-3 text-xs text-gray-400">
-                                    <a href="#" class="hover:text-blue-400">LinkedIn</a>
-                                    <a href="#" class="hover:text-blue-400">Instagram</a>
-                                    <a href="#" class="hover:text-blue-400">Email</a>
+                                    <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Email</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="border-t border-gray-800 pt-4">
+                    <div class="border-t border-gray-800/80 pt-4">
                         <button onclick="toggleDomain('design-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
                             <span>View Design Members</span>
                             <span id="design-members-arrow">&darr;</span>
                         </button>
-                        <div id="design-members" class="hidden mt-3 pl-2 border-l border-yellow-500/30 space-y-1 text-xs text-gray-400 font-mono">
+                        <div id="design-members" class="hidden mt-3 pl-3 border-l-2 border-yellow-500/40 space-y-1 text-xs text-gray-400 font-mono">
                             <p>• [ Member Name 1 ]</p>
                             <p>• [ Member Name 2 ]</p>
                             <p>• [ Member Name 3 ]</p>
@@ -220,11 +261,12 @@
 
     </div>
 
-    <footer class="text-center text-xs text-gray-600 border-t border-gray-800/50 pt-6">
-        &copy; 2026 IEEE RAS PES University EC Campus
+    <footer class="content-layer text-center text-xs text-gray-500 border-t border-gray-800/60 pt-6 mt-12">
+        &copy; 2026 IEEE RAS PES University EC Campus. All Rights Reserved.
     </footer>
 
     <script>
+        // Collapsible Domain Members Script
         function toggleDomain(id) {
             const list = document.getElementById(id);
             const arrow = document.getElementById(id + '-arrow');
@@ -236,6 +278,76 @@
                 arrow.innerHTML = '&darr;';
             }
         }
+
+        // Cybernetic Interactive Canvas Grid Script
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let mouse = { x: null, y: null, radius: 150 };
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        resize();
+
+        // Node grid setup
+        const nodes = [];
+        const spacing = 45;
+
+        for (let x = 0; x < window.innerWidth + spacing; x += spacing) {
+            for (let y = 0; y < window.innerHeight + spacing; y += spacing) {
+                nodes.push({ x: x, y: y, baseAlpha: 0.05 });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Subtle background gradient
+            const bgGrad = ctx.createRadialGradient(width/2, height/2, 10, width/2, height/2, width/1.2);
+            bgGrad.addColorStop(0, '#0a0f1d');
+            bgGrad.addColorStop(1, '#050811');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, width, height);
+
+            // Draw interactive grid nodes
+            for (let i = 0; i < nodes.length; i++) {
+                const node = nodes[i];
+                let alpha = node.baseAlpha;
+
+                if (mouse.x !== null) {
+                    const dx = mouse.x - node.x;
+                    const dy = mouse.y - node.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < mouse.radius) {
+                        alpha = node.baseAlpha + (1 - dist / mouse.radius) * 0.45;
+                    }
+                }
+
+                ctx.fillStyle = `rgba(59, 130, 246, ${alpha})`;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, 1.2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
     </script>
 </body>
 </html>
