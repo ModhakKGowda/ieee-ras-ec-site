@@ -3,456 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team & Governance - IEEE RAS PESU EC Campus</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Team & Governance | IEEE RAS PESU EC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Cybernetic Canvas Background */
+        body { 
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: #050811; 
+            color: #cbd5e1;
+            overflow-x: hidden;
+        }
         #bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1;
-            background-color: #050811;
+            z-index: 0;
+            pointer-events: none;
         }
-
-        /* Top Navigation Header with Branding Logos */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 2rem;
-            background: rgba(5, 8, 17, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .brand-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand-logo {
-            height: 38px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .nav-logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #ffffff;
-            text-decoration: none;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #3b82f6;
-        }
-
-        /* Main Container & Layout */
-        .team-container {
-            max-width: 1100px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
+        .content-layer {
             position: relative;
-            z-index: 1;
+            z-index: 10;
         }
-
-        .page-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .page-subtitle {
-            text-align: center;
-            color: #94a3b8;
-            margin-bottom: 2.5rem;
-        }
-
-        .section-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #f59e0b;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
-            margin: 3rem 0 1.5rem 0;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Glassmorphism Team Cards */
-        .glass-card {
-            background: rgba(15, 23, 42, 0.65);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 12px;
-            padding: 1.8rem;
-            backdrop-filter: blur(8px);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(59, 130, 246, 0.5);
-            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.25);
-        }
-
-        .avatar-placeholder {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: rgba(30, 41, 59, 0.8);
-            border: 2px solid rgba(59, 130, 246, 0.4);
-            margin: 0 auto 1rem auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-
-        .member-name {
-            color: #ffffff;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .member-role {
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .role-gold { color: #f59e0b; }
-        .role-blue { color: #60a5fa; }
-        .role-green { color: #34d399; }
-        .role-purple { color: #c084fc; }
-        .role-rose { color: #fb7185; }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            font-size: 0.85rem;
-        }
-
-        .social-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .social-links a:hover {
-            color: #3b82f6;
-        }
-
-        .domain-toggle-btn {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            color: #cbd5e1;
-            padding-top: 0.8rem;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .domain-members-list {
-            display: none;
-            text-align: left;
-            margin-top: 0.8rem;
-            padding-left: 0.8rem;
-            border-left: 2px solid rgba(59, 130, 246, 0.4);
-            font-size: 0.85rem;
-            color: #94a3b8;
-            line-height: 1.8;
-        }
-
-        .domain-members-list.open {
-            display: block;
-        }
-
-        /* Social Media Section */
-        .socials-section {
-            margin-top: 4rem;
-            padding: 2.5rem;
-            background: rgba(15, 23, 42, 0.65);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 12px;
-            backdrop-filter: blur(8px);
-            text-align: center;
-        }
-
-        .social-grid {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .social-card-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0.8rem 1.5rem;
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 8px;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
+        .glass-card { 
+            background: rgba(15, 23, 42, 0.65); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
             transition: all 0.3s ease;
         }
-
-        .social-card-btn:hover {
-            background: rgba(59, 130, 246, 0.2);
-            border-color: #3b82f6;
-            transform: translateY(-2px);
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
         }
+        .text-gold { color: #f59e0b; }
+        .bg-gold-glow { box-shadow: 0 0 15px rgba(245, 158, 11, 0.2); }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between p-4 md:p-8">
 
     <canvas id="bg-canvas"></canvas>
 
-    <nav class="navbar">
-        <div class="brand-container">
-            <img src="{{ url_for('static', filename='ieee_logo.png') }}" alt="IEEE Logo" class="brand-logo" onerror="this.style.display='none'">
-            <img src="{{ url_for('static', filename='ras_logo.png') }}" alt="RAS Logo" class="brand-logo" onerror="this.style.display='none'">
-            <a href="/" class="nav-logo">IEEE RAS PESU EC</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/events">Events</a></li>
-            <li><a href="/team" class="active">Team</a></li>
-        </ul>
-    </nav>
-
-    <main class="team-container">
-        <h1 class="page-title">Leadership & Governance</h1>
-        <p class="page-subtitle">Meet the Executive Committee, Domain Leads, and Team Members of IEEE RAS PESU EC Campus.</p>
-
-        <h2 class="section-title">Executive Committee</h2>
-        <div class="grid-3">
-            <div class="glass-card">
-                <div class="avatar-placeholder">👤</div>
-                <h3 class="member-name">[ Student Chair Name ]</h3>
-                <p class="member-role role-gold">Student Chair</p>
-                <div class="social-links">
-                    <a href="#">Email</a>
-                    <a href="#">LinkedIn</a>
+    <div class="content-layer max-w-6xl mx-auto w-full">
+        <!-- HEADER WITH LOGOS & NAVBAR -->
+        <header class="flex flex-col sm:flex-row items-center justify-between py-4 border-b border-gray-800/80 mb-10 gap-4">
+            <!-- Brand & Logos -->
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-2">
+                    <!-- IEEE Logo -->
+                    <div class="h-9 px-2 rounded bg-blue-950/50 border border-blue-500/30 flex items-center justify-center">
+                        <svg class="h-5 w-auto fill-blue-400" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10,15 H30 V45 H10 Z M15,20 V40 H25 V20 Z M45,15 H80 V22 H55 V26 H75 V33 H55 V38 H80 V45 H45 Z M90,15 H125 V22 H100 V26 H120 V33 H100 V38 H125 V45 H90 Z M135,15 H170 V22 H145 V26 H165 V33 H145 V38 H170 V45 H135 Z"/>
+                            <circle cx="185" cy="30" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <polygon points="185,20 180,35 190,35" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <!-- RAS Logo Badge -->
+                    <div class="h-9 px-2.5 rounded bg-amber-950/50 border border-amber-500/30 flex items-center justify-center font-extrabold text-xs tracking-wider text-amber-400 space-x-1">
+                        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                        </svg>
+                        <span>RAS</span>
+                    </div>
                 </div>
+                <span class="text-sm font-bold tracking-wide text-gray-200 hidden md:inline">IEEE RAS PESU EC</span>
             </div>
 
-            <div class="glass-card">
-                <div class="avatar-placeholder">👤</div>
-                <h3 class="member-name">[ Vice Chair Name ]</h3>
-                <p class="member-role role-blue">Student Vice Chair</p>
-                <div class="social-links">
-                    <a href="#">Email</a>
-                    <a href="#">LinkedIn</a>
-                </div>
-            </div>
+            <!-- Navbar Buttons -->
+            <nav class="flex items-center space-x-1 sm:space-x-2 bg-slate-900/80 p-1.5 rounded-full border border-slate-800 backdrop-blur-md">
+                <a href="#home" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3 py-1.5 rounded-full transition">Home</a>
+                <a href="#about" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3 py-1.5 rounded-full transition">About</a>
+                <a href="#domains" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3 py-1.5 rounded-full transition">Domains</a>
+                <a href="#team" class="text-xs font-semibold text-blue-400 bg-blue-950/80 border border-blue-500/30 px-3 py-1.5 rounded-full transition">Team</a>
+                <a href="#contact" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3 py-1.5 rounded-full transition">Contact</a>
+            </nav>
+        </header>
 
-            <div class="glass-card">
-                <div class="avatar-placeholder">👤</div>
-                <h3 class="member-name">[ Secretary Name ]</h3>
-                <p class="member-role role-green">Secretary</p>
-                <div class="social-links">
-                    <a href="#">Email</a>
-                    <a href="#">LinkedIn</a>
-                </div>
-            </div>
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-3">Our Leadership & Team</h1>
+            <p class="text-gray-400 text-xs md:text-sm max-w-xl mx-auto">Meet the core committee and domain teams driving robotics innovation at PES University Electronic City Campus.</p>
         </div>
 
-        <h2 class="section-title">Domain Leads</h2>
-        <div class="grid-2">
-            <div class="glass-card">
-                <div class="avatar-placeholder">💻</div>
-                <h3 class="member-name">[ Technical Head ]</h3>
-                <p class="member-role role-blue">Technical Domain Lead</p>
-                <button class="domain-toggle-btn" onclick="toggleMembers('tech-list', this)">
-                    <span>View Technical Team Members</span>
-                    <span>↓</span>
-                </button>
-                <div id="tech-list" class="domain-members-list">
-                    <p>• Member Name 1</p>
-                    <p>• Member Name 2</p>
-                    <p>• Member Name 3</p>
+        <section class="mb-16" id="team">
+            <h2 class="text-xl md:text-2xl font-bold text-center text-gold mb-8 uppercase tracking-widest">Executive Committee</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center border-t-2 border-yellow-500">
+                    <div class="w-24 h-24 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-yellow-500/30 mb-4 overflow-hidden">
+                        <span class="text-3xl">👤</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">[ Student Chair Name ]</h3>
+                    <p class="text-yellow-500 font-semibold text-xs mb-4">Student Chair</p>
+                    <div class="flex space-x-4 text-gray-400 text-xs">
+                        <a href="#" class="hover:text-blue-400 transition">Email</a>
+                        <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                        <a href="#" class="hover:text-blue-400 transition">Instagram</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="glass-card">
-                <div class="avatar-placeholder">⚙️</div>
-                <h3 class="member-name">[ Operations Head ]</h3>
-                <p class="member-role role-purple">Operations Domain Lead</p>
-                <button class="domain-toggle-btn" onclick="toggleMembers('ops-list', this)">
-                    <span>View Operations Team Members</span>
-                    <span>↓</span>
-                </button>
-                <div id="ops-list" class="domain-members-list">
-                    <p>• Member Name 1</p>
-                    <p>• Member Name 2</p>
-                    <p>• Member Name 3</p>
+                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center border-t-2 border-blue-500">
+                    <div class="w-24 h-24 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-blue-500/30 mb-4 overflow-hidden">
+                        <span class="text-3xl">👤</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">[ Student Vice Chair Name ]</h3>
+                    <p class="text-blue-400 font-semibold text-xs mb-4">Student Vice Chair</p>
+                    <div class="flex space-x-4 text-gray-400 text-xs">
+                        <a href="#" class="hover:text-blue-400 transition">Email</a>
+                        <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                        <a href="#" class="hover:text-blue-400 transition">Instagram</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="glass-card">
-                <div class="avatar-placeholder">🎨</div>
-                <h3 class="member-name">[ Design & Web Head ]</h3>
-                <p class="member-role role-rose">Design & Web Lead</p>
-                <button class="domain-toggle-btn" onclick="toggleMembers('design-list', this)">
-                    <span>View Design Team Members</span>
-                    <span>↓</span>
-                </button>
-                <div id="design-list" class="domain-members-list">
-                    <p>• Member Name 1</p>
-                    <p>• Member Name 2</p>
-                    <p>• Member Name 3</p>
+                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center border-t-2 border-emerald-500">
+                    <div class="w-24 h-24 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-emerald-500/30 mb-4 overflow-hidden">
+                        <span class="text-3xl">👤</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">[ Secretary Name ]</h3>
+                    <p class="text-emerald-400 font-semibold text-xs mb-4">Secretary</p>
+                    <div class="flex space-x-4 text-gray-400 text-xs">
+                        <a href="#" class="hover:text-blue-400 transition">Email</a>
+                        <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                        <a href="#" class="hover:text-blue-400 transition">Instagram</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="glass-card">
-                <div class="avatar-placeholder">📢</div>
-                <h3 class="member-name">[ PR & Logistics Head ]</h3>
-                <p class="member-role role-gold">PR & Outreach Lead</p>
-                <button class="domain-toggle-btn" onclick="toggleMembers('pr-list', this)">
-                    <span>View PR Team Members</span>
-                    <span>↓</span>
-                </button>
-                <div id="pr-list" class="domain-members-list">
-                    <p>• Member Name 1</p>
-                    <p>• Member Name 2</p>
-                    <p>• Member Name 3</p>
-                </div>
-            </div>
-        </div>
-
-        <section class="socials-section">
-            <h2 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 0.5rem;">Connect With Us</h2>
-            <p style="color: #94a3b8; font-size: 0.95rem;">Follow IEEE RAS PESU EC Campus on social media for real-time announcements & updates.</p>
-
-            <div class="social-grid">
-                <a href="https://instagram.com" target="_blank" class="social-card-btn">📸 Instagram</a>
-                <a href="https://linkedin.com" target="_blank" class="social-card-btn">💼 LinkedIn</a>
-                <a href="https://github.com" target="_blank" class="social-card-btn">💻 GitHub</a>
-                <a href="mailto:ras@pes.edu" class="social-card-btn">✉️ Email Us</a>
             </div>
         </section>
-    </main>
+
+        <section class="mb-16" id="domains">
+            <h2 class="text-xl md:text-2xl font-bold text-center text-gold mb-8 uppercase tracking-widest">Domain Heads & Teams</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-purple-400 bg-purple-950/40 px-3 py-1 rounded-full border border-purple-500/30">Operations Domain</span>
+                            <span class="text-lg">⚙️</span>
+                        </div>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                                <span class="text-xl">👤</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white">[ Operations Head Name ]</h3>
+                                <p class="text-xs text-gray-400 mb-2">Domain Head — Operations</p>
+                                <div class="flex space-x-3 text-xs text-gray-400">
+                                    <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Email</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-800/80 pt-4">
+                        <button onclick="toggleDomain('ops-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
+                            <span>View Operations Members</span>
+                            <span id="ops-members-arrow">&darr;</span>
+                        </button>
+                        <div id="ops-members" class="hidden mt-3 pl-3 border-l-2 border-purple-500/40 space-y-1 text-xs text-gray-400 font-mono">
+                            <p>• [ Member Name 1 ]</p>
+                            <p>• [ Member Name 2 ]</p>
+                            <p>• [ Member Name 3 ]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-950/40 px-3 py-1 rounded-full border border-blue-500/30">Technical Domain</span>
+                            <span class="text-lg">💻</span>
+                        </div>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                                <span class="text-xl">👤</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white">[ Technical Head Name ]</h3>
+                                <p class="text-xs text-gray-400 mb-2">Domain Head — Technical</p>
+                                <div class="flex space-x-3 text-xs text-gray-400">
+                                    <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Email</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-800/80 pt-4">
+                        <button onclick="toggleDomain('tech-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
+                            <span>View Technical Members</span>
+                            <span id="tech-members-arrow">&darr;</span>
+                        </button>
+                        <div id="tech-members" class="hidden mt-3 pl-3 border-l-2 border-blue-500/40 space-y-1 text-xs text-gray-400 font-mono">
+                            <p>• [ Member Name 1 ]</p>
+                            <p>• [ Member Name 2 ]</p>
+                            <p>• [ Member Name 3 ]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-pink-400 bg-pink-950/40 px-3 py-1 rounded-full border border-pink-500/30">Social Media & Marketing</span>
+                            <span class="text-lg">📢</span>
+                        </div>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                                <span class="text-xl">👤</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white">[ Marketing Head Name ]</h3>
+                                <p class="text-xs text-gray-400 mb-2">Domain Head — Marketing</p>
+                                <div class="flex space-x-3 text-xs text-gray-400">
+                                    <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Email</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-800/80 pt-4">
+                        <button onclick="toggleDomain('smm-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
+                            <span>View Marketing & SMM Members</span>
+                            <span id="smm-members-arrow">&darr;</span>
+                        </button>
+                        <div id="smm-members" class="hidden mt-3 pl-3 border-l-2 border-pink-500/40 space-y-1 text-xs text-gray-400 font-mono">
+                            <p>• [ Member Name 1 ]</p>
+                            <p>• [ Member Name 2 ]</p>
+                            <p>• [ Member Name 3 ]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-yellow-400 bg-yellow-950/40 px-3 py-1 rounded-full border border-yellow-500/30">Design Domain</span>
+                            <span class="text-lg">🎨</span>
+                        </div>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 bg-gray-900/80 rounded-full flex items-center justify-center text-gray-500 border border-gray-700 flex-shrink-0 overflow-hidden">
+                                <span class="text-xl">👤</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white">[ Design Head Name ]</h3>
+                                <p class="text-xs text-gray-400 mb-2">Domain Head — Design</p>
+                                <div class="flex space-x-3 text-xs text-gray-400">
+                                    <a href="#" class="hover:text-blue-400 transition">LinkedIn</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Instagram</a>
+                                    <a href="#" class="hover:text-blue-400 transition">Email</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-800/80 pt-4">
+                        <button onclick="toggleDomain('design-members')" class="w-full flex items-center justify-between text-xs font-semibold text-gray-300 hover:text-white transition">
+                            <span>View Design Members</span>
+                            <span id="design-members-arrow">&darr;</span>
+                        </button>
+                        <div id="design-members" class="hidden mt-3 pl-3 border-l-2 border-yellow-500/40 space-y-1 text-xs text-gray-400 font-mono">
+                            <p>• [ Member Name 1 ]</p>
+                            <p>• [ Member Name 2 ]</p>
+                            <p>• [ Member Name 3 ]</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="content-layer text-center text-xs text-gray-500 border-t border-gray-800/60 pt-6 mt-12">
+        &copy; 2026 IEEE RAS PES University EC Campus. All Rights Reserved.
+    </footer>
 
     <script>
-        function toggleMembers(id, btn) {
+        // Collapsible Domain Members Script
+        function toggleDomain(id) {
             const list = document.getElementById(id);
-            const arrow = btn.querySelector('span:last-child');
-            if (list.classList.contains('open')) {
-                list.classList.remove('open');
-                arrow.innerHTML = '↓';
+            const arrow = document.getElementById(id + '-arrow');
+            if (list.classList.contains('hidden')) {
+                list.classList.remove('hidden');
+                arrow.innerHTML = '&uarr;';
             } else {
-                list.classList.add('open');
-                arrow.innerHTML = '↑';
+                list.classList.add('hidden');
+                arrow.innerHTML = '&darr;';
             }
         }
 
+        // Cybernetic Interactive Canvas Grid Script
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
+        let width, height;
         let mouse = { x: null, y: null, radius: 150 };
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.x;
-            mouse.y = e.y;
-        });
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
 
+        window.addEventListener('resize', resize);
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
         window.addEventListener('mouseleave', () => {
             mouse.x = null;
             mouse.y = null;
         });
 
-        const points = [];
-        const spacing = 40;
+        resize();
 
-        for (let x = 0; x < window.innerWidth; x += spacing) {
-            for (let y = 0; y < window.innerHeight; y += spacing) {
-                points.push({ x: x, y: y });
+        // Node grid setup
+        const nodes = [];
+        const spacing = 45;
+
+        for (let x = 0; x < window.innerWidth + spacing; x += spacing) {
+            for (let y = 0; y < window.innerHeight + spacing; y += spacing) {
+                nodes.push({ x: x, y: y, baseAlpha: 0.05 });
             }
         }
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
 
-            for (let i = 0; i < points.length; i++) {
-                let p = points[i];
+            // Subtle background gradient
+            const bgGrad = ctx.createRadialGradient(width/2, height/2, 10, width/2, height/2, width/1.2);
+            bgGrad.addColorStop(0, '#0a0f1d');
+            bgGrad.addColorStop(1, '#050811');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, width, height);
 
-                if (mouse.x !== null && mouse.y !== null) {
-                    let dx = mouse.x - p.x;
-                    let dy = mouse.y - p.y;
-                    let dist = Math.sqrt(dx * dx + dy * dy);
+            // Draw interactive grid nodes
+            for (let i = 0; i < nodes.length; i++) {
+                const node = nodes[i];
+                let alpha = node.baseAlpha;
+
+                if (mouse.x !== null) {
+                    const dx = mouse.x - node.x;
+                    const dy = mouse.y - node.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < mouse.radius) {
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(59, 130, 246, ${1 - dist / mouse.radius})`;
-                        ctx.fill();
+                        alpha = node.baseAlpha + (1 - dist / mouse.radius) * 0.45;
                     }
                 }
+
+                ctx.fillStyle = `rgba(59, 130, 246, ${alpha})`;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, 1.2, 0, Math.PI * 2);
+                ctx.fill();
             }
 
-            requestAnimationFrame(animate);
+            requestAnimationFrame(draw);
         }
 
-        animate();
+        draw();
     </script>
 </body>
 </html>
