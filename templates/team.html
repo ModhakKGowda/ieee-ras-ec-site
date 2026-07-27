@@ -3,124 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEEE RAS EC Campus | Team</title>
+    <title>Team & Governance | IEEE RAS EC Campus</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* Advanced Cybernetic Blueprint Layout */
         #bg-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at center, #0f1932 0%, #070a14 100%);
+            background: radial-gradient(circle at center, #050814 0%, #010205 100%);
         }
-
-        .team-card {
-            background: rgba(15, 25, 50, 0.3) !important;
-            border: 1px solid rgba(0, 180, 216, 0.15) !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        .team-container {
+            max-width: 1100px;
+            margin: 8rem auto 6rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-story-block {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-header {
+            text-align: center;
+            margin: 4rem 0 2.5rem 0;
+            color: #00f5ff;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        /* Glassmorphic Nodes / Cards */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .story-node {
+            position: relative;
+            background: rgba(8, 14, 28, 0.7);
+            border: 1px solid rgba(0, 180, 216, 0.15);
+            backdrop-filter: blur(14px);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            transition: all 0.4s ease;
             text-align: center;
         }
-
-        .team-card:hover {
+        .story-node:hover {
             transform: translateY(-5px);
-            border-color: rgba(0, 180, 216, 0.5) !important;
-            box-shadow: 0 15px 40px rgba(0, 180, 216, 0.15);
+            border-color: #00f5ff;
+            box-shadow: 0 20px 45px rgba(0, 245, 255, 0.15);
         }
-
         .avatar-box {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             margin: 0 auto 1.25rem auto;
             border-radius: 50%;
-            background: rgba(7, 10, 20, 0.8);
-            border: 1px solid rgba(0, 180, 216, 0.3);
+            background: rgba(1, 2, 5, 0.8);
+            border: 1px solid rgba(0, 245, 255, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            color: #00b4d8;
+            color: #00f5ff;
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.1);
         }
-
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 1.2rem;
+            margin-top: 1.2rem;
         }
-
         .social-links a {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
         }
-
         .social-links a:hover {
-            color: #00b4d8;
+            color: #00f5ff;
+            transform: scale(1.15);
         }
-
         .domain-toggle-btn {
-            background: transparent;
-            border: 1px solid rgba(0, 180, 216, 0.2);
-            color: #00b4d8;
-            padding: 8px 16px;
-            border-radius: 20px;
+            background: rgba(0, 245, 255, 0.05);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            color: #00f5ff;
+            padding: 10px 16px;
+            border-radius: 12px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-
         .domain-toggle-btn:hover {
-            background: rgba(0, 180, 216, 0.1);
-            border-color: rgba(0, 180, 216, 0.5);
+            background: rgba(0, 245, 255, 0.15);
+            border-color: #00f5ff;
         }
-
         .member-list {
             display: none;
             text-align: left;
             margin-top: 1rem;
-            padding-left: 1rem;
-            border-left: 2px solid rgba(0, 180, 216, 0.3);
-            color: #94a3b8;
-            font-size: 0.85rem;
+            padding: 0.8rem 1rem;
+            border-left: 2px solid #00f5ff;
+            background: rgba(1, 2, 5, 0.4);
+            border-radius: 0 8px 8px 0;
+            color: #cbd5e1;
+            font-size: 0.9rem;
         }
-
         .member-list p {
             margin: 0.4rem 0;
         }
-
         .member-list.show {
             display: block;
         }
     </style>
 </head>
-<body>
+<body style="color: #fff; overflow-x: hidden;">
 
     <canvas id="bg-canvas"></canvas>
 
-    <!-- IDENTICAL NAVBAR & LOGO SECTION -->
     <header class="navbar">
         <div class="logo-wrapper">
             <div class="logo-container">
-                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" alt="IEEE RAS" class="logo-img-ras">
+                <img src="https://cdn.brandfetch.io/idyeOpla1i/w/128/h/47/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1781723057959" class="logo-img-ras" alt="IEEE RAS">
                 <div class="logo-divider"></div>
-                <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" alt="PES University" class="logo-img-pes">
+                <img src="https://cdn.brandfetch.io/idmoEW6P4D/w/155/h/72/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1718704217023" class="logo-img-pes" alt="PES University">
             </div>
         </div>
         <nav>
@@ -128,70 +143,61 @@
             <a href="/about">About</a>
             <a href="/events">Events</a>
             <a href="/team" class="active">Team</a>
-            <a href="/sandbox" class="btn-nav">Sandbox</a>
-            <a href="/#join" class="btn-nav">Join Club</a>
         </nav>
     </header>
 
-    <!-- HERO / TITLE -->
-    <section class="section" style="padding-top: 5rem; text-align: center;">
-        <div class="badge" style="background: rgba(0, 180, 216, 0.12); color: #00b4d8; padding: 6px 18px; border-radius: 30px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-bottom: 1rem; letter-spacing: 2px; border: 1px solid rgba(0, 180, 216, 0.25);">GOVERNANCE & LEADERSHIP</div>
-        <h1 class="section-title" style="font-size: 2.5rem; font-weight: 800;">Our Leadership & Team</h1>
-        <p class="section-desc">Meet the core committee and domain leaders driving technological innovation at PES University Electronic City Campus.</p>
-    </section>
-
-    <!-- EXECUTIVE COMMITTEE -->
-    <section class="section" style="padding: 2rem;">
-        <h2 style="color: #00b4d8; text-align: center; font-size: 1.4rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem;">Executive Committee</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto;">
-            
-            <div class="team-card">
-                <div class="avatar-box"><i class="fa-solid fa-user-astronaut"></i></div>
-                <h3 style="color: #fff; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem;">[ Chair Name ]</h3>
-                <p style="color: #00b4d8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Student Chair</p>
-                <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
-                </div>
-            </div>
-
-            <div class="team-card">
-                <div class="avatar-box"><i class="fa-solid fa-user-gear"></i></div>
-                <h3 style="color: #fff; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem;">[ Vice Chair Name ]</h3>
-                <p style="color: #00b4d8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Vice Chair</p>
-                <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
-                </div>
-            </div>
-
-            <div class="team-card">
-                <div class="avatar-box"><i class="fa-solid fa-file-signature"></i></div>
-                <h3 style="color: #fff; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem;">[ Secretary Name ]</h3>
-                <p style="color: #00b4d8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Secretary</p>
-                <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
-                </div>
-            </div>
-
+    <div class="team-container">
+        <div class="hero-story-block">
+            <span style="color: #00f5ff; font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; text-transform: uppercase;">Governance & Leadership</span>
+            <h1 style="font-size: 3rem; font-weight: 800; margin-top: 0.5rem; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Architects of RAS EC Campus</h1>
+            <p style="color: #cbd5e1; max-width: 650px; margin: 1rem auto 0 auto; font-size: 1.05rem; line-height: 1.6;">
+                Meet the executive committee and domain leads behind the autonomous systems, hardware sandboxes, and technical initiatives at PES University EC Campus.
+            </p>
         </div>
-    </section>
 
-    <!-- DOMAIN HEADS & TEAMS -->
-    <section class="section" style="padding: 2rem 2rem 6rem 2rem;">
-        <h2 style="color: #00b4d8; text-align: center; font-size: 1.4rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem;">Domain Leads</h2>
+        <div class="section-header">Executive Committee</div>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto;">
+        <div class="grid-layout">
+            <div class="story-node">
+                <div class="avatar-box"><i class="fa-solid fa-user-astronaut"></i></div>
+                <h3 style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Chair Name ]</h3>
+                <p style="color: #00f5ff; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Student Chair</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
 
-            <!-- Operations Domain -->
-            <div class="team-card">
+            <div class="story-node">
+                <div class="avatar-box"><i class="fa-solid fa-user-gear"></i></div>
+                <h3 style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Vice Chair Name ]</h3>
+                <p style="color: #00b4d8; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Vice Chair</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="story-node">
+                <div class="avatar-box"><i class="fa-solid fa-file-signature"></i></div>
+                <h3 style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Secretary Name ]</h3>
+                <p style="color: #00f5ff; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Secretary</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header">Domain Heads & Teams</div>
+
+        <div class="grid-layout">
+            <div class="story-node">
                 <div class="avatar-box"><i class="fa-solid fa-sliders"></i></div>
-                <h3 style="color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem;">[ Operations Lead ]</h3>
+                <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Operations Lead ]</h3>
                 <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Operations</p>
                 <div class="social-links">
                     <a href="#"><i class="fa-brands fa-linkedin"></i></a>
@@ -201,16 +207,15 @@
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div id="ops-list" class="member-list">
-                    <p>• [ Member Name 1 ]</p>
-                    <p>• [ Member Name 2 ]</p>
-                    <p>• [ Member Name 3 ]</p>
+                    <p>• Member Name 1</p>
+                    <p>• Member Name 2</p>
+                    <p>• Member Name 3</p>
                 </div>
             </div>
 
-            <!-- Technical Domain -->
-            <div class="team-card">
+            <div class="story-node">
                 <div class="avatar-box"><i class="fa-solid fa-code"></i></div>
-                <h3 style="color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem;">[ Technical Lead ]</h3>
+                <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Technical Lead ]</h3>
                 <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Technical</p>
                 <div class="social-links">
                     <a href="#"><i class="fa-brands fa-linkedin"></i></a>
@@ -220,16 +225,15 @@
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div id="tech-list" class="member-list">
-                    <p>• [ Member Name 1 ]</p>
-                    <p>• [ Member Name 2 ]</p>
-                    <p>• [ Member Name 3 ]</p>
+                    <p>• Member Name 1</p>
+                    <p>• Member Name 2</p>
+                    <p>• Member Name 3</p>
                 </div>
             </div>
 
-            <!-- Social Media & Marketing -->
-            <div class="team-card">
+            <div class="story-node">
                 <div class="avatar-box"><i class="fa-solid fa-bullhorn"></i></div>
-                <h3 style="color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem;">[ Marketing Lead ]</h3>
+                <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Marketing Lead ]</h3>
                 <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Marketing & SMM</p>
                 <div class="social-links">
                     <a href="#"><i class="fa-brands fa-linkedin"></i></a>
@@ -239,16 +243,15 @@
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div id="smm-list" class="member-list">
-                    <p>• [ Member Name 1 ]</p>
-                    <p>• [ Member Name 2 ]</p>
-                    <p>• [ Member Name 3 ]</p>
+                    <p>• Member Name 1</p>
+                    <p>• Member Name 2</p>
+                    <p>• Member Name 3</p>
                 </div>
             </div>
 
-            <!-- Design Domain -->
-            <div class="team-card">
+            <div class="story-node">
                 <div class="avatar-box"><i class="fa-solid fa-pen-ruler"></i></div>
-                <h3 style="color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem;">[ Design Lead ]</h3>
+                <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Design Lead ]</h3>
                 <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Design</p>
                 <div class="social-links">
                     <a href="#"><i class="fa-brands fa-linkedin"></i></a>
@@ -258,107 +261,91 @@
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div id="design-list" class="member-list">
-                    <p>• [ Member Name 1 ]</p>
-                    <p>• [ Member Name 2 ]</p>
-                    <p>• [ Member Name 3 ]</p>
+                    <p>• Member Name 1</p>
+                    <p>• Member Name 2</p>
+                    <p>• Member Name 3</p>
                 </div>
             </div>
-
         </div>
-    </section>
+    </div>
 
-    <!-- FOOTER -->
-    <footer style="text-align: center; padding: 4rem 2rem; color: #475569; font-size: 0.85rem; border-top: 1px solid rgba(0, 180, 216, 0.05); margin-top: 4rem;">
-        <p>&copy; 2026 IEEE RAS PESU - EC Campus. All Rights Reserved.</p>
-    </footer>
-
-    <!-- INTERACTIVE BACKGROUND CANVAS SCRIPT (MATCHES HOME PAGE) -->
     <script>
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
-        let points = [];
-        const maxDist = 150;
-        let mouse = { x: null, y: null };
+        let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
 
-        function initCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            points = [];
-            const count = Math.floor((canvas.width * canvas.height) / 18000);
-            for (let i = 0; i < count; i++) {
-                points.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    r: Math.random() * 2 + 1
-                });
-            }
-        }
-
-        window.addEventListener('resize', initCanvas);
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
         window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-        window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+        resize();
 
-        function drawGrid() {
-            ctx.strokeStyle = 'rgba(0, 180, 216, 0.03)';
-            ctx.lineWidth = 1;
-            const gridSize = 60;
-            for (let x = 0; x < canvas.width; x += gridSize) {
-                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
-            }
-            for (let y = 0; y < canvas.height; y += gridSize) {
-                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
-            }
-        }
+        // 1. Interactive Tracking Drones
+        let bots = [
+            { x: 150, y: 350, baseRadius: 22, targetY: 350 },
+            { x: window.innerWidth - 180, y: 600, baseRadius: 26, targetY: 600 }
+        ];
 
-        function renderEngine() {
+        // 2. Blueprint Background Still Robots
+        let stillRobots = [
+            { x: window.innerWidth * 0.2, y: window.innerHeight * 0.85, size: 70 },
+            { x: window.innerWidth * 0.8, y: window.innerHeight * 0.25, size: 90 }
+        ];
+
+        function drawSystem() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawGrid();
 
-            for (let i = 0; i < points.length; i++) {
-                let p = points[i];
-                p.x += p.vx;
-                p.y += p.vy;
-
-                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-                if (mouse.x !== null && mouse.y !== null) {
-                    let dx = mouse.x - p.x;
-                    let dy = mouse.y - p.y;
-                    let d = Math.hypot(dx, dy);
-                    if (d < 200) {
-                        p.x += dx * 0.02;
-                        p.y += dy * 0.02;
-                    }
-                }
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 180, 216, 0.6)';
-                ctx.fill();
-
-                for (let j = i + 1; j < points.length; j++) {
-                    let p2 = points[j];
-                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (dist < maxDist) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(0, 180, 216, ${0.25 * (1 - dist / maxDist)})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.stroke();
-                    }
-                }
+            // Tech grid lines
+            ctx.strokeStyle = 'rgba(0, 245, 255, 0.01)';
+            ctx.lineWidth = 1;
+            for(let i = 0; i < canvas.width; i += 50) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
             }
-            requestAnimationFrame(renderEngine);
+
+            // Draw Background Still Blueprint Robots
+            ctx.strokeStyle = 'rgba(0, 180, 216, 0.06)';
+            ctx.lineWidth = 2;
+            stillRobots.forEach(r => {
+                ctx.beginPath();
+                ctx.rect(r.x - r.size/2, r.y - r.size/2, r.size, r.size); // Body outline
+                ctx.moveTo(r.x - r.size/2, r.y); ctx.lineTo(r.x - r.size/2 - 20, r.y + 10); // Arm left
+                ctx.moveTo(r.x + r.size/2, r.y); ctx.lineTo(r.x + r.size/2 + 20, r.y + 10); // Arm right
+                ctx.arc(r.x, r.y - r.size/2 - 15, 12, 0, Math.PI*2); // Head sensor
+                ctx.stroke();
+            });
+
+            // Draw Interactive Tracking Drones
+            bots.forEach((b, index) => {
+                b.targetY += (mouse.y - b.targetY) * 0.02;
+                b.y = b.targetY + Math.sin(Date.now() * 0.002 + index) * 15;
+
+                let angleToMouse = Math.atan2(mouse.y - b.y, mouse.x - b.x);
+
+                for(let a = 0; a < Math.PI*2; a += Math.PI/3) {
+                    let lx = b.x + Math.cos(a + Math.sin(Date.now()*0.005)*0.2) * 50;
+                    let ly = b.y + Math.sin(a + Math.sin(Date.now()*0.005)*0.2) * 50;
+                    ctx.strokeStyle = 'rgba(0, 245, 255, 0.25)';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo((b.x+lx)/2, (b.y+ly)/2 - 8); ctx.lineTo(lx, ly); ctx.stroke();
+                }
+
+                ctx.fillStyle = '#060a18';
+                ctx.strokeStyle = '#00f5ff';
+                ctx.lineWidth = 3;
+                ctx.beginPath(); ctx.arc(b.x, b.y, b.baseRadius, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+
+                let ox = b.x + Math.cos(angleToMouse) * 8;
+                let oy = b.y + Math.sin(angleToMouse) * 8;
+                ctx.fillStyle = '#00f5ff';
+                ctx.shadowBlur = 15; ctx.shadowColor = '#00f5ff';
+                ctx.beginPath(); ctx.arc(ox, oy, 6, 0, Math.PI*2); ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+
+            requestAnimationFrame(drawSystem);
         }
+        drawSystem();
 
-        initCanvas();
-        renderEngine();
-
-        // Toggle Member Accordion
+        // Domain Members Accordion Toggle
         function toggleMembers(id, btn) {
             const list = document.getElementById(id);
             const icon = btn.querySelector('i');
