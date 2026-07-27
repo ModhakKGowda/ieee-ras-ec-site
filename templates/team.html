@@ -236,4 +236,223 @@
         .social-card-btn {
             display: flex;
             align-items: center;
-            gap: 1
+            gap: 10px;
+            padding: 0.8rem 1.5rem;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-card-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="navbar">
+        <div class="brand-container">
+            <img src="{{ url_for('static', filename='ieee_logo.png') }}" alt="IEEE Logo" class="brand-logo" onerror="this.style.display='none'">
+            <img src="{{ url_for('static', filename='ras_logo.png') }}" alt="RAS Logo" class="brand-logo" onerror="this.style.display='none'">
+            <a href="/" class="nav-logo">IEEE RAS PESU EC</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/team" class="active">Team</a></li>
+        </ul>
+    </nav>
+
+    <main class="team-container">
+        <h1 class="page-title">Leadership & Governance</h1>
+        <p class="page-subtitle">Meet the Executive Committee, Domain Leads, and Team Members of IEEE RAS PESU EC Campus.</p>
+
+        <h2 class="section-title">Executive Committee</h2>
+        <div class="grid-3">
+            <div class="glass-card">
+                <div class="avatar-placeholder">👤</div>
+                <h3 class="member-name">[ Student Chair Name ]</h3>
+                <p class="member-role role-gold">Student Chair</p>
+                <div class="social-links">
+                    <a href="#">Email</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="avatar-placeholder">👤</div>
+                <h3 class="member-name">[ Vice Chair Name ]</h3>
+                <p class="member-role role-blue">Student Vice Chair</p>
+                <div class="social-links">
+                    <a href="#">Email</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="avatar-placeholder">👤</div>
+                <h3 class="member-name">[ Secretary Name ]</h3>
+                <p class="member-role role-green">Secretary</p>
+                <div class="social-links">
+                    <a href="#">Email</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Domain Leads</h2>
+        <div class="grid-2">
+            <div class="glass-card">
+                <div class="avatar-placeholder">💻</div>
+                <h3 class="member-name">[ Technical Head ]</h3>
+                <p class="member-role role-blue">Technical Domain Lead</p>
+                <button class="domain-toggle-btn" onclick="toggleMembers('tech-list', this)">
+                    <span>View Technical Team Members</span>
+                    <span>↓</span>
+                </button>
+                <div id="tech-list" class="domain-members-list">
+                    <p>• Member Name 1</p>
+                    <p>• Member Name 2</p>
+                    <p>• Member Name 3</p>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="avatar-placeholder">⚙️</div>
+                <h3 class="member-name">[ Operations Head ]</h3>
+                <p class="member-role role-purple">Operations Domain Lead</p>
+                <button class="domain-toggle-btn" onclick="toggleMembers('ops-list', this)">
+                    <span>View Operations Team Members</span>
+                    <span>↓</span>
+                </button>
+                <div id="ops-list" class="domain-members-list">
+                    <p>• Member Name 1</p>
+                    <p>• Member Name 2</p>
+                    <p>• Member Name 3</p>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="avatar-placeholder">🎨</div>
+                <h3 class="member-name">[ Design & Web Head ]</h3>
+                <p class="member-role role-rose">Design & Web Lead</p>
+                <button class="domain-toggle-btn" onclick="toggleMembers('design-list', this)">
+                    <span>View Design Team Members</span>
+                    <span>↓</span>
+                </button>
+                <div id="design-list" class="domain-members-list">
+                    <p>• Member Name 1</p>
+                    <p>• Member Name 2</p>
+                    <p>• Member Name 3</p>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="avatar-placeholder">📢</div>
+                <h3 class="member-name">[ PR & Logistics Head ]</h3>
+                <p class="member-role role-gold">PR & Outreach Lead</p>
+                <button class="domain-toggle-btn" onclick="toggleMembers('pr-list', this)">
+                    <span>View PR Team Members</span>
+                    <span>↓</span>
+                </button>
+                <div id="pr-list" class="domain-members-list">
+                    <p>• Member Name 1</p>
+                    <p>• Member Name 2</p>
+                    <p>• Member Name 3</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="socials-section">
+            <h2 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 0.5rem;">Connect With Us</h2>
+            <p style="color: #94a3b8; font-size: 0.95rem;">Follow IEEE RAS PESU EC Campus on social media for real-time announcements & updates.</p>
+
+            <div class="social-grid">
+                <a href="https://instagram.com" target="_blank" class="social-card-btn">📸 Instagram</a>
+                <a href="https://linkedin.com" target="_blank" class="social-card-btn">💼 LinkedIn</a>
+                <a href="https://github.com" target="_blank" class="social-card-btn">💻 GitHub</a>
+                <a href="mailto:ras@pes.edu" class="social-card-btn">✉️ Email Us</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function toggleMembers(id, btn) {
+            const list = document.getElementById(id);
+            const arrow = btn.querySelector('span:last-child');
+            if (list.classList.contains('open')) {
+                list.classList.remove('open');
+                arrow.innerHTML = '↓';
+            } else {
+                list.classList.add('open');
+                arrow.innerHTML = '↑';
+            }
+        }
+
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        const points = [];
+        const spacing = 40;
+
+        for (let x = 0; x < window.innerWidth; x += spacing) {
+            for (let y = 0; y < window.innerHeight; y += spacing) {
+                points.push({ x: x, y: y });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < points.length; i++) {
+                let p = points[i];
+
+                if (mouse.x !== null && mouse.y !== null) {
+                    let dx = mouse.x - p.x;
+                    let dy = mouse.y - p.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < mouse.radius) {
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(59, 130, 246, ${1 - dist / mouse.radius})`;
+                        ctx.fill();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
