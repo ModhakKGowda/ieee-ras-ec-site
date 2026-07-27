@@ -11,7 +11,10 @@
     <style>
         #bg-canvas {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
             z-index: -1;
             background: radial-gradient(circle at center, #050814 0%, #010205 100%);
         }
@@ -80,12 +83,23 @@
         }
         .social-links a {
             color: #cbd5e1;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 245, 255, 0.05);
+            border: 1px solid rgba(0, 245, 255, 0.1);
         }
         .social-links a:hover {
             color: #00f5ff;
-            transform: scale(1.15);
+            background: rgba(0, 245, 255, 0.15);
+            border-color: #00f5ff;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
         }
         .domain-toggle-btn {
             background: rgba(0, 245, 255, 0.05);
@@ -163,9 +177,9 @@
                 <h3 style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Chair Name ]</h3>
                 <p style="color: #00f5ff; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Student Chair</p>
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://instagram.com/your_handle" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/your_profile" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:chair@ieee-ras-ec.org" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
 
@@ -174,9 +188,9 @@
                 <h3 style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Vice Chair Name ]</h3>
                 <p style="color: #00b4d8; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Vice Chair</p>
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://instagram.com/your_handle" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/your_profile" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:vicechair@ieee-ras-ec.org" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
 
@@ -185,9 +199,9 @@
                 <h3 style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Secretary Name ]</h3>
                 <p style="color: #00f5ff; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Secretary</p>
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://instagram.com/your_handle" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/your_profile" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:secretary@ieee-ras-ec.org" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
         </div>
@@ -200,8 +214,9 @@
                 <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Operations Lead ]</h3>
                 <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Operations</p>
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://instagram.com/your_handle" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/your_profile" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:ops@ieee-ras-ec.org" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
                 <button class="domain-toggle-btn" onclick="toggleMembers('ops-list', this)">
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
@@ -218,8 +233,9 @@
                 <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Technical Lead ]</h3>
                 <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Technical</p>
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://instagram.com/your_handle" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/your_profile" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:tech@ieee-ras-ec.org" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
                 <button class="domain-toggle-btn" onclick="toggleMembers('tech-list', this)">
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
@@ -236,8 +252,9 @@
                 <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Marketing Lead ]</h3>
                 <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Marketing & SMM</p>
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://instagram.com/your_handle" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/your_profile" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:smm@ieee-ras-ec.org" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
                 <button class="domain-toggle-btn" onclick="toggleMembers('smm-list', this)">
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
@@ -254,8 +271,9 @@
                 <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Design Lead ]</h3>
                 <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Design</p>
                 <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-behance"></i></a>
+                    <a href="https://instagram.com/your_handle" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/your_profile" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:design@ieee-ras-ec.org" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
                 <button class="domain-toggle-btn" onclick="toggleMembers('design-list', this)">
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
@@ -270,87 +288,142 @@
     </div>
 
     <script>
+        // Interactive Neural-Constellation Mesh Canvas
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
-        let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
 
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        let particles = [];
+        const numParticles = 65;
+        let mouse = { x: null, y: null, radius: 150 };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        }
+
         window.addEventListener('resize', resize);
-        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-        resize();
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
 
-        // 1. Interactive Tracking Drones
-        let bots = [
-            { x: 150, y: 350, baseRadius: 22, targetY: 350 },
-            { x: window.innerWidth - 180, y: 600, baseRadius: 26, targetY: 600 }
-        ];
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
 
-        // 2. Blueprint Background Still Robots
-        let stillRobots = [
-            { x: window.innerWidth * 0.2, y: window.innerHeight * 0.85, size: 70 },
-            { x: window.innerWidth * 0.8, y: window.innerHeight * 0.25, size: 90 }
-        ];
-
-        function drawSystem() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Tech grid lines
-            ctx.strokeStyle = 'rgba(0, 245, 255, 0.01)';
-            ctx.lineWidth = 1;
-            for(let i = 0; i < canvas.width; i += 50) {
-                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.radius = Math.random() * 2 + 1.5;
             }
 
-            // Draw Background Still Blueprint Robots
-            ctx.strokeStyle = 'rgba(0, 180, 216, 0.06)';
-            ctx.lineWidth = 2;
-            stillRobots.forEach(r => {
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+                // Mouse interaction bounce / pull
+                if (mouse.x !== null && mouse.y !== null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < mouse.radius) {
+                        let force = (mouse.radius - dist) / mouse.radius;
+                        this.x -= (dx / dist) * force * 2;
+                        this.y -= (dy / dist) * force * 2;
+                    }
+                }
+            }
+
+            draw() {
                 ctx.beginPath();
-                ctx.rect(r.x - r.size/2, r.y - r.size/2, r.size, r.size); // Body outline
-                ctx.moveTo(r.x - r.size/2, r.y); ctx.lineTo(r.x - r.size/2 - 20, r.y + 10); // Arm left
-                ctx.moveTo(r.x + r.size/2, r.y); ctx.lineTo(r.x + r.size/2 + 20, r.y + 10); // Arm right
-                ctx.arc(r.x, r.y - r.size/2 - 15, 12, 0, Math.PI*2); // Head sensor
-                ctx.stroke();
-            });
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#00f5ff';
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = '#00f5ff';
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
 
-            // Draw Interactive Tracking Drones
-            bots.forEach((b, index) => {
-                b.targetY += (mouse.y - b.targetY) * 0.02;
-                b.y = b.targetY + Math.sin(Date.now() * 0.002 + index) * 15;
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
 
-                let angleToMouse = Math.atan2(mouse.y - b.y, mouse.x - b.x);
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
 
-                for(let a = 0; a < Math.PI*2; a += Math.PI/3) {
-                    let lx = b.x + Math.cos(a + Math.sin(Date.now()*0.005)*0.2) * 50;
-                    let ly = b.y + Math.sin(a + Math.sin(Date.now()*0.005)*0.2) * 50;
-                    ctx.strokeStyle = 'rgba(0, 245, 255, 0.25)';
-                    ctx.lineWidth = 2;
-                    ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo((b.x+lx)/2, (b.y+ly)/2 - 8); ctx.lineTo(lx, ly); ctx.stroke();
+                    if (dist < 130) {
+                        let opacity = 1 - (dist / 130);
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(0, 245, 255, ${opacity * 0.25})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
                 }
 
-                ctx.fillStyle = '#060a18';
-                ctx.strokeStyle = '#00f5ff';
-                ctx.lineWidth = 3;
-                ctx.beginPath(); ctx.arc(b.x, b.y, b.baseRadius, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+                // Connect to mouse
+                if (mouse.x !== null && mouse.y !== null) {
+                    let dx = particles[i].x - mouse.x;
+                    let dy = particles[i].y - mouse.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < mouse.radius) {
+                        let opacity = 1 - (dist / mouse.radius);
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(0, 245, 255, ${opacity * 0.45})`;
+                        ctx.lineWidth = 1.2;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
 
-                let ox = b.x + Math.cos(angleToMouse) * 8;
-                let oy = b.y + Math.sin(angleToMouse) * 8;
-                ctx.fillStyle = '#00f5ff';
-                ctx.shadowBlur = 15; ctx.shadowColor = '#00f5ff';
-                ctx.beginPath(); ctx.arc(ox, oy, 6, 0, Math.PI*2); ctx.fill();
-                ctx.shadowBlur = 0;
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Subtle Background Tech Grid
+            ctx.strokeStyle = 'rgba(0, 245, 255, 0.015)';
+            ctx.lineWidth = 1;
+            for (let x = 0; x < canvas.width; x += 60) {
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+            }
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
             });
 
-            requestAnimationFrame(drawSystem);
+            connectParticles();
+            requestAnimationFrame(animate);
         }
-        drawSystem();
+
+        resize();
+        animate();
 
         // Domain Members Accordion Toggle
         function toggleMembers(id, btn) {
             const list = document.getElementById(id);
             const icon = btn.querySelector('i');
             list.classList.toggle('show');
-            if(list.classList.contains('show')) {
+            if (list.classList.contains('show')) {
                 icon.className = 'fa-solid fa-chevron-up';
             } else {
                 icon.className = 'fa-solid fa-chevron-down';
