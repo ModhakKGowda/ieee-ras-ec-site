@@ -45,38 +45,53 @@
     <canvas id="bg-canvas"></canvas>
 
     <div class="content-layer max-w-6xl mx-auto w-full">
-        <!-- HEADER WITH LOGOS & NAVBAR -->
+        <!-- HEADER WITH LOGOS & NAVIGATION -->
         <header class="flex flex-col sm:flex-row items-center justify-between py-4 border-b border-gray-800/80 mb-10 gap-4">
-            <!-- Brand & Logos -->
-            <div class="flex items-center space-x-3">
+    
+            <!-- Brand & Official Logos -->
+            <a href="index.html" class="flex items-center space-x-3 group">
                 <div class="flex items-center space-x-2">
                     <!-- IEEE Logo -->
-                    <div class="h-9 px-2 rounded bg-blue-950/50 border border-blue-500/30 flex items-center justify-center">
-                        <svg class="h-5 w-auto fill-blue-400" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10,15 H30 V45 H10 Z M15,20 V40 H25 V20 Z M45,15 H80 V22 H55 V26 H75 V33 H55 V38 H80 V45 H45 Z M90,15 H125 V22 H100 V26 H120 V33 H100 V38 H125 V45 H90 Z M135,15 H170 V22 H145 V26 H165 V33 H145 V38 H170 V45 H135 Z"/>
-                            <circle cx="185" cy="30" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
-                            <polygon points="185,20 180,35 190,35" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <!-- RAS Logo Badge -->
-                    <div class="h-9 px-2.5 rounded bg-amber-950/50 border border-amber-500/30 flex items-center justify-center font-extrabold text-xs tracking-wider text-amber-400 space-x-1">
-                        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-                        </svg>
-                        <span>RAS</span>
-                    </div>
+                    <img 
+                        src="assets/ieee-logo.png" 
+                        alt="IEEE Logo" 
+                        class="h-8 w-auto object-contain transition-transform group-hover:scale-105"
+                        onerror="this.style.display='none'"
+                    />
+            
+                    <!-- IEEE RAS Logo -->
+                    <img 
+                        src="assets/ras-logo.png" 
+                        alt="IEEE RAS Logo" 
+                        class="h-8 w-auto object-contain transition-transform group-hover:scale-105"
+                        onerror="this.style.display='none'"
+                    />
                 </div>
-                <span class="text-sm font-bold tracking-wide text-gray-200 hidden md:inline">IEEE RAS PESU EC</span>
-            </div>
+        
+                <span class="text-sm font-bold tracking-wide text-gray-200 hidden md:inline border-l border-gray-700 pl-3">
+                    IEEE RAS PESU EC
+                </span>
+             </a>
 
-            <!-- Navbar Buttons -->
-            <nav class="flex items-center space-x-1 sm:space-x-2 bg-slate-900/80 p-1.5 rounded-full border border-slate-800 backdrop-blur-md">
-                <a href="#home" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3 py-1.5 rounded-full transition">Home</a>
-                <a href="#about" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3 py-1.5 rounded-full transition">About</a>
-                <a href="#domains" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3 py-1.5 rounded-full transition">Domains</a>
-                <a href="#team" class="text-xs font-semibold text-blue-400 bg-blue-950/80 border border-blue-500/30 px-3 py-1.5 rounded-full transition">Team</a>
-                <a href="#contact" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3 py-1.5 rounded-full transition">Contact</a>
+            <!-- Unified Site Navbar -->
+            <nav class="flex items-center space-x-1 sm:space-x-2 bg-slate-900/80 p-1.5 rounded-full border border-slate-800 backdrop-blur-md shadow-lg">
+                <a href="index.html" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3.5 py-1.5 rounded-full transition-all">
+                    Home
+                </a>
+                <a href="about.html" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3.5 py-1.5 rounded-full transition-all">
+                    About
+                </a>
+                <a href="events.html" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3.5 py-1.5 rounded-full transition-all">
+                    Events
+                </a>
+                <a href="team.html" class="text-xs font-semibold text-blue-400 bg-blue-950/80 border border-blue-500/30 px-3.5 py-1.5 rounded-full shadow-sm">
+                    Team
+                </a>
+                <a href="contact.html" class="text-xs font-medium text-gray-300 hover:text-white hover:bg-slate-800/80 px-3.5 py-1.5 rounded-full transition-all">
+                    Contact
+                </a>
             </nav>
+
         </header>
 
         <div class="text-center mb-12">
