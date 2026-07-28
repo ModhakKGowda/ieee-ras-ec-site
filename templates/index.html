@@ -224,12 +224,26 @@
                     <input type="text" id="contactName" class="form-control" placeholder="Enter your name" required>
                 </div>
                 <div class="form-group">
-                    <label for="contactSRN">SRN</label>
-                    <input type="text" id="contactSRN" class="form-control" placeholder="PES1UG2XXXXX" required>
+                    <label for="srn">SRN / Student ID</label>
+                    <input 
+                        type="text" 
+                        id="srn" 
+                        name="srn" 
+                        class="input-field" 
+                        placeholder="PES2UGXXXXXXX" 
+                        required 
+                    />
                 </div>
                 <div class="form-group">
-                    <label for="contactEmail">Email Address</label>
-                    <input type="email" id="contactEmail" class="form-control" placeholder="name@pes.edu" required>
+                    <label for="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="input-field" 
+                        placeholder="name@gmail.com or srn@pes.edu" 
+                        required 
+                    />
                 </div>
                 <div class="form-group">
                     <label for="contactMessage">Message</label>
@@ -353,5 +367,7 @@
             });
         }
     </script>
+    
+    <script src="static/script.js"></script>
 </body>
 </html>
