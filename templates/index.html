@@ -220,39 +220,20 @@
             
             <form id="contactForm" onsubmit="event.preventDefault(); alert('Message submitted successfully!'); document.getElementById('contactModal').classList.remove('active');">
                 <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        class="input-field" 
-                        placeholder="Enter your name" 
-                        required 
-                    />
+                    <label for="contactName">Full Name</label>
+                    <input type="text" id="contactName" class="form-control" placeholder="Enter your name" required>
                 </div>
-
                 <div class="form-group">
-                    <label for="srn">SRN / Student ID</label>
-                    <input 
-                        type="text" 
-                        id="srn" 
-                        name="srn" 
-                        class="input-field" 
-                        placeholder="PES2UGXXXXX" 
-                        required 
-                    />
+                    <label for="contactSRN">SRN</label>
+                    <input type="text" id="contactSRN" class="form-control" placeholder="PES2UGXXXXXXX" required>
                 </div>
-
                 <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        class="input-field" 
-                        placeholder="name@gmail.com" 
-                        required 
-                    />
+                    <label for="contactEmail">Email Address</label>
+                    <input type="email" id="contactEmail" class="form-control" placeholder="name@gmail.com or name@pes.edu" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" class="form-control" placeholder="Write your message..." required></textarea>
                 </div>
                 <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem; padding: 12px; font-weight: 700;">Send Message</button>
             </form>
