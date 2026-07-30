@@ -9,15 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* Canvas positioning behind content */
-        #robotics-canvas {
+        /* Canvas background positioning */
+        #circuit-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             z-index: 1;
-            pointer-events: none; /* Allows scrolling & clicks to pass through to cards */
+            pointer-events: none;
         }
 
         .team-container {
@@ -41,7 +41,7 @@
             text-transform: uppercase;
         }
         
-        /* Glassmorphic Nodes / Cards */
+        /* Glassmorphic Cards */
         .grid-layout {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -49,7 +49,7 @@
         }
         .story-node {
             position: relative;
-            background: rgba(8, 14, 28, 0.7);
+            background: rgba(8, 14, 28, 0.75);
             border: 1px solid rgba(0, 180, 216, 0.15);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
@@ -143,10 +143,10 @@
         }
     </style>
 </head>
-<body style="color: #fff; overflow-x: hidden; background-color: #050811;">
+<body style="color: #fff; overflow-x: hidden; background-color: #030712;">
 
-    <!-- Interactive Robotics Canvas Background -->
-    <canvas id="robotics-canvas"></canvas>
+    <!-- Circuit Streams Background -->
+    <canvas id="circuit-canvas"></canvas>
 
     <header class="navbar">
         <div class="logo-wrapper">
@@ -190,7 +190,7 @@
             <div class="story-node">
                 <div class="avatar-box"><i class="fa-solid fa-user-gear"></i></div>
                 <h3 style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Vice Chair Name ]</h3>
-                <p style="color: #00b4d8; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Vice Chair</p>
+                <p style="color: #00b4d8; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Student Vice Chair</p>
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
@@ -201,7 +201,7 @@
             <div class="story-node">
                 <div class="avatar-box"><i class="fa-solid fa-file-signature"></i></div>
                 <h3 style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Secretary Name ]</h3>
-                <p style="color: #00f5ff; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Secretary</p>
+                <p style="color: #00f5ff; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Student Secretary</p>
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
@@ -216,7 +216,7 @@
             <div class="story-node">
                 <div class="avatar-box"><i class="fa-solid fa-sliders"></i></div>
                 <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Operations Lead ]</h3>
-                <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Operations</p>
+                <p style="color: #94a3b8; font-size: 0.85rem;">Operations</p>
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
@@ -235,7 +235,7 @@
             <div class="story-node">
                 <div class="avatar-box"><i class="fa-solid fa-code"></i></div>
                 <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Technical Lead ]</h3>
-                <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Technical</p>
+                <p style="color: #94a3b8; font-size: 0.85rem;">Technical</p>
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
@@ -254,7 +254,7 @@
             <div class="story-node">
                 <div class="avatar-box"><i class="fa-solid fa-bullhorn"></i></div>
                 <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Marketing Lead ]</h3>
-                <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Marketing & SMM</p>
+                <p style="color: #94a3b8; font-size: 0.85rem;">Marketing & Social Media</p>
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
@@ -273,7 +273,7 @@
             <div class="story-node">
                 <div class="avatar-box"><i class="fa-solid fa-pen-ruler"></i></div>
                 <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem;">[ Design Lead ]</h3>
-                <p style="color: #94a3b8; font-size: 0.85rem;">Domain Head — Design</p>
+                <p style="color: #94a3b8; font-size: 0.85rem;">Design</p>
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
@@ -292,7 +292,7 @@
     </div>
 
     <script>
-        // Domain Members Accordion Toggle
+        // Accordion Toggle Script
         function toggleMembers(id, btn) {
             const list = document.getElementById(id);
             const icon = btn.querySelector('i');
@@ -304,125 +304,75 @@
             }
         }
 
-        /* Interactive Robotics Constellation Canvas Script */
-        const canvas = document.getElementById('robotics-canvas');
+        /* Circuit Pulse Stream Canvas Animation */
+        const canvas = document.getElementById('circuit-canvas');
         const ctx = canvas.getContext('2d');
 
-        let particles = [];
-        const mouse = { x: null, y: null, radius: 150 };
+        let pulses = [];
 
-        function initCanvasSize() {
+        function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
 
-        window.addEventListener('resize', () => {
-            initCanvasSize();
-            createParticles();
-        });
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-
-        window.addEventListener('mouseleave', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        // Mobile touch interaction
-        window.addEventListener('touchmove', (e) => {
-            if(e.touches.length > 0) {
-                mouse.x = e.touches[0].clientX;
-                mouse.y = e.touches[0].clientY;
-            }
-        });
-
-        class Particle {
+        class CircuitPulse {
             constructor() {
+                this.reset();
+            }
+
+            reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.vx = (Math.random() - 0.5) * 0.8;
-                this.vy = (Math.random() - 0.5) * 0.8;
+                this.length = Math.random() * 90 + 30;
+                this.speed = Math.random() * 2.5 + 1;
+                this.vertical = Math.random() > 0.5;
+                this.opacity = Math.random() * 0.4 + 0.1;
             }
 
             draw() {
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = '#00f5ff';
+                if (this.vertical) {
+                    ctx.moveTo(this.x, this.y);
+                    ctx.lineTo(this.x, this.y + this.length);
+                } else {
+                    ctx.moveTo(this.x, this.y);
+                    ctx.lineTo(this.x + this.length, this.y);
+                }
+                ctx.strokeStyle = `rgba(0, 245, 255, ${this.opacity})`;
+                ctx.lineWidth = 1.8;
                 ctx.shadowBlur = 8;
                 ctx.shadowColor = '#00f5ff';
-                ctx.fill();
-                ctx.shadowBlur = 0; // reset for performance
+                ctx.stroke();
+                ctx.shadowBlur = 0;
             }
 
             update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Bounce off edges
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-
-                // Mouse interaction / push effect
-                if (mouse.x !== null && mouse.y !== null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < mouse.radius) {
-                        let force = (mouse.radius - distance) / mouse.radius;
-                        this.x -= (dx / distance) * force * 3;
-                        this.y -= (dy / distance) * force * 3;
-                    }
+                if (this.vertical) {
+                    this.y += this.speed;
+                    if (this.y > canvas.height) this.reset();
+                } else {
+                    this.x += this.speed;
+                    if (this.x > canvas.width) this.reset();
                 }
             }
         }
 
-        function createParticles() {
-            particles = [];
-            // Calculate particle count relative to screen size (fewer on mobile for efficiency)
-            const count = Math.floor((canvas.width * canvas.height) / 14000);
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function connectParticles() {
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a + 1; b < particles.length; b++) {
-                    let dx = particles[a].x - particles[b].x;
-                    let dy = particles[a].y - particles[b].y;
-                    let dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 120) {
-                        let opacity = 1 - (dist / 120);
-                        ctx.strokeStyle = `rgba(0, 245, 255, ${opacity * 0.25})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
-                        ctx.stroke();
-                    }
-                }
-            }
+        for (let i = 0; i < 45; i++) {
+            pulses.push(new CircuitPulse());
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-            }
-            connectParticles();
-
+            pulses.forEach(pulse => {
+                pulse.update();
+                pulse.draw();
+            });
             requestAnimationFrame(animate);
         }
 
-        initCanvasSize();
-        createParticles();
         animate();
     </script>
 </body>
