@@ -393,3 +393,91 @@ h3, .card-title {
         border-radius: 12px !important;
     }
 }
+/* Lightweight About Section */
+.about-hero-section {
+    position: relative;
+    padding: 60px 20px;
+    background-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+    overflow: hidden;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Dark Gradient Overlay for Readability */
+.about-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(5, 8, 17, 0.92) 0%, rgba(15, 23, 42, 0.85) 100%);
+    z-index: 1;
+}
+
+.about-container {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.about-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 12px 0;
+    color: #ffffff;
+}
+
+.about-lead {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin-bottom: 28px;
+}
+
+/* Mobile-Friendly Quick Stats Row */
+.about-stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3b82f6;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+    .about-hero-section {
+        padding: 40px 16px;
+    }
+    .about-title {
+        font-size: 1.75rem;
+    }
+    .about-lead {
+        font-size: 0.95rem;
+    }
+    .about-stats-row {
+        gap: 16px;
+    }
+}
