@@ -9,6 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
+        /* Canvas positioning behind content */
+        #robotics-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none; /* Allows scrolling & clicks to pass through to cards */
+        }
+
         .team-container {
             max-width: 1100px;
             margin: 8rem auto 6rem auto;
@@ -41,6 +52,7 @@
             background: rgba(8, 14, 28, 0.7);
             border: 1px solid rgba(0, 180, 216, 0.15);
             backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             padding: 2.5rem 2rem;
             border-radius: 20px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.4);
@@ -131,10 +143,10 @@
         }
     </style>
 </head>
-<body style="color: #fff; overflow-x: hidden;">
+<body style="color: #fff; overflow-x: hidden; background-color: #050811;">
 
-    <!-- Pure CSS Circuit Background Container -->
-    <div class="circuit-bg" aria-hidden="true"></div>
+    <!-- Interactive Robotics Canvas Background -->
+    <canvas id="robotics-canvas"></canvas>
 
     <header class="navbar">
         <div class="logo-wrapper">
@@ -155,7 +167,7 @@
     <div class="team-container">
         <div class="hero-story-block">
             <span style="color: #00f5ff; font-weight: 800; letter-spacing: 2px; font-size: 0.85rem; text-transform: uppercase;">Governance & Leadership</span>
-            <h1 style="font-size: 3rem; font-weight: 800; margin-top: 0.5rem; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Architects of RAS EC Campus</h1>
+            <h1 style="font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-top: 0.5rem; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Architects of RAS EC Campus</h1>
             <p style="color: #cbd5e1; max-width: 650px; margin: 1rem auto 0 auto; font-size: 1.05rem; line-height: 1.6;">
                 Meet the executive committee and domain leads behind the autonomous systems, hardware sandboxes, and technical initiatives at PES University EC Campus.
             </p>
@@ -171,7 +183,7 @@
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="mailtro: mail id" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="mailto:email id" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
 
@@ -182,7 +194,7 @@
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="mailto:mail id" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="mailto:email id" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
 
@@ -193,7 +205,7 @@
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="mailto:mail id" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="mailto:email id" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
         </div>
@@ -208,7 +220,7 @@
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="mailto:mail id" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="mailto:email id" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
                 <button class="domain-toggle-btn" onclick="toggleMembers('ops-list', this)">
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
@@ -227,7 +239,7 @@
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="mailtro:mail id" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="mailto:email id" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
                 <button class="domain-toggle-btn" onclick="toggleMembers('tech-list', this)">
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
@@ -246,7 +258,7 @@
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="mailto:mail id title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="mailto:email id" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
                 <button class="domain-toggle-btn" onclick="toggleMembers('smm-list', this)">
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
@@ -265,7 +277,7 @@
                 <div class="social-links">
                     <a href="url" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="url" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="mailto:mail id title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="mailto:email id" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
                 <button class="domain-toggle-btn" onclick="toggleMembers('design-list', this)">
                     <span>Domain Members</span> <i class="fa-solid fa-chevron-down"></i>
@@ -291,6 +303,127 @@
                 icon.className = 'fa-solid fa-chevron-down';
             }
         }
+
+        /* Interactive Robotics Constellation Canvas Script */
+        const canvas = document.getElementById('robotics-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const mouse = { x: null, y: null, radius: 150 };
+
+        function initCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', () => {
+            initCanvasSize();
+            createParticles();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        // Mobile touch interaction
+        window.addEventListener('touchmove', (e) => {
+            if(e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+            }
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = '#00f5ff';
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = '#00f5ff';
+                ctx.fill();
+                ctx.shadowBlur = 0; // reset for performance
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bounce off edges
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+                // Mouse interaction / push effect
+                if (mouse.x !== null && mouse.y !== null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        let force = (mouse.radius - distance) / mouse.radius;
+                        this.x -= (dx / distance) * force * 3;
+                        this.y -= (dy / distance) * force * 3;
+                    }
+                }
+            }
+        }
+
+        function createParticles() {
+            particles = [];
+            // Calculate particle count relative to screen size (fewer on mobile for efficiency)
+            const count = Math.floor((canvas.width * canvas.height) / 14000);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function connectParticles() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a + 1; b < particles.length; b++) {
+                    let dx = particles[a].x - particles[b].x;
+                    let dy = particles[a].y - particles[b].y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        let opacity = 1 - (dist / 120);
+                        ctx.strokeStyle = `rgba(0, 245, 255, ${opacity * 0.25})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            connectParticles();
+
+            requestAnimationFrame(animate);
+        }
+
+        initCanvasSize();
+        createParticles();
+        animate();
     </script>
 </body>
 </html>
